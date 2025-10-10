@@ -109,74 +109,62 @@ export function Navigation() {
         </div>
       </div>
 
-      {/* Mobile Sidebar */}
+      {/* Mobile Full Screen Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/50 z-40 md:hidden"
-              onClick={closeMobileMenu}
-            />
-
-            {/* Sidebar */}
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-64 bg-foreground shadow-xl z-[60] md:hidden"
-            >
-              <div className="flex flex-col h-full">
-                {/* Close Button */}
-                <div className="flex justify-end p-4">
-                  <button
-                    onClick={closeMobileMenu}
-                    className="text-white hover:golden-text transition-colors duration-200"
-                    aria-label="Close menu"
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 w-screen h-screen bg-foreground z-[60] md:hidden"
+          >
+            <div className="flex flex-col h-full w-full">
+              {/* Close Button */}
+              <div className="flex justify-end p-6">
+                <button
+                  onClick={closeMobileMenu}
+                  className="text-white hover:golden-text transition-colors duration-200"
+                  aria-label="Close menu"
+                >
+                  <svg
+                    className="w-8 h-8"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </div>
-
-                {/* Navigation Links */}
-                <div className="flex flex-col space-y-2 px-6 py-4 bg-foreground">
-                  {navigationLinks.map((link, index) => (
-                    <motion.div
-                      key={link.href}
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link
-                        href={link.href}
-                        onClick={closeMobileMenu}
-                        className="block py-3 px-4 rounded-lg text-white hover:bg-white/10 transition-all duration-200 golden-text text-base font-medium"
-                      >
-                        {link.label}
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
               </div>
-            </motion.div>
-          </>
+
+              {/* Navigation Links - Centered */}
+              <div className="flex-1 flex flex-col items-center justify-center space-y-6 px-8">
+                {navigationLinks.map((link, index) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="w-full max-w-md"
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={closeMobileMenu}
+                      className="block py-4 px-6 rounded-lg text-center text-white hover:bg-white/10 transition-all duration-200 golden-text text-2xl font-semibold"
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </nav>
