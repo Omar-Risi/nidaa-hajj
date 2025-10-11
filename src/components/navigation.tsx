@@ -64,7 +64,7 @@ export function Navigation() {
           </div>
 
           {/* Navigation Links Section */}
-          <div className="hidden md:flex items-center space-x-6 rtl:space-x-reverse">
+          <div className="hidden lg:flex items-center space-x-6 rtl:space-x-reverse">
             {navigationLinks.map((link) => (
               <NavLink
                 key={link.href}
@@ -76,7 +76,7 @@ export function Navigation() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={toggleMobileMenu}
               className="text-white hover:text-gold transition-colors duration-200 relative z-50"
@@ -117,7 +117,7 @@ export function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 w-screen h-screen bg-foreground z-[60] md:hidden"
+            className="fixed inset-0 w-screen h-screen bg-foreground z-[60] lg:hidden"
           >
             <div className="flex flex-col h-full w-full">
               {/* Close Button */}
