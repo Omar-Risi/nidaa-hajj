@@ -212,15 +212,15 @@ export default function OffersSection() {
                       <Info className="w-4 h-4" />
                       التفاصيل
                     </motion.button>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex-[2] py-3 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground font-semibold rounded-lg transition-all duration-200"
-                    >
-                      <a href={`https://wa.me/+96897477488?text=انا مهتف في هذا العرض : ${card.title}`}>
+                    <a className="flex-[2] flex" href={`https://wa.me/+96897477488?text=انا مهتم في هذا العرض : ${card.title}`} target="_blank">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex-1 py-3 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground font-semibold rounded-lg transition-all duration-200"
+                      >
                         احجز الآن
-                      </a>
-                    </motion.button>
+                      </motion.button>
+                    </a>
                   </div>
                 </div>
               </motion.div>
