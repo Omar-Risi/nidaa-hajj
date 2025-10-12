@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="w-full max-h-screen overflow-hidden flex relative">
+      <section className="w-full h-screen max-h-screen overflow-hidden flex relative">
         <div className="flex-1 relative flex">
           <div className="bg-black/50 w-full h-full absolute z-10"></div>
           <Image

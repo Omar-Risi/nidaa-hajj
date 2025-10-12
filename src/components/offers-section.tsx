@@ -146,7 +146,7 @@ export default function OffersSection() {
     <section id="offers" className="mt-16 scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Tab Buttons */}
-        <div className="flex items-center justify-center w-full flex-wrap gap-4">
+        <div className="grid grid-rows-3 lg:grid-rows-none lg:grid-cols-3 items-center justify-center w-full flex-wrap gap-4 text-sm">
           <button
             onClick={() => setActiveSection('offers')}
             className={`
@@ -155,8 +155,8 @@ export default function OffersSection() {
               rounded-full 
               font-medium
               transition-all duration-300
-              ${activeSection === 'offers' 
-                ? 'bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground' 
+              ${activeSection === 'offers'
+                ? 'bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground'
                 : 'bg-foreground text-white hover:bg-gradient-to-r hover:from-gold-start hover:via-gold-end hover:to-gold-start hover:text-foreground'
               }
             `}
@@ -164,7 +164,7 @@ export default function OffersSection() {
             <Tag className="w-5 h-5" />
             <span>العروض</span>
           </button>
-          
+
           <button
             onClick={() => setActiveSection('hajj')}
             className={`
@@ -173,8 +173,8 @@ export default function OffersSection() {
               rounded-full 
               font-medium
               transition-all duration-300
-              ${activeSection === 'hajj' 
-                ? 'bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground' 
+              ${activeSection === 'hajj'
+                ? 'bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground'
                 : 'bg-foreground text-white hover:bg-gradient-to-r hover:from-gold-start hover:via-gold-end hover:to-gold-start hover:text-foreground'
               }
             `}
@@ -182,7 +182,7 @@ export default function OffersSection() {
             <Box className="w-5 h-5" />
             <span>برامج الحج</span>
           </button>
-          
+
           <button
             onClick={() => setActiveSection('omrah')}
             className={`
@@ -191,8 +191,8 @@ export default function OffersSection() {
               rounded-full 
               font-medium
               transition-all duration-300
-              ${activeSection === 'omrah' 
-                ? 'bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground' 
+              ${activeSection === 'omrah'
+                ? 'bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground'
                 : 'bg-foreground text-white hover:bg-gradient-to-r hover:from-gold-start hover:via-gold-end hover:to-gold-start hover:text-foreground'
               }
             `}
@@ -204,7 +204,7 @@ export default function OffersSection() {
 
         {/* Content Grid with AnimatePresence */}
         <AnimatePresence mode="wait">
-          <motion.div 
+          <motion.div
             key={activeSection}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -217,8 +217,8 @@ export default function OffersSection() {
                 key={card.id}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.5, 
+                transition={{
+                  duration: 0.5,
                   delay: index * 0.1,
                   ease: "easeOut"
                 }}
@@ -237,7 +237,7 @@ export default function OffersSection() {
                 {/* Content */}
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-foreground mb-4">{card.title}</h3>
-                  
+
                   {/* Pricing */}
                   <div className="space-y-3">
                     {card.pricing.map((tier, tierIndex) => (
@@ -245,9 +245,9 @@ export default function OffersSection() {
                         key={tierIndex}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ 
-                          duration: 0.3, 
-                          delay: index * 0.1 + tierIndex * 0.1 
+                        transition={{
+                          duration: 0.3,
+                          delay: index * 0.1 + tierIndex * 0.1
                         }}
                         className="flex items-center justify-between py-2 border-b border-gray-200 last:border-0"
                       >
@@ -264,7 +264,7 @@ export default function OffersSection() {
                   </div>
 
                   {/* Book Button */}
-                  <motion.button 
+                  <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="w-full mt-6 py-3 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground font-semibold rounded-lg transition-all duration-200"
