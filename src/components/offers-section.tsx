@@ -1,7 +1,7 @@
-'use client';
 
+'use client';
 import Image from "next/image";
-import { Tag, Box, Footprints, User, Users } from "lucide-react";
+import { Box, User, Users, Plane, Book } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -15,6 +15,7 @@ interface PricingTier {
 interface OfferCard {
   id: number;
   title: string;
+  content?: string;
   image: string;
   pricing: PricingTier[];
 }
@@ -27,6 +28,7 @@ export default function OffersSection() {
     {
       id: 1,
       title: "عرض خاص",
+      content: "",
       image: "/hero-bg.jpg",
       pricing: [
         { icon: 'single', price: 450, label: 'فرد واحد' },
@@ -161,7 +163,7 @@ export default function OffersSection() {
               }
             `}
           >
-            <Tag className="w-5 h-5" />
+            <Plane className="w-5 h-5" />
             <span>العروض</span>
           </button>
 
@@ -197,7 +199,7 @@ export default function OffersSection() {
               }
             `}
           >
-            <Footprints className="w-5 h-5" />
+            <Book className="w-5 h-5" />
             <span>برامج العمرة</span>
           </button>
         </div>
@@ -237,6 +239,10 @@ export default function OffersSection() {
                 {/* Content */}
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-foreground mb-4">{card.title}</h3>
+
+                  <p>
+                    {card.content}
+                  </p>
 
                   {/* Pricing */}
                   <div className="space-y-3">
