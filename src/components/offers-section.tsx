@@ -217,7 +217,9 @@ export default function OffersSection() {
                       whileTap={{ scale: 0.95 }}
                       className="flex-[2] py-3 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground font-semibold rounded-lg transition-all duration-200"
                     >
-                      احجز الآن
+                      <a href={`https://wa.me/+96897477488?text=انا مهتف في هذا العرض : ${card.title}`}>
+                        احجز الآن
+                      </a>
                     </motion.button>
                   </div>
                 </div>
@@ -275,7 +277,7 @@ export default function OffersSection() {
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
               onClick={() => setSelectedCard(null)}
             />
-            
+
             {/* Modal */}
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
               <motion.div
@@ -295,7 +297,7 @@ export default function OffersSection() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                  
+
                   {/* Close Button */}
                   <button
                     onClick={() => setSelectedCard(null)}
@@ -304,7 +306,7 @@ export default function OffersSection() {
                   >
                     <X className="w-5 h-5 text-foreground" />
                   </button>
-                  
+
                   {/* Title Overlay */}
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <h3 className="text-2xl sm:text-3xl font-bold text-white">{selectedCard.title}</h3>
@@ -335,7 +337,7 @@ export default function OffersSection() {
                         <p className="text-gray-700">{selectedCard.duration}</p>
                       </div>
                     )}
-                    
+
                     {selectedCard.accommodation && (
                       <div className="bg-gradient-to-br from-gold-start/10 to-gold-end/10 rounded-xl p-4 border border-gold-start/20">
                         <div className="flex items-center gap-2 mb-2">

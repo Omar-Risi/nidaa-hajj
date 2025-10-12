@@ -24,7 +24,7 @@ export default function Home() {
         <div className="flex-1 relative flex">
           <div className="bg-black/50 w-full h-full absolute z-10"></div>
           <Image
-            src="/hero-bg.jpg"
+            src="/hero-img-2.jpg"
             alt="Hero Background"
             width={1920}
             height={1080}
