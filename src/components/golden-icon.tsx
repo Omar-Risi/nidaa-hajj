@@ -1,7 +1,8 @@
 'use client';
+import { useId } from 'react';
 
 export const GoldenIcon = ({ icon: Icon, size = 24, className = '', ...props }) => {
-  const gradientId = `golden-gradient-${Math.random().toString(36).substr(2, 9)}`;
+  const gradientId = `golden-gradient-${useId()}`;
 
   return (
     <div className={`inline-block ${className}`} style={{ width: size, height: size }}>
