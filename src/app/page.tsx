@@ -1,8 +1,11 @@
 'use client';
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import OffersSection from "@/components/offers-section";
+import { BadgeQuestionMark } from "lucide-react";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   // Smooth scroll handler
@@ -55,6 +58,39 @@ export default function Home() {
 
       {/* Offers Section Component */}
       <OffersSection />
+
+      <motion.section
+        initial={{ opacity: 0, translateY: '20px' }}
+        whileInView={{ opacity: 1, translateY: '10px' }}
+        transition={{ duration: 0.3, }}
+        className="mt-[75] flex flex-col justify-center items-center"
+      >
+        <div className="px-4 py-1 flex items-center justify-center bg-foreground text-white rounded-full gap-2 transition-colors">
+          <BadgeQuestionMark />
+          <span> من نحن </span>
+        </div>
+        <h1 className="text-2xl mt-4 font-bold"> اجمع شوق قلبك لعناق الحرمين وتعال معنا </h1>
+
+        <div className="bg-white w-3/4 lg:w-1/2 p-3 mt-8 rounded-md shadow-lg shadow-foreground/15 text-center font-semibold">
+          <p className="mt-4">
+            مؤسسة النداء للحج والعمرة ، إعادة لتعريف الفخامة والإبداع ، تصقلها التجربة ، وتنميها الخبرة ويطورها التفكير الدؤوب.
+            تأسست النداء عام 2003 م ، وانطلقت تروي قضة الجمال في أعظم الرحلات الإيمانية ، لتقول للمشتاقين لبيت الله ،  نحن هنا لأنكم تستحقون الأفضل ، نبحر في ملكوت الجمال ، لنصل حيث أنتم ، لنقدم لكم تجربتنا الرائدة في مجال الحج والعمرة.
+          </p>
+          <p className="mt-4">
+
+            إن رحلة الحج والعمرة ليست مجرد سفر؛ بل هي تجربة تُشحن فيها القلوب، وتجدد فيها النوايا، وتسمو فيها الأرواح. ومن خلال مؤسسة النداء، تتجسد آمال الحجيج في خدمة متميزة تعبّر عن عمق الإيمان وتروي فرحة اللقاء مع بيت الله الحرام.
+          </p>
+
+          <p className="mt-4 ">
+
+            لنكن اختياركم لنحظى بشرف خدمتكم .. ولتحظوا أنتم بعناية تليق بكم وباختياركم
+          </p>
+        </div>
+
+      </motion.section >
+
+
+      <Footer />
     </>
   );
 }
