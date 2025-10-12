@@ -1,4 +1,3 @@
-
 'use client';
 import Image from "next/image";
 import { Box, User, Users, Book, Info, X } from "lucide-react";
@@ -21,12 +20,14 @@ interface OfferCard {
   duration?: string;
   accommodation?: string;
   image: string;
+  images?: string[]; // Array of images for carousel
   pricing: PricingTier[];
 }
 
 export default function OffersSection() {
   const [selectedCard, setSelectedCard] = useState<OfferCard | null>(null);
   const [activeTab, setActiveTab] = useState<'umrah' | 'hajj'>('umrah');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Umrah Packages Data
   const umrahPackages: OfferCard[] = [
@@ -46,6 +47,7 @@ export default function OffersSection() {
         "خدمات راقية ومتعددة تليق بمعتمرينا",
       ],
       image: "/hero-bg.jpg",
+      images: ["/hero-bg.jpg", "/hero-bg.jpg", "/hero-bg.jpg", "/hero-bg.jpg"], // Carousel images
       pricing: [
         { icon: 'single', price: 1310, label: 'غرفة فردية' },
         { icon: 'double', price: 785, label: 'غرفة ثنائية (للشخص)' },
@@ -69,6 +71,7 @@ export default function OffersSection() {
         "خدمات راقية ومتعددة تليق بمعتمرينا",
       ],
       image: "/hero-bg.jpg",
+      images: ["/hero-bg.jpg", "/hero-bg.jpg", "/hero-bg.jpg"], // Carousel images
       pricing: [
         { icon: 'single', price: 860, label: 'غرفة فردية' },
         { icon: 'double', price: 555, label: 'غرفة ثنائية (للشخص)' },
@@ -92,6 +95,29 @@ export default function OffersSection() {
           </div>
         );
     }
+  };
+
+  // Carousel navigation handlers
+  const handlePrevImage = () => {
+    if (selectedCard?.images) {
+      setCurrentImageIndex((prev) =>
+        prev === 0 ? selectedCard.images!.length - 1 : prev - 1
+      );
+    }
+  };
+
+  const handleNextImage = () => {
+    if (selectedCard?.images) {
+      setCurrentImageIndex((prev) =>
+        prev === selectedCard.images!.length - 1 ? 0 : prev + 1
+      );
+    }
+  };
+
+  // Reset image index when modal opens
+  const openModal = (card: OfferCard) => {
+    setCurrentImageIndex(0);
+    setSelectedCard(card);
   };
 
   return (
@@ -206,7 +232,7 @@ export default function OffersSection() {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={() => setSelectedCard(card)}
+                      onClick={() => openModal(card)}
                       className="flex-1 py-3 bg-foreground text-white font-semibold rounded-lg transition-all duration-200 hover:bg-foreground/90 flex items-center justify-center gap-2"
                     >
                       <Info className="w-4 h-4" />
@@ -264,7 +290,7 @@ export default function OffersSection() {
         )}
       </div>
 
-      {/* Professional Modal Popup */}
+      {/* Professional Modal Popup with Carousel */}
       <AnimatePresence>
         {selectedCard && (
           <>
@@ -288,33 +314,116 @@ export default function OffersSection() {
                 className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Modal Header with Image */}
-                <div className="relative h-48 sm:h-64 w-full">
-                  <Image
-                    src={selectedCard.image}
-                    alt={selectedCard.title}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                {/* Modal Header with Image Carousel */}
+                <div className="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden">
+                  {/* Carousel Images */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentImageIndex}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="relative h-full w-full"
+                    >
+                      <Image
+                        src={selectedCard.images?.[currentImageIndex] || selectedCard.image}
+                        alt={`${selectedCard.title} - Image ${currentImageIndex + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pointer-events-none" />
+
+                  {/* Navigation Arrows - Only show if multiple images */}
+                  {selectedCard.images && selectedCard.images.length > 1 && (
+                    <>
+                      {/* Previous Button */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handlePrevImage();
+                        }}
+                        onTouchEnd={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          handlePrevImage();
+                        }}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/95 hover:bg-white active:bg-white flex items-center justify-center transition-all shadow-xl z-20 touch-manipulation"
+                        aria-label="Previous image"
+                      >
+                        <svg className="w-6 h-6 sm:w-7 sm:h-7 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+
+                      {/* Next Button */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleNextImage();
+                        }}
+                        onTouchEnd={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          handleNextImage();
+                        }}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/95 hover:bg-white active:bg-white flex items-center justify-center transition-all shadow-xl z-20 touch-manipulation"
+                        aria-label="Next image"
+                      >
+                        <svg className="w-6 h-6 sm:w-7 sm:h-7 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+
+                      {/* Image Indicators */}
+                      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2.5 z-20">
+                        {selectedCard.images.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setCurrentImageIndex(index);
+                            }}
+                            onTouchEnd={(e) => {
+                              e.stopPropagation();
+                              e.preventDefault();
+                              setCurrentImageIndex(index);
+                            }}
+                            className={`h-2.5 rounded-full transition-all touch-manipulation ${index === currentImageIndex
+                                ? 'bg-white w-8'
+                                : 'bg-white/60 hover:bg-white/80 w-2.5'
+                              }`}
+                            aria-label={`Go to image ${index + 1}`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
 
                   {/* Close Button */}
                   <button
-                    onClick={() => setSelectedCard(null)}
-                    className="absolute top-4 left-4 sm:right-4 sm:left-auto w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center transition-colors shadow-lg"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedCard(null);
+                    }}
+                    className="absolute top-4 left-4 sm:right-4 sm:left-auto w-12 h-12 rounded-full bg-white/95 hover:bg-white flex items-center justify-center transition-colors shadow-xl z-20"
                     aria-label="Close modal"
                   >
-                    <X className="w-5 h-5 text-foreground" />
+                    <X className="w-6 h-6 text-foreground" />
                   </button>
 
                   {/* Title Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white">{selectedCard.title}</h3>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 z-10 pointer-events-none">
+               <h3 className="text-2xl sm:text-3xl font-bold text-white drop-shadow-lg">{selectedCard.title}</h3>
                   </div>
                 </div>
 
                 {/* Modal Content */}
-                <div className="p-6 sm:p-8 overflow-y-auto max-h-[calc(90vh-16rem)] sm:max-h-[calc(90vh-18rem)]">
+                <div className="p-6 sm:p-8 overflow-y-auto max-h-[calc(90vh-18rem)] sm:max-h-[calc(90vh-22rem)] md:max-h-[calc(90vh-26rem)]">
                   {/* Description */}
                   {selectedCard.description && (
                     <div className="mb-6">
@@ -411,13 +520,15 @@ export default function OffersSection() {
                   </div>
 
                   {/* Action Button */}
-                  <motion.button
+                  <motion.a
+                    href={`https://wa.me/+96897477488?text=انا مهتم في هذا العرض : ${selectedCard.title}`}
+                    target="_blank"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full mt-6 py-4 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground font-bold rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-200"
+                    className="block w-full mt-6 py-4 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground font-bold rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-200 text-center"
                   >
                     احجز الآن
-                  </motion.button>
+                  </motion.a>
                 </div>
               </motion.div>
             </div>
