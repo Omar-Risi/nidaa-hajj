@@ -1,3 +1,5 @@
+"use client"
+
 export const GoldenIcon = ({ icon: Icon, size = 24, className = '', ...props }) => {
   const gradientId = `golden-gradient-${Math.random().toString(36).substr(2, 9)}`;
 
