@@ -32,9 +32,9 @@ export default function OffersSection() {
   const umrahPackages: OfferCard[] = [
     {
       id: 1,
-      title: "عمرة رمضان مع حملة النداء 1447ه‍",
+      title: "عمرة رمضان مع حملة النداء 1447هـ",
       description: "قال عليه الصلاة والسلام: 'عمرة في رمضان تعدل حجة معي' - اجمع شوق قلبك لعناق الحرمين وتعال معنا..",
-      duration: "للفترة 7-13 من رمضان 1447ه‍ (25/2 - 3/3/2026م) | 3 ليال مدينة، و3 ليال مكة",
+      duration: "للفترة 7-13 من رمضان 1447هـ (25/2 - 3/3/2026م) | 3 ليال مدينة، و3 ليال مكة",
       accommodation: "مكة: فندق ساعة مكة فيرمونت | المدينة: فندق مادن",
       features: [
         "السفر على الطيران العماني",
@@ -55,7 +55,7 @@ export default function OffersSection() {
     {
       id: 2,
       title: "عمرة منتصف العام الدراسي مع حملة النداء",
-      description: "22 عاما من الخبرة والتطوير، نترجمها واقعا يجمع لكم بين الراحة والروحانية.. نحن نعتني بأدق التفاصيل لأنكم تستحقون الأفضل",
+      description: "22 عاماً من الخبرة والتطوير، نترجمها واقعاً يجمع لكم بين الراحة والروحانية.. نحن نعتني بأدق التفاصيل لأنكم تستحقون الأفضل",
       duration: "الفترة 7-13/1/2026م | 3 ليال المدينة، و3 ليال مكة",
       accommodation: "في أفخم فنادق الخمس نجوم - مكة: فيرمونت | المدينة: مادن",
       features: [
@@ -76,7 +76,6 @@ export default function OffersSection() {
       ]
     },
   ];
-
 
   const getPricingIcon = (type: 'single' | 'double' | 'triple') => {
     switch (type) {
@@ -237,11 +236,11 @@ export default function OffersSection() {
               <Box className="w-12 h-12 text-gold-start" />
             </div>
             <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4 text-center">
-              برامج الحج قريبًا
+              برامج الحج قريباً
             </h3>
             <p className="text-gray-600 text-lg text-center mb-8 leading-relaxed">
-              نحن نعمل حاليًا على تجهيز برامج الحج المتميزة لكم.<br />
-              تابعونا للإعلان عنها قريبًا إن شاء الله.
+              نحن نعمل حالياً على تجهيز برامج الحج المتميزة لكم.<br />
+              تابعونا للإعلان عنها قريباً إن شاء الله.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
