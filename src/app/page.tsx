@@ -28,7 +28,7 @@ export default function Home() {
             alt="Hero Background"
             width={1920}
             height={1080}
-            className="flex-1 object-cover"
+            className="flex-1 min-h-full object-cover"
           />
 
           {/* Hero Content - Centered */}
@@ -80,7 +80,7 @@ export default function Home() {
               <BadgeQuestionMark className="w-5 h-5 text-gold-start" />
               <span className="golden-text text-lg font-semibold">من نحن</span>
             </motion.div>
-            
+
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -111,11 +111,11 @@ export default function Home() {
                     <p className="text-gray-600 italic">إعادة لتعريف الفخامة والإبداع</p>
                   </div>
                 </div>
-                
+
                 <p className="text-gray-700 leading-relaxed text-lg mb-4">
                   تصقلها التجربة، وتنميها الخبرة، ويطورها التفكير الدؤوب. تأسست مؤسسة النداء عام <span className="font-bold golden-text">2003م</span>، وانطلقت تروي قصة الجمال في أعظم الرحلات الإيمانية.
                 </p>
-                
+
                 <div className="bg-gradient-to-r from-gold-start/5 to-gold-end/5 rounded-xl p-6 border-r-4 border-gold-start">
                   <p className="text-foreground font-semibold text-lg leading-relaxed">
                     &ldquo;نحن هنا لأنكم تستحقون الأفضل، نبحر في ملكوت الجمال، لنصل حيث أنتم، لنقدم لكم تجربتنا الرائدة في مجال الحج والعمرة.&rdquo;
