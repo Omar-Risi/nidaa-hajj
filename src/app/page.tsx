@@ -118,7 +118,7 @@ export default function Home() {
                 
                 <div className="bg-gradient-to-r from-gold-start/5 to-gold-end/5 rounded-xl p-6 border-r-4 border-gold-start">
                   <p className="text-foreground font-semibold text-lg leading-relaxed">
-                    "نحن هنا لأنكم تستحقون الأفضل، نبحر في ملكوت الجمال، لنصل حيث أنتم، لنقدم لكم تجربتنا الرائدة في مجال الحج والعمرة."
+                    &ldquo;نحن هنا لأنكم تستحقون الأفضل، نبحر في ملكوت الجمال، لنصل حيث أنتم، لنقدم لكم تجربتنا الرائدة في مجال الحج والعمرة.&rdquo;
                   </p>
                 </div>
               </div>

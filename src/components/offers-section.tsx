@@ -1,7 +1,7 @@
 
 'use client';
 import Image from "next/image";
-import { Box, User, Users, Plane, Book, Info, X } from "lucide-react";
+import { Box, User, Users, Book, Info, X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 

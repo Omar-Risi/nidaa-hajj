@@ -1,7 +1,14 @@
 'use client';
 import { useId } from 'react';
+import { LucideIcon } from 'lucide-react';
 
-export const GoldenIcon = ({ icon: Icon, size = 24, className = '', ...props }) => {
+interface GoldenIconProps extends React.SVGProps<SVGSVGElement> {
+  icon: LucideIcon;
+  size?: number;
+  className?: string;
+}
+
+export const GoldenIcon = ({ icon: Icon, size = 24, className = '', ...props }: GoldenIconProps) => {
   const gradientId = `golden-gradient-${useId()}`;
 
   return (

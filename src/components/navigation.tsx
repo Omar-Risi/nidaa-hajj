@@ -30,10 +30,8 @@ export function Navigation() {
   const navigationLinks = [
     { href: '/', label: 'الرئيسية', ariaLabel: 'Home' },
     { href: '/offers', label: 'العروض', ariaLabel: 'Offers' },
-    { href: '/omrah', label: 'برنامج العمرة', ariaLabel: 'Omrah Programme' },
-    { href: '/hajj', label: 'برنامج الحج', ariaLabel: 'Hajj Programme' },
+    { href: '/media', label: 'المعرض', ariaLabel: 'Media' },
     { href: '/contact', label: 'اتصل بنا', ariaLabel: 'Contact Us' },
-    { href: '/media', label: 'الصفحة الاعلامية', ariaLabel: 'Media' },
   ];
 
   const toggleMobileMenu = () => {
