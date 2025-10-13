@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import OffersSection from "@/components/offers-section";
-import { BadgeQuestionMark } from "lucide-react";
+import { BadgeQuestionMark, BedSingle, Book, Briefcase, Circle, Footprints, Gem, Star, Trophy, Umbrella } from "lucide-react";
 import { Footer } from "@/components/footer";
+import { BenefitBox } from "@/components/benefit-box";
+
+
 
 export default function Home() {
   // Smooth scroll handler
@@ -16,6 +19,39 @@ export default function Home() {
       offersSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+
+  const benefits = [
+    {
+      icon: Briefcase,
+      title: "مجموعة حقائب كاملة",
+      description: "تشمل حقيبتي سفر وحقيبة ظهر للمناسك وحقيبة صغيرة"
+    },
+    {
+      icon: Book,
+      title: "المصحف الشريف",
+      description: "مصحف مقدم للحجاج للقراءة والتدبر"
+    },
+    {
+      icon: Umbrella,
+      title: "الحماية من الطقس",
+      description: "مظلة عالية الجودة لحمايتك من أشعة الشمس والمطر أثناء أداء المناسك."
+    },
+    {
+      icon: BedSingle,
+      title: "فراش مزدلفة",
+      description: "فراش مريح مخصص للراحة في مزدلفة خلال مناسك الحج."
+    },
+    {
+      icon: Circle,
+      title: "كيس للجمرات",
+      description: "كيس لتجميع الجمرات بدون بعثرة"
+    },
+    {
+      icon: Footprints,
+      title: "كيس للأحذية",
+      description: "كيس لحفظ الحذاء بداخله"
+    }
+  ];
 
   return (
     <>
@@ -184,6 +220,43 @@ export default function Home() {
           </motion.div>
         </div>
       </motion.section>
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        viewport={{ once: true }}
+        className="flex flex-col items-center gap-6 mt-12 lg:mt-16"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-gradient-to-r from-gold-start/10 via-gold-end/10 to-gold-start/10 border border-gold-start/30 rounded-full mb-6"
+        >
+          <Gem className="w-5 h-5 text-gold-start" />
+          <span className="golden-text text-lg font-semibold"> تجهيزات نوفرها للحجاج</span>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-[85%] mb-[75]">
+
+          {benefits.map((benefit, index) => (
+            <BenefitBox
+              key={index}
+              icon={benefit.icon}
+              title={benefit.title}
+              description={benefit.description}
+            />))}
+
+        </motion.div>
+
+
+      </motion.div>
 
 
       <Footer />
