@@ -46,7 +46,7 @@ export default function OffersSection() {
         "شاحنة لنقل الأمتعة من المدينة إلى مكة، لتجد أمتعتك في انتظارك حين تصل مكة",
         "خدمات راقية ومتعددة تليق بمعتمرينا",
       ],
-      image: "/hero-bg.jpg",
+      image: "/kaaba-1.jpg",
       images: ["/madden-hotel-1.jpeg", "/madden-hotel-2.jpeg", "/madden-hotel-3.jpeg", "/vermont-hotel-1.jpeg", "/vermont-hotel-2.jpeg", "/vermont-hotel-3.jpeg", "/vermont-hotel-4.jpeg"], // Carousel images
       pricing: [
         { icon: 'single', price: 1310, label: 'غرفة فردية' },
@@ -70,7 +70,7 @@ export default function OffersSection() {
         "شاحنة لنقل الأمتعة من المدينة إلى مكة",
         "خدمات راقية ومتعددة تليق بمعتمرينا",
       ],
-      image: "/hero-bg.jpg",
+      image: "/makkah-1.jpg",
       images: ["/madden-hotel-1.jpeg", "/madden-hotel-2.jpeg", "/madden-hotel-3.jpeg", "/vermont-hotel-1.jpeg", "/vermont-hotel-2.jpeg", "/vermont-hotel-3.jpeg", "/vermont-hotel-4.jpeg"], // Carousel images
       pricing: [
         { icon: 'single', price: 860, label: 'غرفة فردية' },
