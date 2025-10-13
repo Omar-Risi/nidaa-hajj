@@ -54,7 +54,7 @@ export default function Home() {
               onClick={handleScrollToOffers}
               className="relative bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground px-8 py-4 rounded-lg text-xl font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl"
             >
-              إبدأ بالحجز
+              ابدأ بالحجز
             </Link>
           </div>
         </div>
