@@ -40,7 +40,7 @@ export default function Home() {
               <div className="absolute inset-0 blur-3xl bg-gold-start opacity-60 scale-110"></div>
 
               {/* Main heading */}
-              <h1 className="relative golden-text text-4xl md:text-6xl lg:text-7xl font-bold text-center leading-tight">
+              <h1 className="relative text-gold-start  text-4xl md:text-6xl lg:text-7xl font-bold text-center leading-tight">
                 نحن هنا حيث لا يشبهنا شيء
               </h1>
             </div>
