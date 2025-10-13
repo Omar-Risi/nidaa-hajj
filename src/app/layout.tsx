@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" dir="rtl">
       <body
-        className={`${cairo.variable} antialiased font-cairo`}
+        className={`${cairo.variable} antialiased font-cairo overflow-x-hidden`}
       >
         <Navigation />
         {children}
