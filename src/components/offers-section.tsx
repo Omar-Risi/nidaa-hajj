@@ -228,6 +228,11 @@ export default function OffersSection() {
                     alt={card.title}
                     fill
                     className="object-cover"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedCard(card);
+                    }}
+
                   />
                 </div>
 
@@ -455,13 +460,11 @@ export default function OffersSection() {
                   </button>
 
                   {/* Title Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 z-10 pointer-events-none">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white drop-shadow-lg">{selectedCard.title}</h3>
-                  </div>
                 </div>
 
                 {/* Modal Content */}
                 <div className="p-6 sm:p-8 overflow-y-auto max-h-[calc(90vh-18rem)] sm:max-h-[calc(90vh-22rem)] md:max-h-[calc(90vh-26rem)]">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground drop-shadow-lg">{selectedCard.title}</h3>
                   {/* Description */}
                   {selectedCard.description && (
                     <div className="mb-6">
