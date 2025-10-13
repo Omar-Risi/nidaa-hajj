@@ -37,7 +37,6 @@ export default function OffersPage() {
       description: "قال عليه الصلاة والسلام: 'عمرة في رمضان تعدل حجة معي' - اجمع شوق قلبك لعناق الحرمين وتعال معنا..",
       duration: "للفترة 7-13 من رمضان 1447هـ (25/2 - 3/3/2026م) | 3 ليال مدينة، و3 ليال مكة",
       accommodation: "مكة: فندق ساعة مكة فيرمونت | المدينة: فندق مادن",
-      highlight: "عرض رمضان المميز",
       features: [
         "السفر على الطيران العماني",
         "فندق ساعة مكة فيرمونت في مكة، مع بوفيه فطور",
@@ -47,7 +46,8 @@ export default function OffersPage() {
         "شاحنة لنقل الأمتعة من المدينة إلى مكة، لتجد أمتعتك في انتظارك حين تصل مكة",
         "خدمات راقية ومتعددة تليق بمعتمرينا",
       ],
-      image: "/hero-bg.jpg",
+      image: "/kaaba-1.jpg",
+      images: ["/madden-hotel-1.jpeg", "/madden-hotel-2.jpeg", "/madden-hotel-3.jpeg", "/vermont-hotel-1.jpeg", "/vermont-hotel-2.jpeg", "/vermont-hotel-3.jpeg", "/vermont-hotel-4.jpeg"], // Carousel images
       pricing: [
         { icon: 'single', price: 1310, label: 'غرفة فردية' },
         { icon: 'double', price: 785, label: 'غرفة ثنائية (للشخص)' },
@@ -70,7 +70,8 @@ export default function OffersPage() {
         "شاحنة لنقل الأمتعة من المدينة إلى مكة",
         "خدمات راقية ومتعددة تليق بمعتمرينا",
       ],
-      image: "/hero-bg.jpg",
+      image: "/makkah-1.jpg",
+      images: ["/madden-hotel-1.jpeg", "/madden-hotel-2.jpeg", "/madden-hotel-3.jpeg", "/vermont-hotel-1.jpeg", "/vermont-hotel-2.jpeg", "/vermont-hotel-3.jpeg", "/vermont-hotel-4.jpeg"], // Carousel images
       pricing: [
         { icon: 'single', price: 860, label: 'غرفة فردية' },
         { icon: 'double', price: 555, label: 'غرفة ثنائية (للشخص)' },
@@ -78,7 +79,6 @@ export default function OffersPage() {
       ]
     },
   ];
-
   const getPricingIcon = (type: 'single' | 'double' | 'triple') => {
     switch (type) {
       case 'single':
