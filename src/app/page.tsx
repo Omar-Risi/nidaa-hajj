@@ -4,10 +4,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import OffersSection from "@/components/offers-section";
-import { BadgeQuestionMark, BedSingle, Book, Briefcase, Circle, Footprints, Gem, Star, Trophy, Umbrella } from "lucide-react";
+import { BadgeQuestionMark } from "lucide-react";
 import { Footer } from "@/components/footer";
 
-import { BenefitBox } from "@/components/benefit-box";
 
 
 export default function Home() {
