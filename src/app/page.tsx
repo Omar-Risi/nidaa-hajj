@@ -41,8 +41,11 @@ export default function Home() {
 
               {/* Main heading */}
               <h1 className="relative golden-text text-4xl md:text-6xl lg:text-7xl font-bold text-center leading-tight">
-                نحن هنا حيث لا يشبهنا شيء
+                نحن هنا <br /> حيث لا يشبهنا شيء
               </h1>
+              <p className="mt-8 text-white text-center font-bold">
+                تصفح برامجنا للحج والعمرة
+              </p>
             </div>
 
             {/* Button with smooth scroll */}
