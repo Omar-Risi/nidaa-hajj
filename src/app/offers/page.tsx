@@ -101,7 +101,7 @@ export default function OffersPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative w-full h-[60vh] min-h-[400px] max-h-[600px] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full h-[100vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/hero-bg.jpg"

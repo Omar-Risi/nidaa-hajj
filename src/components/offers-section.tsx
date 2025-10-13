@@ -342,9 +342,9 @@ export default function OffersSection() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-gradient-to-r from-gold-start/10 via-gold-end/10 to-gold-start/10 border border-gold-start/30 rounded-full mb-6"
+                className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-foreground mb-6"
               >
-                <Gem className="w-5 h-5 text-gold-start" />
+                {/* <Gem className="w-5 h-5 text-gold-start" /> */}
                 <span className="text-gold-start text-lg font-semibold"> تجهيزات نوفرها للحجاج</span>
               </motion.div>
 
