@@ -34,8 +34,10 @@ interface OfferCard {
 export default function OfferDetailsPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const params = useParams();
-  const id = params.id;
-  const offerData: OfferCard = getOfferById(parseInt(id));
+  const id = (params.id) ? params.id.toString() : '1';
+
+  console.log(id)
+  const offerData = getOfferById(parseInt(id));
   const getPricingIcon = (type: 'single' | 'double' | 'triple') => {
     switch (type) {
       case 'single':
@@ -133,11 +135,10 @@ export default function OfferDetailsPage() {
                 <button
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
-                  className={`h-2.5 rounded-full transition-all ${
-                    index === currentImageIndex
-                      ? 'bg-white w-8'
-                      : 'bg-white/60 hover:bg-white/80 w-2.5'
-                  }`}
+                  className={`h-2.5 rounded-full transition-all ${index === currentImageIndex
+                    ? 'bg-white w-8'
+                    : 'bg-white/60 hover:bg-white/80 w-2.5'
+                    }`}
                   aria-label={`Go to image ${index + 1}`}
                 />
               ))}
