@@ -1,3 +1,4 @@
+"use client"
 import { GoldenIcon } from "./golden-icon";
 
 export function BenefitBox({ icon: Icon, title, description }) {
