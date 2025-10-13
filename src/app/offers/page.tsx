@@ -23,6 +23,7 @@ interface OfferCard {
   image: string;
   pricing: PricingTier[];
   highlight?: string;
+  images: string[]
 }
 
 export default function OffersPage() {
