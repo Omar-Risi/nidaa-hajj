@@ -56,7 +56,7 @@ export function Navigation() {
                 height={40}
                 className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
               />
-              <div className="text-gold-start text-base sm:text-lg md:text-xl lg:text-2xl font-bold whitespace-nowrap">
+              <div className="golden-text text-base sm:text-lg md:text-xl lg:text-2xl font-bold whitespace-nowrap">
                 النداء للحج والعمرة
               </div>
             </Link>
@@ -121,7 +121,7 @@ export function Navigation() {
             <div className="flex flex-col h-full w-full">
               {/* Header with close button */}
               <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/10">
-                <div className="text-gold-start text-xl sm:text-2xl font-bold">
+                <div className="golden-text text-xl sm:text-2xl font-bold">
                   القائمة
                 </div>
                 <button
