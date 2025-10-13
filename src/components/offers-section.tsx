@@ -47,7 +47,7 @@ export default function OffersSection() {
         "خدمات راقية ومتعددة تليق بمعتمرينا",
       ],
       image: "/hero-bg.jpg",
-      images: ["/hero-bg.jpg", "/hero-bg.jpg", "/hero-bg.jpg", "/hero-bg.jpg"], // Carousel images
+      images: ["/madden-hotel-1.jpeg", "/madden-hotel-2.jpeg", "/madden-hotel-3.jpeg", "/vermont-hotel-1.jpeg", "/vermont-hotel-2.jpeg", "/vermont-hotel-3.jpeg", "/vermont-hotel-4.jpeg"], // Carousel images
       pricing: [
         { icon: 'single', price: 1310, label: 'غرفة فردية' },
         { icon: 'double', price: 785, label: 'غرفة ثنائية (للشخص)' },
@@ -71,7 +71,7 @@ export default function OffersSection() {
         "خدمات راقية ومتعددة تليق بمعتمرينا",
       ],
       image: "/hero-bg.jpg",
-      images: ["/hero-bg.jpg", "/hero-bg.jpg", "/hero-bg.jpg"], // Carousel images
+      images: ["/madden-hotel-1.jpeg", "/madden-hotel-2.jpeg", "/madden-hotel-3.jpeg", "/vermont-hotel-1.jpeg", "/vermont-hotel-2.jpeg", "/vermont-hotel-3.jpeg", "/vermont-hotel-4.jpeg"], // Carousel images
       pricing: [
         { icon: 'single', price: 860, label: 'غرفة فردية' },
         { icon: 'double', price: 555, label: 'غرفة ثنائية (للشخص)' },
@@ -484,7 +484,7 @@ export default function OffersSection() {
                               <svg className="w-3 h-3 text-gold-start" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
                               </svg>
- </div>
+                            </div>
                             <span className="leading-relaxed">{feature}</span>
                           </motion.li>
                         ))}
