@@ -40,7 +40,7 @@ export default function Home() {
               <div className="absolute inset-0 blur-3xl bg-gold-start opacity-60 scale-110"></div>
 
               {/* Main heading */}
-              <h1 className="relative golden-text text-4xl md:text-6xl lg:text-7xl font-bold text-center leading-tight">
+              <h1 className="relative golden-text text-4xl md:text-6xl lg:text-7xl font-bold text-center leading-tight py-6">
                 نحن هنا <br /> حيث لا يشبهنا شيء
               </h1>
               <p className="mt-8 text-white text-center font-bold">
