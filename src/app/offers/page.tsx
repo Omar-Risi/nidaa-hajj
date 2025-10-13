@@ -299,4 +299,248 @@ export default function OffersPage() {
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                           onClick={() => setSelectedCard(offer)}
-                          className="flex-1 py-3.5 px-4 bg-foreground text-white font-semibold rounded-xl transition-all duration-200 hover:bg-foreground/90 flex items-center justify-center gap-2 shadow-md hover:
+                          className="flex-1 py-3.5 px-4 bg-foreground text-white font-semibold rounded-xl transition-all duration-200 hover:bg-foreground/90 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+                        >
+                          <Info className="w-4 h-4" />
+                          التفاصيل الكاملة
+                        </motion.button>
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="flex-[1.5] py-3.5 px-4 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground font-bold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                        >
+                          احجز الآن
+                          <ArrowRight className="w-4 h-4" />
+                        </motion.button>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              key="hajj"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col items-center justify-center py-20 max-w-3xl mx-auto"
+            >
+              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-gold-start/20 to-gold-end/20 flex items-center justify-center mb-8">
+                <Box className="w-16 h-16 text-gold-start" />
+              </div>
+              <h3 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 text-center">
+                برامج الحج قريبًا
+              </h3>
+              <p className="text-gray-600 text-xl text-center mb-10 leading-relaxed max-w-2xl">
+                نحن نعمل حاليًا على تجهيز برامج الحج المتميزة لكم.<br />
+                تابعونا للإعلان عنها قريبًا إن شاء الله.
+              </p>
+              <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 w-full">
+                <h4 className="text-xl font-bold text-foreground mb-6 text-center">
+                  هل تريد الاستفسار عن برامج الحج؟
+                </h4>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a
+                    href="tel:+96897477488"
+                    className="flex-1 px-6 py-4 bg-foreground text-white font-semibold rounded-xl hover:bg-foreground/90 transition-colors text-center shadow-md hover:shadow-lg"
+                  >
+                    اتصل للاستفسار
+                  </a>
+                  <a
+                    href="https://wa.me/96897477488"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 px-6 py-4 bg-gradient-to-r from-gold-start to-gold-end text-foreground font-semibold rounded-xl hover:shadow-xl transition-all text-center shadow-lg"
+                  >
+                    تواصل عبر واتساب
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Call to Action */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mt-16 text-center"
+          >
+            <div className="bg-gradient-to-r from-foreground via-foreground/95 to-foreground rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto shadow-2xl">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+                هل تحتاج إلى مساعدة في الاختيار؟
+              </h3>
+              <p className="text-white/80 text-lg mb-6">
+                تواصل معنا وسيساعدك فريقنا في اختيار البرنامج الأنسب لك
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <a
+                  href="tel:+96897477488"
+                  className="px-8 py-4 bg-white text-foreground font-bold rounded-xl hover:bg-gray-100 transition-colors shadow-lg flex items-center gap-2"
+                >
+                  <span>اتصل بنا</span>
+                  <span className="golden-text">97477488</span>
+                </a>
+                <a
+                  href="https://wa.me/96897477488"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 bg-gradient-to-r from-gold-start to-gold-end text-foreground font-bold rounded-xl hover:shadow-xl transition-all"
+                >
+                  تواصل عبر واتساب
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Professional Modal Popup */}
+      {selectedCard && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setSelectedCard(null)}
+          />
+
+          {/* Modal */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            className="relative bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header with Image */}
+            <div className="relative h-56 sm:h-72 w-full">
+              <Image
+                src={selectedCard.image}
+                alt={selectedCard.title}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedCard(null)}
+                className="absolute top-4 left-4 sm:right-4 sm:left-auto w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center transition-colors shadow-lg z-10"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5 text-foreground" />
+              </button>
+
+              {/* Title Overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+                  {selectedCard.title}
+                </h3>
+              </div>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 sm:p-8 overflow-y-auto max-h-[calc(90vh-14rem)] sm:max-h-[calc(90vh-18rem)]">
+              {/* Description */}
+              <div className="mb-6 p-4 bg-gradient-to-r from-gold-start/10 to-gold-end/10 rounded-xl border-r-4 border-gold-start">
+                <p className="text-gray-700 text-lg leading-relaxed font-semibold">
+                  {selectedCard.description}
+                </p>
+              </div>
+
+              {/* Duration and Accommodation */}
+              <div className="grid sm:grid-cols-2 gap-4 mb-8">
+                <div className="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Calendar className="w-5 h-5 text-gold-start" />
+                    <span className="font-bold text-foreground">الفترة والمدة</span>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed text-sm">{selectedCard.duration}</p>
+                </div>
+
+                <div className="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Hotel className="w-5 h-5 text-gold-start" />
+                    <span className="font-bold text-foreground">الإقامة</span>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed text-sm">{selectedCard.accommodation}</p>
+                </div>
+              </div>
+
+              {/* Features List */}
+              <div className="mb-8">
+                <h4 className="text-xl font-bold text-foreground mb-5 flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gold-start to-gold-end flex items-center justify-center">
+                    <CheckCircle2 className="w-4 h-4 text-foreground" />
+                  </div>
+                  ما يشمله البرنامج
+                </h4>
+                <ul className="grid sm:grid-cols-2 gap-3">
+                  {selectedCard.features.map((feature, index) => (
+                    <motion.li
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="flex items-start gap-3 text-gray-700"
+                    >
+                      <div className="mt-1 w-5 h-5 rounded-full bg-gold-start/20 flex items-center justify-center flex-shrink-0">
+                        <CheckCircle2 className="w-3 h-3 text-gold-start" />
+                      </div>
+                      <span className="leading-relaxed text-sm">{feature}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Pricing Section */}
+              <div className="border-t-2 border-gray-200 pt-6">
+                <h4 className="text-xl font-bold text-foreground mb-5">الأسعار</h4>
+                <div className="space-y-3">
+                  {selectedCard.pricing.map((tier, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 + index * 0.05 }}
+                      className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-200 hover:border-gold-start/30 transition-colors"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-start/20 to-gold-end/20 flex items-center justify-center">
+                          {getPricingIcon(tier.icon)}
+                        </div>
+                        <span className="font-semibold text-gray-700">{tier.label}</span>
+                      </div>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-3xl font-bold golden-text">{tier.price}</span>
+                        <span className="text-gray-500 font-semibold">ر.ع</span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Button */}
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full mt-8 py-4 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground font-bold rounded-xl text-lg shadow-xl hover:shadow-2xl transition-all duration-200 flex items-center justify-center gap-2"
+              >
+                احجز هذا البرنامج الآن
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      <Footer />
+    </>
+  );
+}
