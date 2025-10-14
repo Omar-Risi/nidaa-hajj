@@ -85,9 +85,9 @@ export default function OffersSection() {
       image: "/kaaba-1.jpg",
       images: ["/madden-hotel-1.jpeg", "/madden-hotel-2.jpeg", "/madden-hotel-3.jpeg", "/vermont-hotel-1.jpeg", "/vermont-hotel-2.jpeg", "/vermont-hotel-3.jpeg", "/vermont-hotel-4.jpeg"], // Carousel images
       pricing: [
-        { icon: 'single', price: 1310, label: 'غرفة فردية' },
-        { icon: 'double', price: 785, label: 'غرفة ثنائية (للشخص)' },
         { icon: 'triple', price: 680, label: 'غرفة ثلاثية (للشخص)' },
+        { icon: 'double', price: 785, label: 'غرفة ثنائية (للشخص)' },
+        { icon: 'single', price: 1310, label: 'غرفة فردية' },
       ]
     },
     {
@@ -109,9 +109,9 @@ export default function OffersSection() {
       image: "/makkah-1.jpg",
       images: ["/madden-hotel-1.jpeg", "/madden-hotel-2.jpeg", "/madden-hotel-3.jpeg", "/vermont-hotel-1.jpeg", "/vermont-hotel-2.jpeg", "/vermont-hotel-3.jpeg", "/vermont-hotel-4.jpeg"], // Carousel images
       pricing: [
-        { icon: 'single', price: 860, label: 'غرفة فردية' },
-        { icon: 'double', price: 555, label: 'غرفة ثنائية (للشخص)' },
         { icon: 'triple', price: 500, label: 'غرفة ثلاثية (للشخص)' },
+        { icon: 'double', price: 555, label: 'غرفة ثنائية (للشخص)' },
+        { icon: 'single', price: 860, label: 'غرفة فردية' },
       ]
     },
   ];
