@@ -30,14 +30,6 @@
     font-family: var(--font-cairo), Arial, Helvetica, sans-serif;
   }
 
-  .golden-text {
-    @apply bg-gradient-to-r from-gold-start via-gold-end to-gold-start bg-clip-text text-transparent;
-  }
-
-  .golden {
-    @apply bg-gradient-to-r from-gold-start via-gold-end to-gold-start bg-clip-text text-transparent;
-  }
-
   /* Navigation link styles */
   .nav-link {
     position: relative;
@@ -53,4 +45,14 @@
     -webkit-background-clip: text;
     text-shadow: 0 0 10px #C8A250, 0 0 20px #C8A250, 0 0 30px #C8A250;
   }
+}
+
+.golden-text {
+  background-image: linear-gradient(to right, var(--gold-start), var(--gold-end), var(--gold-start));
+  color: transparent;
+  background-clip: text;
+}
+
+.golden {
+  background-image: linear-gradient(to right, var(--gold-start), var(--gold-end), var(--gold-start));
 }
