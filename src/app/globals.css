@@ -49,6 +49,7 @@
 
 .golden-text {
   background-image: -moz-linear-gradient(to right, var(--gold-start), var(--gold-end), var(--gold-start));
+  background-image: -o-linear-gradient(to right, var(--gold-start), var(--gold-end), var(--gold-start));
   background-image: -webkit-linear-gradient(to right, var(--gold-start), var(--gold-end), var(--gold-start));
   background-image: linear-gradient(to right, var(--gold-start), var(--gold-end), var(--gold-start));
   color: transparent;
@@ -56,6 +57,7 @@
 }
 
 .golden {
+  background-image: -o-linear-gradient(to right, var(--gold-start), var(--gold-end), var(--gold-start));
   background-image: -moz-linear-gradient(to right, var(--gold-start), var(--gold-end), var(--gold-start));
   background-image: -webkit-linear-gradient(to right, var(--gold-start), var(--gold-end), var(--gold-start));
   background-image: linear-gradient(to right, var(--gold-start), var(--gold-end), var(--gold-start));
