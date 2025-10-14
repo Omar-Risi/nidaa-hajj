@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* Provide default gold gradient values for all color schemes */
+  --gold-start: #C8A250;
+  --gold-end: #EFDAAC;
 }
 
 @theme {
@@ -18,6 +21,7 @@
   :root {
     --background: #f0f0f0;
     --foreground: #251A0B;
+    /* Keep gold values consistent in dark mode unless intentionally different */
     --gold-start: #C8A250;
     --gold-end: #EFDAAC;
   }
@@ -43,6 +47,8 @@
     background: linear-gradient(45deg, #C8A250, #EFDAAC, #C8A250);
     background-clip: text;
     -webkit-background-clip: text;
+    /* Ensure gradient text renders in Safari/WebKit */
+    -webkit-text-fill-color: transparent;
     text-shadow: 0 0 10px #C8A250, 0 0 20px #C8A250, 0 0 30px #C8A250;
   }
 }
@@ -54,6 +60,9 @@
   background-image: linear-gradient(to right, var(--gold-start), var(--gold-end), var(--gold-start));
   color: transparent;
   background-clip: text;
+  -webkit-background-clip: text;
+  /* Ensure gradient text displays across WebKit-based browsers */
+  -webkit-text-fill-color: transparent;
 }
 
 .golden {
