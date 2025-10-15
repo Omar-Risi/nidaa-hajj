@@ -6,22 +6,15 @@ interface VideoItem {
   id: string;
   embedUrl: string;
   title?: string;
-  description?: string;
 }
 
 interface VideoGalleryProps {
   videos: VideoItem[];
-  columns?: {
-    sm?: number;
-    md?: number;
-    lg?: number;
-    xl?: number;
-  };
 }
 
 export default function VideoGallery({
   videos = [],
-}) {
+}: VideoGalleryProps) {
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
 
   const openVideoModal = (video: VideoItem) => {
