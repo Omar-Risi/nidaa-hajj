@@ -16,9 +16,13 @@ interface PricingTier {
 const videos = [
   {
     id: '1',
-    embedUrl: 'https://drive.google.com/file/d/1ZK4JenLJfDsycF5_vvGzKYwzbaWdzsbc/preview',
-    title: 'Video Title',
-    description: 'Video description'
+    embedUrl: 'https://drive.google.com/file/d/1hN0pUu2I_QVcGpRCUZYMLcnHu_XaFfuE/preview',
+    title: 'المخيم  الخاص بحملة النداء بعرفة موسم حج 1446ه‍',
+  },
+  {
+    id: '2',
+    embedUrl: 'https://drive.google.com/file/d/11k45GnRpNJmCBRDv2ruUpNweuKac1J7z/preview',
+    title: 'المخيم  الخاص بحملة النداء بمنى موسم حج 1446ه‍',
   }
 ];
 
