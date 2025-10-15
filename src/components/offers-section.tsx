@@ -4,6 +4,7 @@ import { Box, User, Users, Book, Info, X, Gem, Briefcase, Umbrella, BedSingle, C
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BenefitBox } from "./benefit-box";
+import VideoGallery from "./video-gallery";
 
 // Types for offer data
 interface PricingTier {
@@ -11,6 +12,16 @@ interface PricingTier {
   price: number;
   label: string;
 }
+
+const videos = [
+  {
+    id: '1',
+    embedUrl: 'https://drive.google.com/file/d/1ZK4JenLJfDsycF5_vvGzKYwzbaWdzsbc/preview',
+    title: 'Video Title',
+    description: 'Video description'
+  }
+];
+
 
 const benefits = [
   {
@@ -337,6 +348,21 @@ export default function OffersSection() {
               viewport={{ once: true }}
               className="flex flex-col items-center gap-6 mt-12 lg:mt-16"
             >
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-foreground mb-6"
+              >
+                {/* <Gem className="w-5 h-5 text-gold-start" /> */}
+                <span className="text-gold-start text-lg font-semibold"> تجهيزات نوفرها للحجاج</span>
+              </motion.div>
+
+              <VideoGallery videos={videos} />
+
+
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
