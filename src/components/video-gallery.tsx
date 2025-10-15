@@ -80,7 +80,7 @@ export default function VideoGallery({
               {/* Title (if provided) */}
               {video.title && (
                 <div className="p-4">
-                  <h3 className="font-semibold text-gray-800 text-base line-clamp-1">
+                  <h3 className="font-semibold text-gray-800 text-base">
                     {video.title}
                   </h3>
                 </div>
@@ -129,7 +129,7 @@ export default function VideoGallery({
             {/* Video Info (if available) */}
             {selectedVideo.title && (
               <div className="p-4 sm:p-6 bg-white">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 w-full">
                   {selectedVideo.title}
                 </h3>
               </div>
