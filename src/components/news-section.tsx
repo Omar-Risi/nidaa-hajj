@@ -2,36 +2,46 @@
 
 import { motion } from "framer-motion";
 import { Newspaper, Calendar } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface NewsItem {
-  id: number;
+  id: string;
   title: string;
   date: string;
   content: string;
 }
 
-const newsData: NewsItem[] = [
-  {
-    id: 1,
-    title: "افتتاح برنامج العمرة الشتوي المميز",
-    date: "2025-10-10",
-    content: "يسرنا أن نعلن عن إطلاق برنامجنا الشتوي المميز للعمرة، والذي يتضمن إقامة فاخرة في أفضل الفنادق القريبة من الحرمين الشريفين مع خدمات متكاملة وعناية شخصية لكل معتمر."
-  },
-  {
-    id: 2,
-    title: "تسجيل مبكر لموسم حج 1446هـ",
-    date: "2025-10-05",
-    content: "بدأت مؤسسة النداء باستقبال حجوزات موسم الحج للعام القادم. احجز مبكرًا للحصول على أفضل العروض والخدمات المتميزة التي تليق برحلتك الإيمانية."
-  },
-  {
-    id: 3,
-    title: "شهادات عملائنا تتحدث عن تجربتهم",
-    date: "2025-09-28",
-    content: "حصلنا على تقييمات استثنائية من حجاجنا ومعتمرينا لهذا الموسم. شكرًا لثقتكم التي تدفعنا دائمًا لتقديم الأفضل وتحقيق رضاكم الكامل."
-  }
-];
-
 export default function NewsSection() {
+  const [newsData, setNewsData] = useState<NewsItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/news')
+      .then(res => res.json())
+      .then(data => {
+        setNewsData(data.slice(0, 3)); // Show only first 3 news items
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Error fetching news:', err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="text-gold-start">جاري تحميل الأخبار...</div>
+        </div>
+      </section>
+    );
+  }
+
+  if (newsData.length === 0) {
+    return null;
+  }
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
