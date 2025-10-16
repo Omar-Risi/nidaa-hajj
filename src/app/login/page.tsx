@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
+import { LogIn } from 'lucide-react';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -40,19 +41,26 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md">
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">
-              تسجيل الدخول
-            </h1>
-            <p className="text-gray-600">
-              مرحباً بك في النداء للحج والعمرة
-            </p>
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-gradient-to-r from-gold-start/10 via-gold-end/10 to-gold-start/10 border border-gold-start/30 rounded-full mb-6">
+            <LogIn className="w-5 h-5 text-gold-start" />
+            <span className="golden-text text-lg font-semibold">تسجيل الدخول</span>
           </div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 leading-tight">
+            مرحباً بك
+            <span className="block golden-text mt-2">في لوحة التحكم</span>
+          </h1>
+          <p className="text-gray-600">
+            النداء للحج والعمرة
+          </p>
+        </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Login Form Card */}
+        <div className="bg-white rounded-2xl shadow-lg p-6 lg:p-8 border border-gray-100">
+          <form onSubmit={handleSubmit} className="space-y-5">
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
                 {error}
@@ -72,7 +80,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all outline-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold-start focus:border-transparent transition-all outline-none"
                 placeholder="example@email.com"
                 disabled={loading}
               />
@@ -91,7 +99,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all outline-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold-start focus:border-transparent transition-all outline-none"
                 placeholder="••••••••"
                 disabled={loading}
               />
@@ -100,12 +108,27 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground px-6 py-3 rounded-lg text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              {loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول'}
+              {loading ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-foreground border-t-transparent rounded-full animate-spin"></div>
+                  جاري تسجيل الدخول...
+                </>
+              ) : (
+                <>
+                  <LogIn className="w-5 h-5" />
+                  تسجيل الدخول
+                </>
+              )}
             </button>
           </form>
         </div>
+
+        {/* Footer Note */}
+        <p className="text-center text-sm text-gray-500 mt-6">
+          لوحة تحكم إدارة الأخبار والمحتوى
+        </p>
       </div>
     </div>
   );
