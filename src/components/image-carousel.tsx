@@ -9,7 +9,11 @@ interface ImageCarouselProps {
 }
 
 export default function ImageCarousel({ images }: ImageCarouselProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'center' });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: false,
+    draggable: true,
+    direction: 'rtl',
+  });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const scrollPrev = useCallback(() => {
@@ -29,8 +33,11 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
     if (!emblaApi) return;
     onSelect();
     emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+    
     return () => {
       emblaApi.off('select', onSelect);
+      emblaApi.off('reInit', onSelect);
     };
   }, [emblaApi, onSelect]);
 
@@ -38,10 +45,18 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
 
   return (
     <div className="relative">
-      <div className="overflow-hidden rounded-2xl" ref={emblaRef}>
+      {/* Carousel Container */}
+      <div className="overflow-hidden rounded-2xl" ref={emblaRef} dir="rtl">
         <div className="flex">
           {images.map((image, index) => (
-            <div key={index} className="flex-[0_0_100%] min-w-0">
+            <div 
+              key={index} 
+              className="min-w-0 flex-shrink-0 flex-grow-0"
+              style={{ 
+                flex: '0 0 100%',
+                width: '100%'
+              }}
+            >
               <img
                 src={image}
                 alt={`صورة ${index + 1}`}
@@ -52,25 +67,30 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
         </div>
       </div>
 
+      {/* Navigation - Only show if more than 1 image */}
       {images.length > 1 && (
         <>
-          {/* Navigation Buttons */}
+          {/* Previous Button (Right side in RTL) */}
           <button
             onClick={scrollPrev}
-            className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+            disabled={selectedIndex === 0}
+            className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-10 disabled:opacity-30 disabled:cursor-not-allowed"
             aria-label="الصورة السابقة"
           >
             <ChevronRight className="w-6 h-6 text-gold-start" />
           </button>
+
+          {/* Next Button (Left side in RTL) */}
           <button
             onClick={scrollNext}
-            className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+            disabled={selectedIndex === images.length - 1}
+            className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-10 disabled:opacity-30 disabled:cursor-not-allowed"
             aria-label="الصورة التالية"
           >
             <ChevronLeft className="w-6 h-6 text-gold-start" />
           </button>
 
-          {/* Dots Indicator */}
+          {/* Dots */}
           <div className="flex justify-center gap-2 mt-4">
             {images.map((_, index) => (
               <button
@@ -84,6 +104,11 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
                 aria-label={`الانتقال للصورة ${index + 1}`}
               />
             ))}
+          </div>
+          
+          {/* Counter */}
+          <div className="text-center mt-2 text-sm text-gray-600">
+            {selectedIndex + 1} / {images.length}
           </div>
         </>
       )}

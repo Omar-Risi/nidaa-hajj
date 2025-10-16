@@ -31,6 +31,9 @@ export default function NewsDetailPage() {
       .then((data: NewsItem[]) => {
         const newsItem = data.find((item) => item.id === params.id);
         if (newsItem) {
+          console.log('News item found:', newsItem);
+          console.log('Images array:', newsItem.images);
+          console.log('Images length:', newsItem.images?.length);
           setNews(newsItem);
         } else {
           setError(true);
@@ -77,6 +80,8 @@ export default function NewsDetailPage() {
     );
   }
 
+  const hasImages = news.images && Array.isArray(news.images) && news.images.length > 0;
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -107,9 +112,9 @@ export default function NewsDetailPage() {
           <div className="h-2 bg-gradient-to-r from-gold-start via-gold-end to-gold-start"></div>
 
           {/* Image Carousel */}
-          {news.images && news.images.length > 0 && (
+          {hasImages && (
             <div className="p-4 sm:p-6">
-              <ImageCarousel images={news.images} />
+              <ImageCarousel images={news.images!} />
             </div>
           )}
 
