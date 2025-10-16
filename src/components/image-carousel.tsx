@@ -11,7 +11,6 @@ interface ImageCarouselProps {
 export default function ImageCarousel({ images }: ImageCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: false,
-    draggable: true,
     direction: 'rtl',
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
