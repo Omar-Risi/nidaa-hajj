@@ -365,7 +365,7 @@ export default function OffersSection() {
                 className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-foreground mb-6"
               >
                 {/* <Gem className="w-5 h-5 text-gold-start" /> */}
-                <span className="text-gold-start text-lg font-semibold"> تجهيزات نوفرها للحجاج</span>
+                <span className="text-gold-start text-lg font-semibold"> شلهد تنفيذ حملة النداء لسكن الحجاج في منى وعرفة لموسم 1446هـ</span>
               </motion.div>
 
               <VideoGallery videos={videos} />
