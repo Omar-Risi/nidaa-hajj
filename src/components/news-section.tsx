@@ -31,7 +31,7 @@ export default function NewsSection() {
 
   if (loading) {
     return (
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <div className="text-gold-start">جاري تحميل الأخبار...</div>
         </div>
@@ -49,7 +49,7 @@ export default function NewsSection() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       viewport={{ once: true }}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white"
+      className="py-20 px-4 sm:px-6 lg:px-8 "
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
