@@ -31,9 +31,6 @@ export default function NewsDetailPage() {
       .then((data: NewsItem[]) => {
         const newsItem = data.find((item) => item.id === params.id);
         if (newsItem) {
-          console.log('News item found:', newsItem);
-          console.log('Images array:', newsItem.images);
-          console.log('Images length:', newsItem.images?.length);
           setNews(newsItem);
         } else {
           setError(true);

@@ -31,6 +31,8 @@ export function Navigation() {
     { href: '/', label: 'الرئيسية', ariaLabel: 'Home' },
     { href: '/offers', label: 'العروض', ariaLabel: 'Offers' },
     { href: '/media', label: 'المعرض', ariaLabel: 'Media' },
+    { href: '/news', label: 'الأخبار', ariaLabel: 'News' },
+    { href: '/testimonials', label: 'شهادات نعتز بها', ariaLabel: 'Testimonials' },
     { href: '/contact', label: 'اتصل بنا', ariaLabel: 'Contact Us' },
   ];
 
