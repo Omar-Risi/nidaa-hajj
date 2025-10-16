@@ -24,9 +24,9 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { title, date, content } = body;
+    const { title, date, content, images } = body;
 
-    console.log('Received data:', { title, date, content });
+    console.log('Received data:', { title, date, content, images });
 
     // Validate input
     if (!title || !date || !content) {
@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
         title,
         date: new Date(date),
         content,
+        images: images || [],
       },
     });
 

@@ -5,12 +5,14 @@ import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Calendar, ArrowLeft, Loader2, Newspaper } from 'lucide-react';
 import Link from 'next/link';
+import ImageCarousel from '@/components/image-carousel';
 
 interface NewsItem {
   id: string;
   title: string;
   date: string;
   content: string;
+  images?: string[];
   createdAt: string;
   updatedAt: string;
 }
@@ -103,6 +105,13 @@ export default function NewsDetailPage() {
         >
           {/* Golden Top Border */}
           <div className="h-2 bg-gradient-to-r from-gold-start via-gold-end to-gold-start"></div>
+
+          {/* Image Carousel */}
+          {news.images && news.images.length > 0 && (
+            <div className="p-4 sm:p-6">
+              <ImageCarousel images={news.images} />
+            </div>
+          )}
 
           <div className="p-6 sm:p-8 lg:p-12">
             {/* Header Badge */}

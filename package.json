@@ -12,6 +12,8 @@
     "@prisma/client": "^6.17.1",
     "@supabase/supabase-js": "^2.75.0",
     "bcryptjs": "^3.0.2",
+    "browser-image-compression": "^2.0.2",
+    "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.23.23",
     "jose": "^6.1.0",
     "lucide-react": "^0.545.0",

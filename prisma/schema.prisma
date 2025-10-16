@@ -26,6 +26,7 @@ model News {
   title     String
   date      DateTime
   content   String   @db.Text
+  images    String[] @default([])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
