@@ -104,7 +104,7 @@ export default function OffersPage() {
       <section className="relative w-full h-[100vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/hero-bg.jpg"
+            src="/hero-bg.png"
             alt="Offers Hero"
             fill
             className="object-cover"
