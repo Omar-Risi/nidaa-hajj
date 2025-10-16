@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Newspaper, Calendar } from "lucide-react";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface NewsItem {
   id: string;
@@ -109,13 +110,16 @@ export default function NewsSection() {
                 </h3>
 
                 {/* Content */}
-                <p className="text-gray-600 leading-relaxed text-base flex-1">
+                <p className="text-gray-600 leading-relaxed text-base flex-1 line-clamp-3">
                   {news.content}
                 </p>
 
                 {/* Read More Link */}
                 <div className="mt-6 pt-4 border-t border-gray-100">
-                  <button className="text-gold-start font-semibold hover:text-gold-end transition-colors duration-300 flex items-center gap-2 group/btn">
+                  <Link
+                    href={`/news/${news.id}`}
+                    className="text-gold-start font-semibold hover:text-gold-end transition-colors duration-300 flex items-center gap-2 group/btn"
+                  >
                     <span>اقرأ المزيد</span>
                     <svg
                       className="w-5 h-5 transform group-hover/btn:-translate-x-1 transition-transform duration-300"
@@ -125,7 +129,7 @@ export default function NewsSection() {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
                     </svg>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </motion.article>
@@ -140,9 +144,12 @@ export default function NewsSection() {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <button className="bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl">
+          <Link
+            href="/news"
+            className="inline-block bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl"
+          >
             عرض جميع الأخبار
-          </button>
+          </Link>
         </motion.div>
       </div>
     </motion.section>
