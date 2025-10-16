@@ -6,6 +6,7 @@ import Link from "next/link";
 import OffersSection from "@/components/offers-section";
 import { BadgeQuestionMark } from "lucide-react";
 import { Footer } from "@/components/footer";
+import NewsSection from "@/components/news-section";
 
 
 
@@ -62,6 +63,8 @@ export default function Home() {
 
       {/* Offers Section Component */}
       <OffersSection />
+
+      <NewsSection />
 
       {/* About Us Section - Redesigned */}
       <motion.section
