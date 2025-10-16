@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Calendar, ArrowLeft, Loader2, Newspaper } from 'lucide-react';
 import Link from 'next/link';
@@ -17,7 +17,6 @@ interface NewsItem {
 
 export default function NewsDetailPage() {
   const params = useParams();
-  const router = useRouter();
   const [news, setNews] = useState<NewsItem | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -45,7 +44,7 @@ export default function NewsDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-20 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto flex items-center justify-center">
           <Loader2 className="w-12 h-12 animate-spin text-gold-start" />
         </div>
@@ -55,7 +54,7 @@ export default function NewsDetailPage() {
 
   if (error || !news) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-20 px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <Newspaper className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-700 mb-4">
@@ -77,7 +76,7 @@ export default function NewsDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 sm:py-20 px-4 sm:px-6 lg:px-8 mt-32">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <motion.div

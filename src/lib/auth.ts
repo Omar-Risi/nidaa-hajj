@@ -1,14 +1,12 @@
-import { SignJWT, jwtVerify } from 'jose';
+import { SignJWT, jwtVerify, JWTPayload } from 'jose';
 import { cookies } from 'next/headers';
-import type { ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret');
 const SESSION_DURATION = 24 * 60 * 60 * 1000; // 24 hours
 
-export interface SessionPayload {
+export interface SessionPayload extends JWTPayload {
   userId: string;
   email: string;
-  exp?: number;
 }
 
 export async function createSession(userId: string, email: string) {
@@ -25,14 +23,23 @@ export async function createSession(userId: string, email: string) {
 export async function verifySession(token: string): Promise<SessionPayload | null> {
   try {
     const { payload } = await jwtVerify(token, secret);
-    return payload as SessionPayload;
-  } catch (error) {
+    
+    // Validate that required fields exist
+    if (
+      typeof payload.userId === 'string' &&
+      typeof payload.email === 'string'
+    ) {
+      return payload as SessionPayload;
+    }
+    
+    return null;
+  } catch {
     return null;
   }
 }
 
 export async function getSession(): Promise<SessionPayload | null> {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const token = cookieStore.get('session')?.value;
   
   if (!token) return null;
@@ -41,7 +48,7 @@ export async function getSession(): Promise<SessionPayload | null> {
 }
 
 export async function setSessionCookie(token: string, expiresAt: Date) {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   cookieStore.set('session', token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
@@ -52,6 +59,6 @@ export async function setSessionCookie(token: string, expiresAt: Date) {
 }
 
 export async function deleteSession() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   cookieStore.delete('session');
 }
