@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Newspaper, Calendar, Loader2, ArrowLeft } from 'lucide-react';
+import { Newspaper, Calendar, Loader2, ArrowLeft, Image as ImageIcon } from 'lucide-react';
 import Link from 'next/link';
 
 interface NewsItem {
@@ -10,6 +10,7 @@ interface NewsItem {
   title: string;
   date: string;
   content: string;
+  images?: string[];
 }
 
 export default function NewsPage() {
@@ -31,7 +32,7 @@ export default function NewsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-20 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-center">
           <Loader2 className="w-12 h-12 animate-spin text-gold-start" />
         </div>
@@ -40,7 +41,7 @@ export default function NewsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-20 px-4 sm:px-6 lg:px-8 flex flex-col justify-center mt-24 pt-36">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 lg:mb-16">
@@ -83,6 +84,27 @@ export default function NewsPage() {
               >
                 {/* Golden Top Border */}
                 <div className="h-1 bg-gradient-to-r from-gold-start via-gold-end to-gold-start"></div>
+
+                {/* Image */}
+                {item.images && item.images.length > 0 ? (
+                  <div className="relative w-full h-48 overflow-hidden bg-gray-100">
+                    <img
+                      src={item.images[0]}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    {item.images.length > 1 && (
+                      <div className="absolute bottom-2 left-2 bg-black/70 text-white px-2 py-1 rounded-full text-xs flex items-center gap-1">
+                        <ImageIcon className="w-3 h-3" />
+                        {item.images.length}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="relative w-full h-48 bg-gradient-to-br from-gold-start/10 to-gold-end/10 flex items-center justify-center">
+                    <Newspaper className="w-16 h-16 text-gold-start/30" />
+                  </div>
+                )}
 
                 <div className="p-6 lg:p-8 flex flex-col flex-1">
                   {/* Date Badge */}

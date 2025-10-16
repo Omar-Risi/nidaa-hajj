@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { Newspaper, Calendar } from "lucide-react";
+import { Newspaper, Calendar, Image as ImageIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -10,6 +10,7 @@ interface NewsItem {
   title: string;
   date: string;
   content: string;
+  images?: string[];
 }
 
 export default function NewsSection() {
@@ -31,7 +32,7 @@ export default function NewsSection() {
 
   if (loading) {
     return (
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto text-center">
           <div className="text-gold-start">جاري تحميل الأخبار...</div>
         </div>
@@ -49,7 +50,7 @@ export default function NewsSection() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       viewport={{ once: true }}
-      className="py-20 px-4 sm:px-6 lg:px-8 "
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
@@ -90,6 +91,27 @@ export default function NewsSection() {
             >
               {/* Golden Top Border */}
               <div className="h-1 bg-gradient-to-r from-gold-start via-gold-end to-gold-start"></div>
+
+              {/* Image */}
+              {news.images && news.images.length > 0 ? (
+                <div className="relative w-full h-48 overflow-hidden bg-gray-100">
+                  <img
+                    src={news.images[0]}
+                    alt={news.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  {news.images.length > 1 && (
+                    <div className="absolute bottom-2 left-2 bg-black/70 text-white px-2 py-1 rounded-full text-xs flex items-center gap-1">
+                      <ImageIcon className="w-3 h-3" />
+                      {news.images.length}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="relative w-full h-48 bg-gradient-to-br from-gold-start/10 to-gold-end/10 flex items-center justify-center">
+                  <Newspaper className="w-16 h-16 text-gold-start/30" />
+                </div>
+              )}
 
               <div className="p-6 lg:p-8 flex flex-col flex-1">
                 {/* Date Badge */}
