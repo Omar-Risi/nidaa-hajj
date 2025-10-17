@@ -7,11 +7,11 @@ import Image from 'next/image';
 
 const testimonials = [
   {
-    id: 1,
-    image: '/testimonials/darwish.jpeg',
-    title: 'شكر من معالي درويش بن اسماعيل البلوشي',
-    subtitle: 'الوزير المسؤول عن الشؤون المالية سابقاً',
-    description: 'شهادة تقدير وشكر من معالي الوزير على الخدمات المتميزة المقدمة',
+    // id: 1,
+    // image: '/testimonials/darwish.jpeg',
+    // title: 'شكر من معالي درويش بن اسماعيل البلوشي',
+    // subtitle: 'الوزير المسؤول عن الشؤون المالية سابقاً',
+    // description: 'شهادة تقدير وشكر من معالي الوزير على الخدمات المتميزة المقدمة',
   },
 ];
 
