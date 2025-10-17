@@ -5,15 +5,14 @@ import { Award, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const testimonials = [
-  // {
-  // id: 1,
-  // image: '/testimonials/darwish.jpeg',
-  // title: 'شكر من معالي درويش بن اسماعيل البلوشي',
-  // subtitle: 'الوزير المسؤول عن الشؤون المالية سابقاً',
-  // description: 'شهادة تقدير وشكر من معالي الوزير على الخدمات المتميزة المقدمة',
-  // },
-];
+const testimonials: {
+  id: number,
+  image: string,
+  title: string,
+  subtitle: string,
+  description: string,
+}[]
+  = [];
 
 export default function TestimonialsPage() {
   return (
