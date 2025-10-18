@@ -206,7 +206,7 @@ export default function HajjOfferPage() {
                 key={index}
                 className="bg-white rounded-2xl p-8 shadow-lg  hover:shadow-xl transition-shadow"
               >
-                <div className="flex items-center gap-4 mb-6">
+                <div className="flex flex-col items-start gap-4 mb-6">
                   <div className="w-14 h-14 golden rounded-xl flex items-center justify-center text-foreground shadow-md">
                     <Icon className="w-6 h-6" />
                   </div>
