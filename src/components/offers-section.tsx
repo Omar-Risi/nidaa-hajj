@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
 import { Box, User, Users, Book, Info, X, Gem, Briefcase, Umbrella, BedSingle, Circle, Footprints } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BenefitBox } from "./benefit-box";
 import VideoGallery from "./video-gallery";
@@ -83,57 +83,27 @@ export default function OffersSection() {
   const [selectedCard, setSelectedCard] = useState<OfferCard | null>(null);
   const [activeTab, setActiveTab] = useState<'umrah' | 'hajj'>('umrah');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [umrahPackages, setUmrahPackages] = useState<OfferCard[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Umrah Packages Data
-  const umrahPackages: OfferCard[] = [
-    {
-      id: 1,
-      title: "عمرة رمضان مع حملة النداء 1447هـ",
-      description: "قال عليه الصلاة والسلام: 'عمرة في رمضان تعدل حجة معي' - اجمع شوق قلبك لعناق الحرمين وتعال معنا..",
-      duration: "للفترة 7-13 من رمضان 1447هـ (25/2 - 3/3/2026م) | 3 ليال مدينة، و3 ليال مكة",
-      accommodation: "مكة: فندق ساعة مكة فيرمونت | المدينة: فندق مادن",
-      features: [
-        "السفر على الطيران العماني",
-        "فندق ساعة مكة فيرمونت في مكة، مع بوفيه فطور",
-        "فندق مادن في المدينة، مع بوفيه فطور",
-        "التنقل من المدينة إلى مكة بالقطار",
-        "حافلات حديثة للاستقبال والتوديع في المطارات ومحطات القطار",
-        "شاحنة لنقل الأمتعة من المدينة إلى مكة، لتجد أمتعتك في انتظارك حين تصل مكة",
-        "خدمات راقية ومتعددة تليق بمعتمرينا",
-      ],
-      image: "/kaaba-1.jpg",
-      images: ["/madden-hotel-1.jpeg", "/madden-hotel-2.jpeg", "/madden-hotel-3.jpeg", "/vermont-hotel-1.jpeg", "/vermont-hotel-2.jpeg", "/vermont-hotel-3.jpeg", "/vermont-hotel-4.jpeg"], // Carousel images
-      pricing: [
-        { icon: 'triple', price: 680, label: 'غرفة ثلاثية (للشخص)' },
-        { icon: 'double', price: 785, label: 'غرفة ثنائية (للشخص)' },
-        { icon: 'single', price: 1310, label: 'غرفة فردية' },
-      ]
-    },
-    {
-      id: 2,
-      title: "عمرة منتصف العام الدراسي مع حملة النداء",
-      description: "22 عاماً من الخبرة والتطوير، نترجمها واقعاً يجمع لكم بين الراحة والروحانية.. نحن نعتني بأدق التفاصيل لأنكم تستحقون الأفضل",
-      duration: "الفترة 7-13/1/2026م | 3 ليال المدينة، و3 ليال مكة",
-      accommodation: "في أفخم فنادق الخمس نجوم - مكة: فيرمونت | المدينة: مادن",
-      features: [
-        "السفر على الطيران العماني",
-        "فندق ساعة مكة فيرمونت في مكة، مع بوفيه فطور",
-        "فندق مادن في المدينة، مع بوفيه فطور",
-        "جولة في المدينة لبعض الأماكن التاريخية",
-        "التنقل من المدينة إلى مكة بالقطار",
-        "حافلات حديثة مريحة لتنقلات المسافات الداخلية القصيرة",
-        "شاحنة لنقل الأمتعة من المدينة إلى مكة",
-        "خدمات راقية ومتعددة تليق بمعتمرينا",
-      ],
-      image: "/makkah-1.jpg",
-      images: ["/madden-hotel-1.jpeg", "/madden-hotel-2.jpeg", "/madden-hotel-3.jpeg", "/vermont-hotel-1.jpeg", "/vermont-hotel-2.jpeg", "/vermont-hotel-3.jpeg", "/vermont-hotel-4.jpeg"], // Carousel images
-      pricing: [
-        { icon: 'triple', price: 500, label: 'غرفة ثلاثية (للشخص)' },
-        { icon: 'double', price: 555, label: 'غرفة ثنائية (للشخص)' },
-        { icon: 'single', price: 860, label: 'غرفة فردية' },
-      ]
-    },
-  ];
+  // Fetch umrah offers from API
+  useEffect(() => {
+    const fetchOffers = async () => {
+      try {
+        const response = await fetch('/api/umrah');
+        if (response.ok) {
+          const data = await response.json();
+          setUmrahPackages(data);
+        }
+      } catch (error) {
+        console.error('Error fetching umrah offers:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchOffers();
+  }, []);
+
 
   const getPricingIcon = (type: 'single' | 'double' | 'triple') => {
     switch (type) {
@@ -228,6 +198,16 @@ export default function OffersSection() {
             transition={{ duration: 0.5 }}
             className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto"
           >
+            {loading ? (
+              <div className="flex justify-center items-center py-20">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gold-start"></div>
+              </div>
+            ) : umrahPackages.length === 0 ? (
+              <div className="text-center py-20 text-gray-500">
+                <p>لا توجد عروض عمرة متاحة حالياً</p>
+              </div>
+            ) : (
+              <>
             {umrahPackages.map((card, index) => (
               <motion.div
                 key={card.id}
@@ -312,6 +292,8 @@ export default function OffersSection() {
                 </div>
               </motion.div>
             ))}
+              </>
+            )}
           </motion.div>
         ) : (
           <motion.div
