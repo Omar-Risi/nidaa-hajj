@@ -14,9 +14,11 @@ import {
 } from 'lucide-react';
 import { Footer } from '@/components/footer';
 import Image from 'next/image';
+import ImageCarousel from '@/components/image-carousel';
 
 export default function HajjOfferPage() {
-  const router = useRouter();
+
+  const images = ["/kaaba-1.jpg", "/makkah-1.jpg"];
 
   const sections = [
     {
@@ -151,6 +153,10 @@ export default function HajjOfferPage() {
             تعالوا لنكتب القصة معاً، قصتنا التي تبدأ بروحانية طيبة الطيبة، وتنتهي بطمأنينة المناسك.
           </p>
         </div>
+
+        <ImageCarousel
+          images={images}
+        />
 
         {/* Quick Info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">

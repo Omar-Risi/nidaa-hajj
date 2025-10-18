@@ -127,7 +127,7 @@ export default function OffersSection() {
       "إشراف ديني وخدمة طبية متكاملة",
     ],
     pricing: [
-      { icon: 'triple', price: 0, label: 'اتصل للاستفسار' },
+      { icon: 'triple', price: 4300, label: '' },
     ]
   };
 
@@ -234,90 +234,90 @@ export default function OffersSection() {
               </div>
             ) : (
               <>
-            {umrahPackages.map((card, index) => (
-              <motion.div
-                key={card.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                  ease: "easeOut"
-                }}
-                className="bg-white rounded-lg shadow-lg overflow-hidden"
-              >
-                {/* Image */}
-                <div className="relative h-48 w-full">
-                  <Image
-                    src={card.image}
-                    alt={card.title}
-                    fill
-                    className="object-cover"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedCard(card);
+                {umrahPackages.map((card, index) => (
+                  <motion.div
+                    key={card.id}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: index * 0.1,
+                      ease: "easeOut"
                     }}
-
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-foreground mb-4">{card.title}</h3>
-
-                  <p>
-                    {card.content}
-                  </p>
-
-                  {/* Pricing */}
-                  <div className="space-y-3">
-                    {card.pricing.map((tier, tierIndex) => (
-                      <motion.div
-                        key={tierIndex}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{
-                          duration: 0.3,
-                          delay: index * 0.1 + tierIndex * 0.1
+                    className="bg-white rounded-lg shadow-lg overflow-hidden"
+                  >
+                    {/* Image */}
+                    <div className="relative h-48 w-full">
+                      <Image
+                        src={card.image}
+                        alt={card.title}
+                        fill
+                        className="object-cover"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedCard(card);
                         }}
-                        className="flex items-center justify-between py-2 border-b border-gray-200 last:border-0"
-                      >
-                        <div className="flex items-center gap-2 text-gray-600">
-                          {getPricingIcon(tier.icon)}
-                          <span className="text-sm">{tier.label}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <span className="text-lg font-bold golden-text">{tier.price}</span>
-                          <span className="text-sm text-gray-500">ر.ع</span>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex gap-3 mt-6">
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => openModal(card)}
-                      className="flex-1 py-3 bg-foreground text-white font-semibold rounded-lg transition-all duration-200 hover:bg-foreground/90 flex items-center justify-center gap-2"
-                    >
-                      <Info className="w-4 h-4" />
-                      التفاصيل
-                    </motion.button>
-                    <a className="flex-[2] flex" href={`https://wa.me/+96897477488?text=انا مهتم في هذا العرض : ${card.title}`} target="_blank">
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex-1 py-3 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground font-semibold rounded-lg transition-all duration-200"
-                      >
-                        احجز الآن
-                      </motion.button>
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                      />
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-foreground mb-4">{card.title}</h3>
+
+                      <p>
+                        {card.content}
+                      </p>
+
+                      {/* Pricing */}
+                      <div className="space-y-3">
+                        {card.pricing.map((tier, tierIndex) => (
+                          <motion.div
+                            key={tierIndex}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{
+                              duration: 0.3,
+                              delay: index * 0.1 + tierIndex * 0.1
+                            }}
+                            className="flex items-center justify-between py-2 border-b border-gray-200 last:border-0"
+                          >
+                            <div className="flex items-center gap-2 text-gray-600">
+                              {getPricingIcon(tier.icon)}
+                              <span className="text-sm">{tier.label}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <span className="text-lg font-bold golden-text">{tier.price}</span>
+                              <span className="text-sm text-gray-500">ر.ع</span>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex gap-3 mt-6">
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => openModal(card)}
+                          className="flex-1 py-3 bg-foreground text-white font-semibold rounded-lg transition-all duration-200 hover:bg-foreground/90 flex items-center justify-center gap-2"
+                        >
+                          <Info className="w-4 h-4" />
+                          التفاصيل
+                        </motion.button>
+                        <a className="flex-[2] flex" href={`https://wa.me/+96897477488?text=انا مهتم في هذا العرض : ${card.title}`} target="_blank">
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex-1 py-3 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground font-semibold rounded-lg transition-all duration-200"
+                          >
+                            احجز الآن
+                          </motion.button>
+                        </a>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </>
             )}
           </motion.div>
@@ -372,9 +372,7 @@ export default function OffersSection() {
                 <div className="border-t pt-4 mb-4">
                   <div className="flex items-center justify-between py-2">
                     <span className="text-lg font-bold golden-text">للاستفسار عن الأسعار</span>
-                    <a href="tel:+96897477488" className="text-gold-start hover:underline">
-                      97477488
-                    </a>
+                    <span className="text-lg font-bold text-gold-start"> ريال عماني 4300 </span>
                   </div>
                 </div>
 
