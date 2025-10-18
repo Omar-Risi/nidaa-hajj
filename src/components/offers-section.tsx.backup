@@ -84,8 +84,6 @@ export default function OffersSection() {
   const [activeTab, setActiveTab] = useState<'umrah' | 'hajj'>('umrah');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [umrahPackages, setUmrahPackages] = useState<OfferCard[]>([]);
-  const [hajjPackages, setHajjPackages] = useState<OfferCard[]>([]);
-  const [hajjLoading, setHajjLoading] = useState(true);
   const [loading, setLoading] = useState(true);
 
   // Fetch umrah offers from API

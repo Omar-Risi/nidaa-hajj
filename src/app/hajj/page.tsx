@@ -1,140 +1,138 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { 
-  Plane, 
-  Building, 
-  Calendar, 
-  Hotel, 
+import {
+  Plane,
+  Building,
+  Calendar,
+  Hotel,
   Check,
   Phone,
   MessageCircle,
   Mountain,
-  Sparkles,
-  Users
+  Sparkles
 } from 'lucide-react';
 import { Footer } from '@/components/footer';
-
-interface HajjSection {
-  title: string;
-  icon: string;
-  content?: string;
-  items?: string[];
-}
-
-interface HajjOffer {
-  id: string;
-  title: string;
-  description: string;
-  duration: string;
-  accommodation: string;
-  features: string[];
-  image: string;
-  images: string[];
-  sections: HajjSection[];
-  createdAt: string;
-}
-
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  plane: Plane,
-  building: Building,
-  calendar: Calendar,
-  hotel: Hotel,
-  mountain: Mountain,
-  mosque: Sparkles,
-  kaaba: Sparkles,
-};
+import Image from 'next/image';
 
 export default function HajjOfferPage() {
   const router = useRouter();
-  const [offer, setOffer] = useState<HajjOffer | null>(null);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchOffer();
-  }, []);
-
-  const fetchOffer = async () => {
-    try {
-      const response = await fetch('/api/hajj');
-      if (response.ok) {
-        const data = await response.json();
-        if (data.length > 0) {
-          setOffer(data[0]); // Get the first (latest) offer
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching hajj offer:', error);
-    } finally {
-      setLoading(false);
+  const sections = [
+    {
+      icon: Plane,
+      title: "مسقط - المدينة",
+      content: "الرحلة الجوية على متن الطيران العماني: مسقط - المدينة بتاريخ 2026/5/21 | جدة - مسقط بتاريخ 2026/5/31"
+    },
+    {
+      icon: Sparkles,
+      title: "المدينة المنورة – ليلتان",
+      items: [
+        "استقبال الحجاج في مطار المدينة، ونقلهم إلى محل إقامتهم بحافلات حديثة",
+        "الإقامة في فندق خمس نجوم قريب من الحرم النبوي",
+        "بوفيهات فاخرة للثلاث وجبات طوال فترة الإقامة",
+        "زيارة مسجد قباء والصلاة فيه، وزيارة جبل أحد، والمرور على الأماكن التاريخية",
+        "شحن حقائب الحجاج إلى مكة في مساء اليوم الذي يسبق يوم المغادرة",
+        "مغادرة المدينة إلى مكة بواسطة قطار الحرمين السريع"
+      ]
+    },
+    {
+      icon: Sparkles,
+      title: "الانتقال إلى مكة المكرمة (7 - 13 من ذي الحجة)",
+      items: [
+        "الاستقبال في فندق ساعة مكة فيرمونت (برج الساعة) 5 نجوم، المطل على الحرم المكي الشريف",
+        "قبل أداء العمرة: تناول العشاء بوفيه فاخر في مطعم الفندق المطل على الحرم المكي",
+        "أداء العمرة، والتجمع بعدها في لونج فندق ساعة مكة فيرمونت",
+        "في حافلات فاخرة يتم نقل الحجاج إلى الفندق المهيأ لإقامتهم في مكة، فندق تايم ربى مكة"
+      ]
+    },
+    {
+      icon: Building,
+      title: "الإقامة في منى في أبراج كدانة الفندقية (من 8 إلى 12 من ذي الحجة)",
+      subtitle: "راحة فندقية داخل المشاعر المقدسة",
+      items: [
+        "غرف مكيفة بأعلى مستوى من الراحة والنظافة",
+        "دورات مياه راقية خاصة بأبراج كدانه لكل دور دورات مياه خاصة به",
+        "مصلى في كل دور وجلسات استراحة خاصة",
+        "ثلاث وجبات بوفيه عالمي فاخر ومشروبات وسناك على مدار اليوم",
+        "إشراف ديني مستمر وتوجيه يومي لأعمال الحج",
+        "خدمة طبية ومتابعة إدارية متكاملة"
+      ]
+    },
+    {
+      icon: Mountain,
+      title: "عرفات – مزدلفة – أيام التشريق",
+      items: [
+        "التنقل بين المشاعر بالحافلات الحديثة المكيفة",
+        "مخيم عرفة خاص للشعور بروحانية يوم عرفة مع تنظيم مميز",
+        "المخيم مجهز بمكان لتناول الطعام، ومكان للصلاة، ودورات مياه راقية ونظيفة",
+        "توفير التغذية للوجبات الرئيسية، والمشروبات الباردة والساخنة وسناك",
+        "مزدلفة حط رحال"
+      ]
+    },
+    {
+      icon: Calendar,
+      title: "أيام التشريق",
+      items: [
+        "المبيت في منى في أبراج منى ليلا، ويمكن للحجاج المكث في الفندق في مكة نهارا لمزيد من الراحة",
+        "استخدام قطار المشاعر في يوم العيد وأيام التشريق لدخول منى ورمي الجمرات، إذا سمحت الأنظمة",
+        "ليلة في جدة قبل العودة إلى الوطن حسب ظروف الطيران"
+      ]
     }
-  };
+  ];
 
-  const getIcon = (iconName: string) => {
-    const Icon = iconMap[iconName] || Sparkles;
-    return <Icon className="w-6 h-6" />;
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-emerald-50 to-white">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-emerald-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">جاري التحميل...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!offer) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-emerald-50 to-white">
-        <div className="text-center">
-          <p className="text-2xl text-gray-600">لا توجد عروض حج متاحة حالياً</p>
-          <button
-            onClick={() => router.push('/')}
-            className="mt-6 px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
-          >
-            العودة للصفحة الرئيسية
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const features = [
+    "الرحلة الجوية على متن الطيران العماني",
+    "ليلتان في فندق خمس نجوم قريب من الحرم النبوي بالمدينة",
+    "الإقامة في فندق ساعة مكة فيرمونت (برج الساعة) المطل على الحرم",
+    "الإقامة في أبراج كدانة الفندقية في منى (أول حملة عمانية)",
+    "التنقل بقطار الحرمين السريع بين المدينة ومكة",
+    "بوفيهات فاخرة للثلاث وجبات طوال فترة الإقامة",
+    "غرف مكيفة بأعلى مستوى من الراحة والنظافة",
+    "دورات مياه راقية خاصة لكل دور",
+    "مصلى في كل دور وجلسات استراحة خاصة",
+    "مخيم عرفة خاص مجهز بالكامل",
+    "استخدام قطار المشاعر لرمي الجمرات",
+    "إشراف ديني مستمر وتوجيه يومي",
+    "خدمة طبية ومتابعة إدارية متكاملة",
+    "زيارة مسجد قباء وجبل أحد والأماكن التاريخية",
+    "شحن الحقائب بين المدينة ومكة"
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white" dir="rtl">
+    <div className="min-h-screen" dir="rtl">
       {/* Hero Section */}
       <div className="relative h-[60vh] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${offer.image || '/kaaba-1.jpg'})`,
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
-        </div>
+        <Image
+          src="/kaaba-1.jpg"
+          alt="حج 1447هـ"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
         <div className="relative z-10 h-full flex flex-col justify-end pb-16 px-6 md:px-12 max-w-7xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-            {offer.title}
+            حج عام 1447هـ مع حملة النداء للحج والعمرة
           </h1>
-          <p className="text-xl md:text-2xl text-emerald-100 mb-6 max-w-3xl leading-relaxed">
-            {offer.description}
+          <p className="text-xl md:text-2xl text-white mb-3 max-w-3xl leading-relaxed">
+            الحملة المعروفة بالتطوير المستمر في خدماتها، تسجل نفسها في هذا الموسم 1447هـ كأول حملة عمانية تقيم في منى في أبراج منى الفندقية الجديدة (كدانة).
+          </p>
+          <p className="text-xl md:text-2xl text-white font-bold mb-6">
+            فأنتم على موعد مع إقامة فندقية في المشاعر المقدسة!!
           </p>
           <div className="flex flex-wrap gap-4">
             <a
               href="https://wa.me/96897477488"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors shadow-lg"
+              className="flex items-center gap-2 px-6 py-3 bg-gold-start text-white rounded-lg hover:scale-105 transition-transform shadow-lg"
             >
               <MessageCircle className="w-5 h-5" />
               احجز الآن عبر واتساب
             </a>
             <a
               href="tel:+96897477488"
-              className="flex items-center gap-2 px-6 py-3 bg-white text-emerald-700 rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+              className="flex items-center gap-2 px-6 py-3 bg-white text-foreground rounded-lg hover:bg-gold-start transition-colors shadow-lg"
             >
               <Phone className="w-5 h-5" />
               اتصل بنا
@@ -143,38 +141,48 @@ export default function HajjOfferPage() {
         </div>
       </div>
 
-      {/* Quick Info Section */}
+      {/* Opening Message */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-12">
+        <div className="golden rounded-2xl p-8 md:p-12 text-foreground text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            لا نقول تعالوا لنحكي لكم .. بل تعالوا معنا، وكونوا جزءاً من التجربة
+          </h2>
+          <p className="text-xl text-foreground">
+            تعالوا لنكتب القصة معاً، قصتنا التي تبدأ بروحانية طيبة الطيبة، وتنتهي بطمأنينة المناسك.
+          </p>
+        </div>
+
+        {/* Quick Info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-emerald-100">
+          <div className="bg-white rounded-2xl p-6 shadow-lg">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
-                <Calendar className="w-6 h-6 text-emerald-600" />
+              <div className="w-12 h-12 bg-gold-start rounded-full flex items-center justify-center">
+                <Calendar className="w-6 h-6 text-foreground" />
               </div>
               <h3 className="text-xl font-bold text-gray-800">المدة</h3>
             </div>
-            <p className="text-gray-600 text-lg">{offer.duration}</p>
+            <p className="text-gray-600 text-lg">10 أيام (21 مايو - 31 مايو 2026)</p>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-emerald-100">
+          <div className="bg-white rounded-2xl p-6 shadow-lg">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
-                <Hotel className="w-6 h-6 text-emerald-600" />
+              <div className="w-12 h-12 bg-gold-start rounded-full flex items-center justify-center">
+                <Hotel className="w-6 h-6 text-foreground" />
               </div>
               <h3 className="text-xl font-bold text-gray-800">الإقامة</h3>
             </div>
-            <p className="text-gray-600 text-lg">{offer.accommodation}</p>
+            <p className="text-gray-600 text-lg">فنادق 5 نجوم + أبراج كدانة الفندقية في منى</p>
           </div>
         </div>
 
-        {/* Features Section */}
+        {/* Features */}
         <div className="bg-white rounded-2xl p-8 shadow-lg border border-emerald-100 mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">مميزات العرض</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6">مميزات البرنامج</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {offer.features.map((feature, index) => (
+            {features.map((feature, index) => (
               <div key={index} className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center mt-1">
-                  <Check className="w-4 h-4 text-emerald-600" />
+                <div className="flex-shrink-0 w-6 h-6 bg-gold-start rounded-full flex items-center justify-center mt-1">
+                  <Check className="w-4 h-4 text-foreground" />
                 </div>
                 <p className="text-gray-700 leading-relaxed">{feature}</p>
               </div>
@@ -184,45 +192,53 @@ export default function HajjOfferPage() {
 
         {/* Detailed Sections */}
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">تفاصيل البرنامج</h2>
-          {offer.sections.map((section, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg border border-emerald-100 hover:shadow-xl transition-shadow"
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center text-white shadow-md">
-                  {getIcon(section.icon)}
+          <h2 className="text-3xl font-bold text-gray-800 mb-6">ما القصة؟!</h2>
+          {sections.map((section, index) => {
+            const Icon = section.icon;
+            return (
+              <div
+                key={index}
+                className="bg-white rounded-2xl p-8 shadow-lg  hover:shadow-xl transition-shadow"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-14 h-14 golden rounded-xl flex items-center justify-center text-foreground shadow-md">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-800">{section.title}</h3>
+                    {section.subtitle && (
+                      <p className="text-gold-start font-medium">{section.subtitle}</p>
+                    )}
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800">{section.title}</h3>
+
+                {section.content && (
+                  <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                    {section.content}
+                  </p>
+                )}
+
+                {section.items && section.items.length > 0 && (
+                  <ul className="space-y-3">
+                    {section.items.map((item, itemIndex) => (
+                      <li key={itemIndex} className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-2 h-2 bg-gold-start rounded-full mt-2"></div>
+                        <p className="text-gray-700 leading-relaxed">{item}</p>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
-
-              {section.content && (
-                <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                  {section.content}
-                </p>
-              )}
-
-              {section.items && section.items.length > 0 && (
-                <ul className="space-y-3">
-                  {section.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-2 h-2 bg-emerald-500 rounded-full mt-2"></div>
-                      <p className="text-gray-700 leading-relaxed">{item}</p>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* Call to Action */}
-        <div className="mt-12 bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-2xl p-12 text-center text-white shadow-2xl">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        {/* CTA */}
+        <div className="mt-12 golden rounded-2xl p-12 text-center shadow-2xl">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
             لا تفوت هذه الفرصة المميزة
           </h2>
-          <p className="text-xl mb-8 text-emerald-100">
+          <p className="text-xl mb-8 text-foreground">
             كن جزءاً من تجربة الحج الفريدة مع حملة النداء
           </p>
           <div className="flex flex-wrap justify-center gap-4">
@@ -230,14 +246,14 @@ export default function HajjOfferPage() {
               href="https://wa.me/96897477488"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-8 py-4 bg-white text-emerald-700 rounded-lg hover:bg-gray-100 transition-colors shadow-lg text-lg font-bold"
+              className="flex items-center gap-2 px-8 py-4 bg-white text-foreground rounded-lg hover:bg-gold-start transition-colors shadow-lg text-lg font-bold"
             >
               <MessageCircle className="w-6 h-6" />
               احجز الآن
             </a>
             <a
               href="tel:+96897477488"
-              className="flex items-center gap-2 px-8 py-4 bg-emerald-800 text-white rounded-lg hover:bg-emerald-900 transition-colors shadow-lg text-lg font-bold"
+              className="flex items-center gap-2 px-8 py-4 bg-foreground text-gold-start rounded-lg hover:scale-105  transition-transform shadow-lg text-lg font-bold"
             >
               <Phone className="w-6 h-6" />
               97477488
