@@ -19,7 +19,33 @@ import ImageCarousel from '@/components/image-carousel';
 
 export default function HajjOfferPage() {
 
-  const images = ["/kaaba-1.jpg", "/makkah-1.jpg"];
+  const images = [
+    "vermont-hotel-5.jpeg",
+    "madden-hotel-1.jpeg",
+    "madden-hotel-2.jpeg",
+    "madden-hotel-3.jpeg",
+    "madden-hotel-4.jpeg",
+    "madden-hotel-5.jpeg",
+    "madden-hotel-6.jpeg",
+    "ruba-hotel-1.jpeg",
+    "ruba-hotel-2.jpeg",
+    "ruba-hotel-3.jpeg",
+    "ruba-hotel-4.jpeg",
+    "keddana-hotel-1.jpeg",
+    "keddana-hotel-2.jpeg",
+    "keddana-hotel-3.jpeg",
+    "keddana-hotel-4.jpeg",
+    "keddana-hotel-5.jpeg",
+    "keddana-hotel-6.jpeg",
+    "arafa-1.jpeg",
+    "arafa-2.jpeg",
+    "arafa-3.jpeg",
+    "arafa-4.jpeg",
+    "arafa-5.jpeg",
+    "arafa-6.jpeg",
+    "arafa-7.jpeg",
+
+  ];
 
   const sections = [
     {
@@ -98,6 +124,7 @@ export default function HajjOfferPage() {
   ];
 
   const features = [
+    "استضافة الحجاج في فندق ساعة مكة فيرمونت ، وبوفيه عشاء بإطلالة على الحرم المكي",
     "الرحلة الجوية على متن الطيران العماني",
     "ليلتان في فندق خمس نجوم قريب من الحرم النبوي بالمدينة",
     "الإقامة في فندق ساعة مكة فيرمونت (برج الساعة) المطل على الحرم",
@@ -112,7 +139,7 @@ export default function HajjOfferPage() {
     "إشراف ديني مستمر وتوجيه يومي",
     "خدمة طبية ومتابعة إدارية متكاملة",
     "زيارة مسجد قباء وجبل أحد والأماكن التاريخية",
-    "شحن الحقائب بين المدينة ومكة"
+    "شحن الحقائب بين المدينة ومكة",
   ];
 
   return (
@@ -212,7 +239,9 @@ export default function HajjOfferPage() {
 
         {/* Detailed Sections */}
         <div className="space-y-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">ما القصة؟!</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6">
+            تفاصيل البرنامج
+          </h2>
           {sections.map((section, index) => {
             const Icon = section.icon;
             return (

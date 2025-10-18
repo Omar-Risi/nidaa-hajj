@@ -371,7 +371,7 @@ export default function OffersSection() {
                 {/* Pricing */}
                 <div className="border-t pt-4 mb-4">
                   <div className="flex items-center justify-between py-2">
-                    <span className="text-lg font-bold golden-text">للاستفسار عن الأسعار</span>
+                    <span className="text-lg font-bold golden-text">سعر البرنامج</span>
                     <span className="text-lg font-bold text-gold-start"> ريال عماني 4300 </span>
                   </div>
                 </div>
