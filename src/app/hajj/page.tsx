@@ -145,7 +145,7 @@ export default function HajjOfferPage() {
   return (
     <div className="min-h-screen" dir="rtl">
       {/* Hero Section */}
-      <div className="relative h-[60vh] overflow-hidden">
+      <div className="relative min-h-[60vh] overflow-hidden">
         <Image
           src="/kaaba-1.jpg"
           alt="حج 1447هـ"
@@ -153,7 +153,7 @@ export default function HajjOfferPage() {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
-        <div className="relative z-10 h-full flex flex-col justify-end pb-16 px-6 md:px-12 max-w-7xl mx-auto">
+        <div className="relative z-10 h-full flex flex-col justify-end  pt-48 px-6 md:px-12 max-w-7xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
             حج عام 1447هـ مع حملة النداء للحج والعمرة
           </h1>
