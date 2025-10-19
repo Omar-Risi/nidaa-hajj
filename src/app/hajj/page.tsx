@@ -1,5 +1,5 @@
-'use client';
 
+'use client';
 import { useRouter } from 'next/navigation';
 import {
   Plane,
@@ -51,7 +51,7 @@ export default function HajjOfferPage() {
     {
       icon: Plane,
       title: "مسقط - المدينة",
-      content: "الرحلة الجوية على متن الطيران العماني: مسقط - المدينة بتاريخ 2026/5/21 | جدة - مسقط بتاريخ 2026/5/31"
+      content: "الرحلة الجوية على متن الطيران العماني: مسقط الى المدينة بتاريخ 2026/5/21 | جدة الى مسقط بتاريخ 2026/5/31"
     },
     {
       icon: Sparkles,
@@ -208,7 +208,7 @@ export default function HajjOfferPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-800">المدة</h3>
             </div>
-            <p className="text-gray-600 text-lg">10 أيام (21 مايو - 31 مايو 2026)</p>
+            <p className="text-gray-600 text-lg">11 يوم (21 مايو - 31 مايو 2026)</p>
           </div>
 
           <div className="bg-white rounded-2xl p-6 shadow-lg">
