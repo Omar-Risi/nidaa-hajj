@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BenefitBox } from "./benefit-box";
 import VideoGallery from "./video-gallery";
+import Link from "next/link";
 
 // Types for offer data
 interface PricingTier {
@@ -337,12 +338,14 @@ export default function OffersSection() {
             >
               {/* Image */}
               <div className="relative h-48 w-full">
-                <Image
-                  src={hajjOffer.image}
-                  alt={hajjOffer.title}
-                  fill
-                  className="object-cover"
-                />
+                <Link href="/hajj">
+                  <Image
+                    src={hajjOffer.image}
+                    alt={hajjOffer.title}
+                    fill
+                    className="object-cover"
+                  />
+                </Link>
               </div>
 
               <div className="p-6">
@@ -372,7 +375,7 @@ export default function OffersSection() {
                 <div className="border-t pt-4 mb-4">
                   <div className="flex items-center justify-between py-2">
                     <span className="text-lg font-bold golden-text">سعر البرنامج</span>
-                    <a href="https://wa.me/96897477488" className="text-lg font-bold text-gold-start bg-foreground rounded-sm p-2">استفسر عن السعر من هنا</a>
+                    <span className="text-lg font-bold golden-text"> 4300 ر.ع</span>
                   </div>
                 </div>
 
