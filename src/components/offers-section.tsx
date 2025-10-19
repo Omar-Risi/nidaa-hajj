@@ -372,7 +372,7 @@ export default function OffersSection() {
                 <div className="border-t pt-4 mb-4">
                   <div className="flex items-center justify-between py-2">
                     <span className="text-lg font-bold golden-text">سعر البرنامج</span>
-                    <span className="text-lg font-bold text-gold-start"> ريال عماني 4300 </span>
+                    <a href="https://wa.me/96897477488" className="text-lg font-bold text-gold-start bg-foreground rounded-sm p-2">استفسر عن السعر من هنا</a>
                   </div>
                 </div>
 

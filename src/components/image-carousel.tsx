@@ -1,15 +1,15 @@
 'use client';
-
 import { useState, useCallback, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ImageCarouselProps {
   images: string[];
+  titles?: string[];
 }
 
-export default function ImageCarousel({ images }: ImageCarouselProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+export default function ImageCarousel({ images, titles = [] }: ImageCarouselProps) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
     direction: 'rtl',
   });
@@ -33,7 +33,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
     onSelect();
     emblaApi.on('select', onSelect);
     emblaApi.on('reInit', onSelect);
-    
+
     return () => {
       emblaApi.off('select', onSelect);
       emblaApi.off('reInit', onSelect);
@@ -48,10 +48,10 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
       <div className="overflow-hidden rounded-2xl" ref={emblaRef} dir="rtl">
         <div className="flex">
           {images.map((image, index) => (
-            <div 
-              key={index} 
-              className="min-w-0 flex-shrink-0 flex-grow-0"
-              style={{ 
+            <div
+              key={index}
+              className="min-w-0 flex-shrink-0 flex-grow-0 relative"
+              style={{
                 flex: '0 0 100%',
                 width: '100%'
               }}
@@ -61,6 +61,14 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
                 alt={`صورة ${index + 1}`}
                 className="w-full h-[400px] md:h-[500px] object-cover"
               />
+              {/* Title Overlay */}
+              {titles[index] && (
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                  <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
+                    {titles[index]}
+                  </h3>
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -95,16 +103,15 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
               <button
                 key={index}
                 onClick={() => emblaApi?.scrollTo(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === selectedIndex
+                className={`h-2 rounded-full transition-all duration-300 ${index === selectedIndex
                     ? 'w-8 bg-gold-start'
                     : 'w-2 bg-gray-300 hover:bg-gray-400'
-                }`}
+                  }`}
                 aria-label={`الانتقال للصورة ${index + 1}`}
               />
             ))}
           </div>
-          
+
           {/* Counter */}
           <div className="text-center mt-2 text-sm text-gray-600">
             {selectedIndex + 1} / {images.length}
