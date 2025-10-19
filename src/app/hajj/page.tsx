@@ -1,4 +1,3 @@
-
 'use client';
 import { useRouter } from 'next/navigation';
 import {
@@ -63,11 +62,11 @@ export default function HajjOfferPage() {
     "صور أبراج منى الفندقية (كدانة الوادي)",
     "صور أبراج منى الفندقية (كدانة الوادي)",
     "صور أبراج منى الفندقية (كدانة الوادي)",
-    "الإفامة في عرفة",
-    "الإفامة في عرفة",
-    "الإفامة في عرفة",
-    "الإفامة في عرفة",
-    "الإفامة في عرفة",
+    "الإقامة في عرفة",
+    "الإقامة في عرفة",
+    "الإقامة في عرفة",
+    "الإقامة في عرفة",
+    "الإقامة في عرفة",
   ];
 
 
@@ -75,7 +74,7 @@ export default function HajjOfferPage() {
     {
       icon: Plane,
       title: "مسقط - المدينة",
-      content: "الرحلة الجوية على متن الطيران العماني: مسقط الى المدينة بتاريخ 2026/5/21 | جدة الى مسقط بتاريخ 2026/5/31"
+      content: "الرحلة الجوية على متن الطيران العماني: مسقط - المدينة بتاريخ 2026/5/21 | جدة - مسقط بتاريخ 2026/5/31"
     },
     {
       icon: Sparkles,
@@ -84,28 +83,29 @@ export default function HajjOfferPage() {
         "استقبال الحجاج في مطار المدينة، ونقلهم إلى محل إقامتهم بحافلات حديثة",
         "الإقامة في فندق خمس نجوم قريب من الحرم النبوي",
         "بوفيهات فاخرة للثلاث وجبات طوال فترة الإقامة",
-        "زيارة مسجد قباء والصلاة فيه، وزيارة جبل أحد، والمرور على الأماكن التاريخية",
-        "شحن حقائب الحجاج إلى مكة في مساء اليوم الذي يسبق يوم المغادرة",
-        "مغادرة المدينة إلى مكة بواسطة قطار الحرمين السريع"
+        "زيارة مسجد قباء والصلاة فيه، وزيارة جبل أحد، والمرور على الأماكن التاريخية في المدينة",
+        "شحن حقائب الحجاج إلى مكة في مساء اليوم الذي يسبق يوم المغادرة، لكي تسبقهم إلى محل إقامتهم بمكة",
+        "مغادرة المدينة إلى مكة بواسطة قطار الحرمين السريع",
+        "برنامج الحج معنا يتيح لك اختيار النسك الذي تريد فيمكنك أن تكون متمتعاً، أو قارناً، أو مفرداً"
       ]
     },
     {
       icon: Sparkles,
-      title: "الانتقال إلى مكة المكرمة (7 - 13 من ذي الحجة)",
+      title: "مكة المكرمة (6 - 13 من ذي الحجة)",
       items: [
-        "الاستقبال في فندق ساعة مكة فيرمونت (برج الساعة) 5 نجوم، المطل على الحرم المكي الشريف",
-        "قبل أداء العمرة: تناول العشاء بوفيه فاخر في مطعم الفندق المطل على الحرم المكي",
-        "أداء العمرة، والتجمع بعدها في لونج فندق ساعة مكة فيرمونت",
-        "في حافلات فاخرة يتم نقل الحجاج إلى الفندق المهيأ لإقامتهم في مكة، فندق تايم ربى مكة"
+        "الاستقبال والضيافة في فندق ساعة مكة فيرمونت (برج الساعة) 5 نجوم، المطل على الحرم المكي الشريف، وتناول العشاء بوفيه فاخر في مطعم الفندق",
+        "لونج فندق ساعة مكة فيرمونت نقطة التجمع بعد أداء العمرة",
+        "الإقامة في مكة في فندق ربى تايم مكة"
       ]
     },
     {
       icon: Building,
-      title: "الإقامة في منى في أبراج كدانة الفندقية (من 8 إلى 12 من ذي الحجة)",
+      title: "مشعر منى (من 8 إلى 12 من ذي الحجة)",
       subtitle: "راحة فندقية داخل المشاعر المقدسة",
       items: [
-        "غرف مكيفة بأعلى مستوى من الراحة والنظافة",
-        "دورات مياه راقية خاصة بأبراج كدانه لكل دور دورات مياه خاصة به",
+        "الإقامة في منى في أبراج كدانة الفندقية",
+        "غرف كبيرة على طراز منى مكيفة بأعلى مستوى عال من الراحة والنظافة",
+        "دورات مياه راقية خاصة بأبراج كدانة لكل دور دورات مياه خاصة به",
         "مصلى في كل دور وجلسات استراحة خاصة",
         "ثلاث وجبات بوفيه عالمي فاخر ومشروبات وسناك على مدار اليوم",
         "إشراف ديني مستمر وتوجيه يومي لأعمال الحج",
@@ -114,13 +114,13 @@ export default function HajjOfferPage() {
     },
     {
       icon: Mountain,
-      title: "عرفات – مزدلفة – أيام التشريق",
+      title: "عرفات – مزدلفة",
       items: [
-        "التنقل بين المشاعر بالحافلات الحديثة المكيفة",
-        "مخيم عرفة خاص للشعور بروحانية يوم عرفة مع تنظيم مميز",
+        "مخيم عرفة خاص للشعور بروحانية يوم عرفة مع تنظيم وإعداد مميز",
         "المخيم مجهز بمكان لتناول الطعام، ومكان للصلاة، ودورات مياه راقية ونظيفة",
         "توفير التغذية للوجبات الرئيسية، والمشروبات الباردة والساخنة وسناك",
-        "مزدلفة حط رحال"
+        "مزدلفة حط رحال",
+        "التنقل بين المشاعر بالحافلات الحديثة المكيفة"
       ]
     },
     {
@@ -128,9 +128,13 @@ export default function HajjOfferPage() {
       title: "أيام التشريق",
       items: [
         "المبيت في منى في أبراج منى ليلا، ويمكن للحجاج المكث في الفندق في مكة نهارا لمزيد من الراحة",
-        "استخدام قطار المشاعر في يوم العيد وأيام التشريق لدخول منى ورمي الجمرات، إذا سمحت الأنظمة",
-        "ليلة في جدة قبل العودة إلى الوطن حسب ظروف الطيران"
+        "استخدام قطار المشاعر في يوم العيد وأيام التشريق لدخول منى ورمي الجمرات، إذا سمحت الأنظمة"
       ]
+    },
+    {
+      icon: Hotel,
+      title: "جدة",
+      content: "ليلة في جدة قبل العودة إلى الوطن حسب ظروف حجوزات الطيران"
     },
     {
       icon: Info,
@@ -148,14 +152,14 @@ export default function HajjOfferPage() {
   ];
 
   const features = [
-    "استضافة الحجاج في فندق ساعة مكة فيرمونت ، وبوفيه عشاء بإطلالة على الحرم المكي",
+    "الاستقبال والضيافة في فندق ساعة مكة فيرمونت، وبوفيه عشاء بإطلالة على الحرم المكي",
     "الرحلة الجوية على متن الطيران العماني",
     "ليلتان في فندق خمس نجوم قريب من الحرم النبوي بالمدينة",
-    "الاستقبال في فندق ساعة مكة فيرمونت (برج الساعة) المطل على الحرم",
-    "الإقامة في أبراج كدانة الفندقية في منى (أول حملة عمانية)",
+    "لونج فندق ساعة مكة فيرمونت نقطة التجمع بعد أداء العمرة",
+    "الإقامة في منى في أبراج كدانة الفندقية (أول حملة عمانية)",
     "التنقل بقطار الحرمين السريع بين المدينة ومكة",
     "بوفيهات فاخرة للثلاث وجبات طوال فترة الإقامة",
-    "غرف مكيفة بأعلى مستوى من الراحة والنظافة",
+    "غرف كبيرة على طراز منى مكيفة بأعلى مستوى",
     "دورات مياه راقية خاصة لكل دور",
     "مصلى في كل دور وجلسات استراحة خاصة",
     "مخيم عرفة خاص مجهز بالكامل",
@@ -164,6 +168,7 @@ export default function HajjOfferPage() {
     "خدمة طبية ومتابعة إدارية متكاملة",
     "زيارة مسجد قباء وجبل أحد والأماكن التاريخية",
     "شحن الحقائب بين المدينة ومكة",
+    "برنامج يتيح اختيار النسك (متمتعاً، أو قارناً، أو مفرداً)"
   ];
 
   return (
@@ -182,7 +187,7 @@ export default function HajjOfferPage() {
             حج عام 1447هـ مع حملة النداء للحج والعمرة
           </h1>
           <p className="text-xl md:text-2xl text-white mb-3 max-w-3xl leading-relaxed">
-            الحملة المعروفة بالتطوير المستمر في خدماتها، تسجل نفسها في هذا الموسم 1447هـ كأول حملة عمانية تقيم في منى في أبراج منى الفندقية الجديدة (كدانة).
+            الحملة المعروفة برغبتها بالتطوير المستمر لخدماتها، تسجل نفسها في هذا الموسم 1447هـ كأول حملة عمانية تجعل محل إقامتها في مشعر منى في أبراج منى الفندقية الجديدة (كدانة).
           </p>
           <p className="text-xl md:text-2xl text-white font-bold mb-6">
             فأنتم على موعد مع إقامة فندقية في المشاعر المقدسة!!
@@ -225,7 +230,7 @@ export default function HajjOfferPage() {
         />
 
         {/* Quick Info */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <div className="bg-white rounded-2xl p-6 shadow-lg">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-12 h-12 bg-gold-start rounded-full flex items-center justify-center">
@@ -244,6 +249,16 @@ export default function HajjOfferPage() {
               <h3 className="text-xl font-bold text-gray-800">الإقامة</h3>
             </div>
             <p className="text-gray-600 text-lg">فنادق 5 نجوم + أبراج كدانة الفندقية في منى</p>
+          </div>
+
+          <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-gold-start">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 bg-gold-start rounded-full flex items-center justify-center">
+                <Sparkles className="w-6 h-6 text-foreground" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800">التكلفة</h3>
+            </div>
+            <p className="text-3xl font-bold text-gold-start">4,300 ر.ع</p>
           </div>
         </div>
 
@@ -265,7 +280,7 @@ export default function HajjOfferPage() {
         {/* Detailed Sections */}
         <div className="space-y-8">
           <h2 className="text-3xl font-bold text-gray-800 mb-6">
-            تفاصيل البرنامج
+            ماالقصة
           </h2>
           {sections.map((section, index) => {
             const Icon = section.icon;
@@ -310,12 +325,12 @@ export default function HajjOfferPage() {
         {/* CTA */}
         <div className="mt-12 golden rounded-2xl p-12 text-center shadow-2xl">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-            لا تفوت هذه الفرصة المميزة
+            خذ مكانك في مشهد التميز، واجعلنا اختيارك
           </h2>
-          <p className="text-xl mb-8 text-foreground">
+          <p className="text-xl mb-2 text-foreground">
             كن جزءاً من تجربة الحج الفريدة مع حملة النداء
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 mb-6">
             <a
               href="https://wa.me/96897477488"
               target="_blank"
@@ -327,11 +342,23 @@ export default function HajjOfferPage() {
             </a>
             <a
               href="tel:+96897477488"
-              className="flex items-center gap-2 px-8 py-4 bg-foreground text-gold-start rounded-lg hover:scale-105  transition-transform shadow-lg text-lg font-bold"
+              className="flex items-center gap-2 px-8 py-4 bg-foreground text-gold-start rounded-lg hover:scale-105 transition-transform shadow-lg text-lg font-bold"
             >
               <Phone className="w-6 h-6" />
               97477488
             </a>
+          </div>
+          <div className="pt-6 border-t border-foreground/20">
+            <p className="text-foreground font-medium mb-2">للتواصل:</p>
+            <div className="flex flex-wrap justify-center gap-4 text-lg">
+              <a href="tel:+96897477488" className="text-foreground hover:underline font-bold">
+                97477488
+              </a>
+              <span className="text-foreground">|</span>
+              <a href="tel:+96899219093" className="text-foreground hover:underline font-bold">
+                99219093
+              </a>
+            </div>
           </div>
         </div>
       </div>
