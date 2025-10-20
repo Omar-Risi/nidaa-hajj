@@ -35,36 +35,50 @@ const videos: {
 const benefits = [
   {
     icon: Briefcase,
-    title: "مجموعة حقائب كاملة",
-    description: "تشمل حقيبتي سفر وحقيبة ظهر للمناسك وحقيبة صغيرة"
+    title: "حقيبة سفر كبيرة",
+    description: "حقيبة قوية ومتينة تناسب رحلتك للحج."
+  },
+  {
+    icon: Briefcase,
+    title: "حقيبة سفر صغيرة",
+    description: "حقيبة إضافية لتسهيل تنظيم الأغراض أثناء التنقل."
+  },
+  {
+    icon: Briefcase,
+    title: "حقيبة ظهر للمناسك",
+    description: "حقيبة ظهر خفيفة وعملية لحمل الأغراض أثناء أداء المناسك."
+  },
+  {
+    icon: Briefcase,
+    title: "حقيبة صغيرة",
+    description: "حقيبة صغيرة لحفظ المتعلقات الشخصية القيمة."
   },
   {
     icon: Book,
-    title: "المصحف الشريف",
-    description: "مصحف مقدم للحجاج للقراءة والتدبر"
+    title: "مصحف",
+    description: "مصحف مخصص للحجاج للقراءة والتدبر."
   },
   {
     icon: Umbrella,
-    title: "الحماية من الطقس",
-    description: "مظلة عالية الجودة لحمايتك من أشعة الشمس والمطر أثناء أداء المناسك."
+    title: "مظلة",
+    description: "مظلة عالية الجودة لحمايتك من الشمس والمطر."
   },
   {
     icon: BedSingle,
     title: "فراش مزدلفة",
-    description: "فراش مريح مخصص للراحة في مزدلفة خلال مناسك الحج."
-  },
-  {
-    icon: Circle,
-    title: "كيس للجمرات",
-    description: "كيس لتجميع الجمرات بدون بعثرة"
+    description: "فراش مريح للاستخدام في مزدلفة أثناء مناسك الحج."
   },
   {
     icon: Footprints,
-    title: "كيس للأحذية",
-    description: "كيس لحفظ الحذاء بداخله"
+    title: "كيس للحذاء",
+    description: "كيس عملي لحفظ الحذاء أثناء أداء المناسك."
+  },
+  {
+    icon: Circle,
+    title: "كيس حصى الجمرات",
+    description: "كيس مخصص لجمع وحفظ حصى الجمرات بطريقة منظمة."
   }
 ];
-
 
 
 interface OfferCard {
@@ -434,7 +448,7 @@ export default function OffersSection() {
                 className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-foreground mb-6"
               >
                 {/* <Gem className="w-5 h-5 text-gold-start" /> */}
-                <span className="text-gold-start text-lg font-semibold"> تجهيزات نوفرها للحجاج</span>
+                <span className="text-gold-start text-lg font-semibold">الهدايا والتجهيزات التي نوفرها للحجاج</span>
               </motion.div>
 
               <motion.div
