@@ -96,7 +96,7 @@ interface OfferCard {
 
 export default function OffersSection() {
   const [selectedCard, setSelectedCard] = useState<OfferCard | null>(null);
-  const [activeTab, setActiveTab] = useState<'umrah' | 'offershajj'>('umrah');
+  const [activeTab, setActiveTab] = useState<'umrah' | 'hajj'>('umrah');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [umrahPackages, setUmrahPackages] = useState<OfferCard[]>([]);
   const [hajjPackages, setHajjPackages] = useState<OfferCard[]>([]);
@@ -427,6 +427,7 @@ export default function OffersSection() {
             >
 
 
+
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -719,3 +720,4 @@ export default function OffersSection() {
     </section>
   );
 }
+
