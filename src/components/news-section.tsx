@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Newspaper, Calendar, Image as ImageIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useTranslation } from 'react-i18next';
 
 interface NewsItem {
   id: string;
@@ -11,9 +12,12 @@ interface NewsItem {
   date: string;
   content: string;
   images?: string[];
+  titleEn?: string;
+  contentEn?: string;
 }
 
 export default function NewsSection() {
+  const { t, i18n } = useTranslation();
   const [newsData, setNewsData] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,20 +25,26 @@ export default function NewsSection() {
     fetch('/api/news')
       .then(res => res.json())
       .then(data => {
-        setNewsData(data.slice(0, 3)); // Show only first 3 news items
+        // Map data to use English fields when language is English
+        const mappedData = data.slice(0, 3).map((item: NewsItem) => ({
+          ...item,
+          title: i18n.language === 'en' && item.titleEn ? item.titleEn : item.title,
+          content: i18n.language === 'en' && item.contentEn ? item.contentEn : item.content,
+        }));
+        setNewsData(mappedData);
         setLoading(false);
       })
       .catch(err => {
         console.error('Error fetching news:', err);
         setLoading(false);
       });
-  }, []);
+  }, [i18n.language]);
 
   if (loading) {
     return (
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="text-gold-start">جاري تحميل الأخبار...</div>
+          <div className="text-gold-start">{t('news.loading')}</div>
         </div>
       </section>
     );
@@ -63,7 +73,7 @@ export default function NewsSection() {
             className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-gradient-to-r from-gold-start/10 via-gold-end/10 to-gold-start/10 border border-gold-start/30 rounded-full mb-6"
           >
             <Newspaper className="w-5 h-5 text-gold-start" />
-            <span className="golden-text text-lg font-semibold">آخر الأخبار</span>
+            <span className="golden-text text-lg font-semibold">{t('news.title')}</span>
           </motion.div>
 
           <motion.h2
@@ -73,8 +83,8 @@ export default function NewsSection() {
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight"
           >
-            تابع جديدنا
-            <span className="block golden-text mt-2 py-2">وكن على اطلاع دائم</span>
+            {t('news.subtitle')}
+            <span className="block golden-text mt-2 py-2">{t('news.description')}</span>
           </motion.h2>
         </div>
 
@@ -118,7 +128,7 @@ export default function NewsSection() {
                 <div className="flex items-center gap-2 mb-4">
                   <Calendar className="w-4 h-4 text-gold-start" />
                   <time className="text-sm text-gray-500 font-medium">
-                    {new Date(news.date).toLocaleDateString('ar-SA', {
+                    {new Date(news.date).toLocaleDateString(i18n.language === 'ar' ? 'ar-SA' : 'en-US', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric'
@@ -142,7 +152,7 @@ export default function NewsSection() {
                     href={`/news/${news.id}`}
                     className="text-gold-start font-semibold hover:text-gold-end transition-colors duration-300 flex items-center gap-2 group/btn"
                   >
-                    <span>اقرأ المزيد</span>
+                    <span>{t('news.readMore')}</span>
                     <svg
                       className="w-5 h-5 transform group-hover/btn:-translate-x-1 transition-transform duration-300"
                       fill="none"
@@ -170,7 +180,7 @@ export default function NewsSection() {
             href="/news"
             className="inline-block bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl"
           >
-            عرض جميع الأخبار
+            {t('news.viewAll')}
           </Link>
         </motion.div>
       </div>

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Play, X, Video, Image as ImageIcon, Film } from "lucide-react";
 import { Footer } from "@/components/footer";
+import { useTranslation } from 'react-i18next';
 
 interface MediaItem {
   id: string;
@@ -15,6 +16,7 @@ interface MediaItem {
 }
 
 export default function MediaPage() {
+  const { t } = useTranslation();
   const [selectedMedia, setSelectedMedia] = useState<MediaItem | null>(null);
 
   // Convert Google Drive links to embed format
@@ -143,27 +145,27 @@ export default function MediaPage() {
           >
             <div className="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-gold-start/20 to-gold-end/20 border border-gold-start/50 rounded-full mb-6 backdrop-blur-sm">
               <Film className="w-5 h-5 text-gold-start" />
-              <span className="golden-text text-lg font-semibold">معرض الوسائط</span>
+              <span className="golden-text text-lg font-semibold">{t('mediaPage.badge')}</span>
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              رحلاتنا المباركة
-              <span className="block golden-text mt-3">في الصور والفيديو</span>
+              {t('mediaPage.title')}
+              <span className="block golden-text mt-3">{t('mediaPage.subtitle')}</span>
             </h1>
             
             <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              شاهد لحظات روحانية وذكريات خالدة من رحلات العمرة والحج التي نظمتها مؤسسة النداء
+              {t('mediaPage.description')}
             </p>
 
             <div className="flex items-center justify-center gap-8 text-white/80">
               <div className="flex items-center gap-2">
                 <Video className="w-5 h-5 text-gold-start" />
-                <span className="font-semibold">{mediaItems.length} فيديو</span>
+                <span className="font-semibold">{mediaItems.length} {t('mediaPage.videos')}</span>
               </div>
               <div className="w-1 h-1 rounded-full bg-gold-start"></div>
               <div className="flex items-center gap-2">
                 <ImageIcon className="w-5 h-5 text-gold-start" />
-                <span className="font-semibold">ذكريات مباركة</span>
+                <span className="font-semibold">{t('mediaPage.memories')}</span>
               </div>
             </div>
           </motion.div>
@@ -224,7 +226,7 @@ export default function MediaPage() {
                       {/* Type Badge */}
                       <div className="absolute top-3 right-3 px-3 py-1 bg-black/70 backdrop-blur-sm rounded-full flex items-center gap-1">
                         <Video className="w-3 h-3 text-gold-start" />
-                        <span className="text-xs text-white font-semibold">فيديو</span>
+                        <span className="text-xs text-white font-semibold">{t('mediaPage.video')}</span>
                       </div>
                     </div>
                   </div>

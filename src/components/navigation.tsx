@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from './language-switcher';
 
 interface NavLinkProps {
   href: string;
@@ -25,15 +27,16 @@ function NavLink({ href, children, className = '', onClick }: NavLinkProps) {
 }
 
 export function Navigation() {
+  const { t } = useTranslation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navigationLinks = [
-    { href: '/', label: 'الرئيسية', ariaLabel: 'Home' },
-    { href: '/offers', label: 'العروض', ariaLabel: 'Offers' },
-    { href: '/media', label: 'المعرض', ariaLabel: 'Media' },
-    { href: '/news', label: 'الأخبار', ariaLabel: 'News' },
-    { href: '/testimonials', label: 'شهادات نعتز بها', ariaLabel: 'Testimonials' },
-    { href: '/contact', label: 'اتصل بنا', ariaLabel: 'Contact Us' },
+    { href: '/', label: t('nav.home'), ariaLabel: 'Home' },
+    { href: '/offers', label: t('nav.offers'), ariaLabel: 'Offers' },
+    { href: '/media', label: t('nav.media'), ariaLabel: 'Media' },
+    { href: '/news', label: t('nav.news'), ariaLabel: 'News' },
+    { href: '/testimonials', label: t('nav.testimonials'), ariaLabel: 'Testimonials' },
+    { href: '/contact', label: t('nav.contact'), ariaLabel: 'Contact Us' },
   ];
 
   const toggleMobileMenu = () => {
@@ -74,6 +77,7 @@ export function Navigation() {
                 {link.label}
               </NavLink>
             ))}
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
@@ -124,7 +128,7 @@ export function Navigation() {
               {/* Header with close button */}
               <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/10">
                 <div className="golden-text text-xl sm:text-2xl font-bold">
-                  القائمة
+                  {t('nav.menu')}
                 </div>
                 <button
                   onClick={closeMobileMenu}
@@ -169,7 +173,10 @@ export function Navigation() {
               </div>
 
               {/* Footer section */}
-              <div className="p-4 sm:p-6 border-t border-white/10">
+              <div className="p-4 sm:p-6 border-t border-white/10 space-y-4">
+                <div className="flex justify-center">
+                  <LanguageSwitcher />
+                </div>
                 <p className="text-white/60 text-sm text-center">
                   النداء للحج والعمرة
                 </p>

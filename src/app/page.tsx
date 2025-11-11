@@ -7,10 +7,13 @@ import OffersSection from "@/components/offers-section";
 import { BadgeQuestionMark } from "lucide-react";
 import { Footer } from "@/components/footer";
 import NewsSection from "@/components/news-section";
+import { useTranslation } from 'react-i18next';
 
 
 
 export default function Home() {
+  const { t } = useTranslation();
+  
   // Smooth scroll handler
   const handleScrollToOffers = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -42,10 +45,10 @@ export default function Home() {
 
               {/* Main heading */}
               <h1 className="relative golden-text text-4xl md:text-6xl lg:text-7xl font-bold text-center leading-tight py-6">
-                نحن هنا <br /> حيث لا يشبهنا شيء
+                {t('hero.title')} <br /> {t('hero.subtitle')}
               </h1>
               <p className="mt-8 text-white text-center font-bold">
-                تصفح برامجنا للحج والعمرة
+                {t('hero.description')}
               </p>
             </div>
 
@@ -55,7 +58,7 @@ export default function Home() {
               onClick={handleScrollToOffers}
               className="relative bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground px-8 py-4 rounded-lg text-xl font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl"
             >
-              ابدأ بالحجز
+              {t('hero.cta')}
             </Link>
           </div>
         </div>
@@ -85,7 +88,7 @@ export default function Home() {
               className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-gradient-to-r from-gold-start/10 via-gold-end/10 to-gold-start/10 border border-gold-start/30 rounded-full mb-6"
             >
               <BadgeQuestionMark className="w-5 h-5 text-gold-start" />
-              <span className="golden-text text-lg font-semibold">من نحن</span>
+              <span className="golden-text text-lg font-semibold">{t('about.badge')}</span>
             </motion.div>
 
             <motion.h2
@@ -95,8 +98,8 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight"
             >
-              اجمع شوق قلبك لعناق الحرمين
-              <span className="block golden-text mt-2">وتعال معنا</span>
+              {t('about.title')}
+              <span className="block golden-text mt-2">{t('about.subtitle')}</span>
             </motion.h2>
           </div>
 
@@ -114,18 +117,18 @@ export default function Home() {
                 <div className="flex items-start gap-4 mb-6">
                   <div className="w-1 h-16 bg-gradient-to-b from-gold-start to-gold-end rounded-full"></div>
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground mb-3">مؤسسة النداء للحج والعمرة</h3>
-                    <p className="text-gray-600 italic">إعادة لتعريف الفخامة والإبداع</p>
+                    <h3 className="text-2xl font-bold text-foreground mb-3">{t('about.companyName')}</h3>
+                    <p className="text-gray-600 italic">{t('about.tagline')}</p>
                   </div>
                 </div>
 
                 <p className="text-gray-700 leading-relaxed text-lg mb-4">
-                  تصقلها التجربة، وتنميها الخبرة، ويطورها التفكير الدؤوب. تأسست مؤسسة النداء عام <span className="font-bold golden-text">2003م</span>، وانطلقت تروي قصة الجمال في أعظم الرحلات الإيمانية.
+                  {t('about.description1')} <span className="font-bold golden-text">{t('about.year')}</span>{t('about.description2')}
                 </p>
 
                 <div className="bg-gradient-to-r from-gold-start/5 to-gold-end/5 rounded-xl p-6 border-r-4 border-gold-start">
                   <p className="text-foreground font-semibold text-lg leading-relaxed">
-                    &ldquo;نحن هنا لأنكم تستحقون الأفضل، نبحر في ملكوت الجمال، لنصل حيث أنتم، لنقدم لكم تجربتنا الرائدة في مجال الحج والعمرة.&rdquo;
+                    &ldquo;{t('about.quote')}&rdquo;
                   </p>
                 </div>
               </div>
@@ -146,22 +149,22 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  رؤيتنا
+                  {t('about.visionTitle')}
                 </h3>
                 <p className="text-white/90 leading-relaxed text-lg mb-6">
-                  إن رحلة الحج والعمرة ليست مجرد سفر؛ بل هي تجربة تُشحن فيها القلوب، وتجدد فيها النوايا، وتسمو فيها الأرواح.
+                  {t('about.vision1')}
                 </p>
                 <p className="text-white/90 leading-relaxed text-lg">
-                  ومن خلال مؤسسة النداء، تتجسد آمال الحجيج في خدمة متميزة تعبّر عن عمق الإيمان وتروي فرحة اللقاء مع بيت الله الحرام.
+                  {t('about.vision2')}
                 </p>
               </div>
 
               {/* Call to Action */}
               <div className="bg-gradient-to-r from-gold-start via-gold-end to-gold-start rounded-2xl shadow-xl p-8 lg:p-10">
                 <p className="text-foreground text-xl lg:text-2xl font-bold text-center leading-relaxed">
-                  لنكن اختياركم لنحظى بشرف خدمتكم
+                  {t('about.cta1')}
                   <span className="block mt-3 text-lg font-semibold">
-                    ولتحظوا أنتم بعناية تليق بكم وباختياركم
+                    {t('about.cta2')}
                   </span>
                 </p>
               </div>
@@ -178,15 +181,15 @@ export default function Home() {
           >
             <div className="bg-white rounded-xl shadow-lg p-6 text-center border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="text-4xl font-bold golden-text mb-2">20+</div>
-              <p className="text-gray-600 font-semibold">عامًا من الخبرة</p>
+              <p className="text-gray-600 font-semibold">{t('about.stats.experience')}</p>
             </div>
             <div className="bg-white rounded-xl shadow-lg p-6 text-center border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="text-4xl font-bold golden-text mb-2">1000+</div>
-              <p className="text-gray-600 font-semibold">حاج ومعتمر سعيد</p>
+              <p className="text-gray-600 font-semibold">{t('about.stats.pilgrims')}</p>
             </div>
             <div className="bg-white rounded-xl shadow-lg p-6 text-center border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="text-4xl font-bold golden-text mb-2">100%</div>
-              <p className="text-gray-600 font-semibold">رضا العملاء</p>
+              <p className="text-gray-600 font-semibold">{t('about.stats.satisfaction')}</p>
             </div>
           </motion.div>
         </div>

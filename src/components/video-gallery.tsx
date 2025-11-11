@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Play, X, Video } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 interface VideoItem {
   id: string;
@@ -15,6 +16,7 @@ interface VideoGalleryProps {
 export default function VideoGallery({
   videos = [],
 }: VideoGalleryProps) {
+  const { t } = useTranslation();
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
 
   const openVideoModal = (video: VideoItem) => {
@@ -73,7 +75,7 @@ export default function VideoGallery({
                 {/* Type Badge */}
                 <div className="absolute top-3 right-3 px-3 py-1 bg-black/70 backdrop-blur-sm rounded-full flex items-center gap-1">
                   <Video className="w-3 h-3 text-amber-400" />
-                  <span className="text-xs text-white font-semibold">فيديو</span>
+                  <span className="text-xs text-white font-semibold">{t('media.video')}</span>
                 </div>
               </div>
 

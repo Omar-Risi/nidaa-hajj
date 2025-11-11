@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BenefitBox } from "./benefit-box";
 import VideoGallery from "./video-gallery";
 import Link from "next/link";
+import { useTranslation } from 'react-i18next';
 
 // Types for offer data
 interface PricingTier {
@@ -32,53 +33,7 @@ const videos: {
   ];
 
 
-const benefits = [
-  {
-    icon: Briefcase,
-    title: "حقيبة سفر كبيرة",
-    description: "حقيبة قوية ومتينة تناسب رحلتك للحج."
-  },
-  {
-    icon: Briefcase,
-    title: "حقيبة سفر صغيرة",
-    description: "حقيبة إضافية لتسهيل تنظيم الأغراض أثناء التنقل."
-  },
-  {
-    icon: Briefcase,
-    title: "حقيبة ظهر للمناسك",
-    description: "حقيبة ظهر خفيفة وعملية لحمل الأغراض أثناء أداء المناسك."
-  },
-  {
-    icon: Briefcase,
-    title: "حقيبة صغيرة",
-    description: "حقيبة صغيرة لحفظ المتعلقات الشخصية القيمة."
-  },
-  {
-    icon: Book,
-    title: "مصحف",
-    description: "مصحف مخصص للحجاج للقراءة والتدبر."
-  },
-  {
-    icon: Umbrella,
-    title: "مظلة",
-    description: "مظلة عالية الجودة لحمايتك من الشمس والمطر."
-  },
-  {
-    icon: BedSingle,
-    title: "فراش مزدلفة",
-    description: "فراش مريح للاستخدام في مزدلفة أثناء مناسك الحج."
-  },
-  {
-    icon: Footprints,
-    title: "كيس للحذاء",
-    description: "كيس عملي لحفظ الحذاء أثناء أداء المناسك."
-  },
-  {
-    icon: Circle,
-    title: "كيس حصى الجمرات",
-    description: "كيس مخصص لجمع وحفظ حصى الجمرات بطريقة منظمة."
-  }
-];
+// Benefits will be generated from translations inside the component
 
 
 interface OfferCard {
@@ -95,6 +50,7 @@ interface OfferCard {
 }
 
 export default function OffersSection() {
+  const { t, i18n } = useTranslation();
   const [selectedCard, setSelectedCard] = useState<OfferCard | null>(null);
   const [activeTab, setActiveTab] = useState<'umrah' | 'hajj'>('umrah');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -103,6 +59,55 @@ export default function OffersSection() {
   const [hajjLoading, setHajjLoading] = useState(true);
   const [loading, setLoading] = useState(true);
 
+  // Benefits with translations
+  const benefits = [
+    {
+      icon: Briefcase,
+      title: t('benefits.largeSuitcase.title'),
+      description: t('benefits.largeSuitcase.description')
+    },
+    {
+      icon: Briefcase,
+      title: t('benefits.smallSuitcase.title'),
+      description: t('benefits.smallSuitcase.description')
+    },
+    {
+      icon: Briefcase,
+      title: t('benefits.backpack.title'),
+      description: t('benefits.backpack.description')
+    },
+    {
+      icon: Briefcase,
+      title: t('benefits.smallBag.title'),
+      description: t('benefits.smallBag.description')
+    },
+    {
+      icon: Book,
+      title: t('benefits.quran.title'),
+      description: t('benefits.quran.description')
+    },
+    {
+      icon: Umbrella,
+      title: t('benefits.umbrella.title'),
+      description: t('benefits.umbrella.description')
+    },
+    {
+      icon: BedSingle,
+      title: t('benefits.mattress.title'),
+      description: t('benefits.mattress.description')
+    },
+    {
+      icon: Footprints,
+      title: t('benefits.shoeBag.title'),
+      description: t('benefits.shoeBag.description')
+    },
+    {
+      icon: Circle,
+      title: t('benefits.pebblesPouch.title'),
+      description: t('benefits.pebblesPouch.description')
+    }
+  ];
+
   // Fetch umrah offers from API
   useEffect(() => {
     const fetchOffers = async () => {
@@ -110,7 +115,16 @@ export default function OffersSection() {
         const response = await fetch('/api/umrah');
         if (response.ok) {
           const data = await response.json();
-          setUmrahPackages(data);
+          // Map data to use English fields when language is English
+          const mappedData = data.map((offer: any) => ({
+            ...offer,
+            title: i18n.language === 'en' && offer.titleEn ? offer.titleEn : offer.title,
+            description: i18n.language === 'en' && offer.descriptionEn ? offer.descriptionEn : offer.description,
+            duration: i18n.language === 'en' && offer.durationEn ? offer.durationEn : offer.duration,
+            accommodation: i18n.language === 'en' && offer.accommodationEn ? offer.accommodationEn : offer.accommodation,
+            features: i18n.language === 'en' && offer.featuresEn && offer.featuresEn.length > 0 ? offer.featuresEn : offer.features,
+          }));
+          setUmrahPackages(mappedData);
         }
       } catch (error) {
         console.error('Error fetching umrah offers:', error);
@@ -119,15 +133,15 @@ export default function OffersSection() {
       }
     };
     fetchOffers();
-  }, []);
+  }, [i18n.language]);
 
   // Static Hajj Offer (local, no dashboard)
   const hajjOffer: OfferCard = {
     id: 1,
-    title: "حج عام 1447هـ مع حملة النداء للحج والعمرة",
-    description: "الحملة المعروفة بالتطوير المستمر في خدماتها، تسجل نفسها في هذا الموسم 1447هـ كأول حملة عمانية تقيم في منى في أبراج منى الفندقية الجديدة (كدانة). فأنتم على موعد مع إقامة فندقية في المشاعر المقدسة!",
-    duration: "10 ايام (21 مايو - 31 مايو 2026)",
-    accommodation: "فنادق 5 نجوم + أبراج كدانة الفندقية في منى",
+    title: t('hajjPage.hajjOfferTitle'),
+    description: t('hajjPage.hajjOfferDescription'),
+    duration: t('hajjPage.hajjOfferDuration'),
+    accommodation: t('hajjPage.hajjOfferAccommodation'),
     image: "/kaaba-1.jpg",
     images: ["/kaaba-1.jpg", "/makkah-1.jpg"], // Add more images as needed
     features: [
@@ -192,11 +206,10 @@ export default function OffersSection() {
         {/* Section Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            برامجنا المتاحة
+            {t('offers.title')}
           </h2>
           <p className="text-gray-600 text-lg">
-            برامج متكاملة تجمع بين الفخامة والروحانية، صممت خصيصاً لتلبية احتياجاتكم وتوفير أفضل تجربة ممكنة
-
+            {t('offers.description')}
           </p>
         </div>
 
@@ -213,7 +226,7 @@ export default function OffersSection() {
             `}
           >
             <Book className="w-5 h-5 inline-block ml-2" />
-            برامج العمرة
+            {t('offers.umrah')}
           </button>
           <button
             onClick={() => setActiveTab('hajj')}
@@ -226,7 +239,7 @@ export default function OffersSection() {
             `}
           >
             <Box className="w-5 h-5 inline-block ml-2" />
-            برامج الحج
+            {t('offers.hajj')}
           </button>
         </div>
 
@@ -245,7 +258,7 @@ export default function OffersSection() {
               </div>
             ) : umrahPackages.length === 0 ? (
               <div className="text-center py-20 text-gray-500">
-                <p>لا توجد عروض عمرة متاحة حالياً</p>
+                <p>{t('offers.noOffers')}</p>
               </div>
             ) : (
               <>
@@ -299,11 +312,15 @@ export default function OffersSection() {
                           >
                             <div className="flex items-center gap-2 text-gray-600">
                               {getPricingIcon(tier.icon)}
-                              <span className="text-sm">{tier.label}</span>
+                              <span className="text-sm">
+                                {tier.label === 'single' || tier.label === 'double' || tier.label === 'triple' 
+                                  ? t(`offers.pricing.${tier.label}`)
+                                  : tier.label}
+                              </span>
                             </div>
                             <div className="flex items-center gap-1">
                               <span className="text-lg font-bold golden-text">{tier.price}</span>
-                              <span className="text-sm text-gray-500">ر.ع</span>
+                              <span className="text-sm text-gray-500">{t('offers.currency')}</span>
                             </div>
                           </motion.div>
                         ))}
@@ -318,7 +335,7 @@ export default function OffersSection() {
                           className="flex-1 py-3 bg-foreground text-white font-semibold rounded-lg transition-all duration-200 hover:bg-foreground/90 flex items-center justify-center gap-2"
                         >
                           <Info className="w-4 h-4" />
-                          التفاصيل
+                          {t('offers.details')}
                         </motion.button>
                         <a className="flex-[2] flex" href={`https://wa.me/+96897477488?text=انا مهتم في هذا العرض : ${card.title}`} target="_blank">
                           <motion.button
@@ -326,7 +343,7 @@ export default function OffersSection() {
                             whileTap={{ scale: 0.95 }}
                             className="flex-1 py-3 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground font-semibold rounded-lg transition-all duration-200"
                           >
-                            احجز الآن
+                            {t('offers.bookNow')}
                           </motion.button>
                         </a>
                       </div>
@@ -388,8 +405,8 @@ export default function OffersSection() {
                 {/* Pricing */}
                 <div className="border-t pt-4 mb-4">
                   <div className="flex items-center justify-between py-2">
-                    <span className="text-lg font-bold golden-text">سعر البرنامج</span>
-                    <span className="text-lg font-bold golden-text"> 4300 ر.ع</span>
+                    <span className="text-lg font-bold golden-text">{t('offers.programPrice')}</span>
+                    <span className="text-lg font-bold golden-text">{t('hajjPage.costValue')}</span>
                   </div>
                 </div>
 
@@ -402,7 +419,7 @@ export default function OffersSection() {
                       className="w-full py-3 bg-foreground text-white font-semibold rounded-lg transition-all duration-200 hover:bg-foreground/90 flex items-center justify-center gap-2"
                     >
                       <Info className="w-4 h-4" />
-                      التفاصيل
+                      {t('offers.details')}
                     </motion.button>
                   </a>
                   <a className="flex-[2] flex" href="https://wa.me/+96897477488?text=انا مهتم في برنامج الحج 1447هـ" target="_blank">
@@ -411,7 +428,7 @@ export default function OffersSection() {
                       whileTap={{ scale: 0.95 }}
                       className="flex-1 py-3 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground font-semibold rounded-lg transition-all duration-200"
                     >
-                      احجز الآن
+                      {t('offers.bookNow')}
                     </motion.button>
                   </a>
                 </div>
@@ -436,7 +453,7 @@ export default function OffersSection() {
                 className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-foreground mb-6"
               >
                 {/* <Gem className="w-5 h-5 text-gold-start" /> */}
-                <span className="text-gold-start text-lg font-semibold">الهدايا والتجهيزات التي نوفرها للحجاج</span>
+                <span className="text-gold-start text-lg font-semibold">{t('benefits.title')}</span>
               </motion.div>
 
               <motion.div
@@ -619,7 +636,7 @@ export default function OffersSection() {
                           <svg className="w-5 h-5 text-gold-start" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span className="font-semibold text-foreground">المدة</span>
+                          <span className="font-semibold text-foreground">{t('offers.duration')}</span>
                         </div>
                         <p className="text-gray-700">{selectedCard.duration}</p>
                       </div>
@@ -631,7 +648,7 @@ export default function OffersSection() {
                           <svg className="w-5 h-5 text-gold-start" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                           </svg>
-                          <span className="font-semibold text-foreground">الإقامة</span>
+                          <span className="font-semibold text-foreground">{t('offers.accommodation')}</span>
                         </div>
                         <p className="text-gray-700">{selectedCard.accommodation}</p>
                       </div>
@@ -647,7 +664,7 @@ export default function OffersSection() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
-                        ما يتضمنه العرض
+                        {t('offers.features')}
                       </h4>
                       <ul className="space-y-3">
                         {selectedCard.features.map((feature, index) => (
@@ -672,7 +689,7 @@ export default function OffersSection() {
 
                   {/* Pricing Section */}
                   <div className="border-t border-gray-200 pt-6">
-                    <h4 className="text-xl font-bold text-foreground mb-4">الأسعار</h4>
+                    <h4 className="text-xl font-bold text-foreground mb-4">{t('offers.pricing')}</h4>
                     <div className="space-y-3">
                       {selectedCard.pricing.map((tier, index) => (
                         <motion.div
@@ -686,11 +703,15 @@ export default function OffersSection() {
                             <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
                               {getPricingIcon(tier.icon)}
                             </div>
-                            <span className="font-semibold text-gray-700">{tier.label}</span>
+                            <span className="font-semibold text-gray-700">
+                              {tier.label === 'single' || tier.label === 'double' || tier.label === 'triple' 
+                                ? t(`offers.pricing.${tier.label}`)
+                                : tier.label}
+                            </span>
                           </div>
                           <div className="flex items-center gap-2">
                             <span className="text-2xl font-bold golden-text">{tier.price}</span>
-                            <span className="text-gray-500">ر.ع</span>
+                            <span className="text-gray-500">{t('offers.currency')}</span>
                           </div>
                         </motion.div>
                       ))}
@@ -705,7 +726,7 @@ export default function OffersSection() {
                     whileTap={{ scale: 0.98 }}
                     className="block w-full mt-6 py-4 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground font-bold rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-200 text-center"
                   >
-                    احجز الآن
+                    {t('offers.bookNow')}
                   </motion.a>
                 </div>
               </motion.div>

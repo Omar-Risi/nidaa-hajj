@@ -6,6 +6,7 @@ import { useState } from "react";
 import { User, Users, Info, X, Calendar, Hotel, Plane, CheckCircle2, ArrowRight, Book, Box } from "lucide-react";
 import { Footer } from "@/components/footer";
 import OffersSection from "@/components/offers-section";
+import { useTranslation } from 'react-i18next';
 
 // Types for offer data
 interface PricingTier {
@@ -28,6 +29,7 @@ interface OfferCard {
 }
 
 export default function OffersPage() {
+  const { t } = useTranslation();
   const [selectedCard, setSelectedCard] = useState<OfferCard | null>(null);
   const [activeTab, setActiveTab] = useState<'umrah' | 'hajj'>('umrah');
 
@@ -121,16 +123,16 @@ export default function OffersPage() {
           >
             <div className="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-gold-start/20 to-gold-end/20 border border-gold-start/50 rounded-full mb-6 backdrop-blur-sm">
               <Plane className="w-5 h-5 text-gold-start" />
-              <span className="golden-text text-lg font-semibold">العروض الخاصة</span>
+              <span className="golden-text text-lg font-semibold">{t('offersPage.badge')}</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              برامج العمرة المميزة
-              <span className="block golden-text mt-3">لموسم 2026</span>
+              {t('offersPage.title')}
+              <span className="block golden-text mt-3">{t('offersPage.subtitle')}</span>
             </h1>
 
             <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
-              اختر البرنامج الأنسب لك واحجز رحلتك الإيمانية مع حملة النداء
+              {t('offersPage.description')}
             </p>
 
             <motion.div
@@ -141,15 +143,15 @@ export default function OffersPage() {
             >
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-gold-start" />
-                <span>22 عاماً من الخبرة</span>
+                <span>22 {t('offersPage.experience')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-gold-start" />
-                <span>فنادق 5 نجوم</span>
+                <span>{t('offersPage.hotels')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-gold-start" />
-                <span>خدمة متميزة</span>
+                <span>{t('offersPage.service')}</span>
               </div>
             </motion.div>
           </motion.div>

@@ -7,7 +7,7 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "postinstall":"prisma generate"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.17.1",
@@ -16,12 +16,15 @@
     "browser-image-compression": "^2.0.2",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.23.23",
+    "i18next": "^25.6.2",
+    "i18next-browser-languagedetector": "^8.2.0",
     "jose": "^6.1.0",
     "lucide-react": "^0.545.0",
     "next": "15.5.4",
     "prisma": "^6.17.1",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "react-i18next": "^16.2.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

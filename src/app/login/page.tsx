@@ -3,8 +3,10 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { LogIn } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function LoginPage() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -47,14 +49,14 @@ export default function LoginPage() {
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-gradient-to-r from-gold-start/10 via-gold-end/10 to-gold-start/10 border border-gold-start/30 rounded-full mb-6">
             <LogIn className="w-5 h-5 text-gold-start" />
-            <span className="golden-text text-lg font-semibold">تسجيل الدخول</span>
+            <span className="golden-text text-lg font-semibold">{t('login.badge')}</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 leading-tight">
-            مرحباً بك
-            <span className="block golden-text mt-2">في لوحة التحكم</span>
+            {t('login.welcome')}
+            <span className="block golden-text mt-2">{t('login.controlPanel')}</span>
           </h1>
           <p className="text-gray-600">
-            النداء للحج والعمرة
+            {t('login.companyName')}
           </p>
         </div>
 
@@ -72,7 +74,7 @@ export default function LoginPage() {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700 mb-2"
               >
-                البريد الإلكتروني
+                {t('login.email')}
               </label>
               <input
                 id="email"
@@ -81,7 +83,7 @@ export default function LoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold-start focus:border-transparent transition-all outline-none"
-                placeholder="example@email.com"
+                placeholder={t('login.emailPlaceholder')}
                 disabled={loading}
               />
             </div>
@@ -91,7 +93,7 @@ export default function LoginPage() {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700 mb-2"
               >
-                كلمة المرور
+                {t('login.password')}
               </label>
               <input
                 id="password"
@@ -100,7 +102,7 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold-start focus:border-transparent transition-all outline-none"
-                placeholder="••••••••"
+                placeholder={t('login.passwordPlaceholder')}
                 disabled={loading}
               />
             </div>
@@ -113,12 +115,12 @@ export default function LoginPage() {
               {loading ? (
                 <>
                   <div className="w-5 h-5 border-2 border-foreground border-t-transparent rounded-full animate-spin"></div>
-                  جاري تسجيل الدخول...
+                  {t('login.loggingIn')}
                 </>
               ) : (
                 <>
                   <LogIn className="w-5 h-5" />
-                  تسجيل الدخول
+                  {t('login.loginButton')}
                 </>
               )}
             </button>
@@ -127,7 +129,7 @@ export default function LoginPage() {
 
         {/* Footer Note */}
         <p className="text-center text-sm text-gray-500 mt-6">
-          لوحة تحكم إدارة الأخبار والمحتوى
+          {t('login.footerNote')}
         </p>
       </div>
     </div>

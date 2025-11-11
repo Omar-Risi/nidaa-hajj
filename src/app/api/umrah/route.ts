@@ -16,7 +16,10 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { title, description, duration, accommodation, features, image, images, pricing } = body;
+    const { 
+      title, description, duration, accommodation, features, image, images, pricing,
+      titleEn, descriptionEn, durationEn, accommodationEn, featuresEn 
+    } = body;
 
     if (!title || !description || !duration || !accommodation || !image || !pricing) {
       return NextResponse.json({ error: 'جميع الحقول مطلوبة' }, { status: 400 });
@@ -32,12 +35,59 @@ export async function POST(request: NextRequest) {
         image,
         images: images || [],
         pricing,
+        titleEn: titleEn || null,
+        descriptionEn: descriptionEn || null,
+        durationEn: durationEn || null,
+        accommodationEn: accommodationEn || null,
+        featuresEn: featuresEn || [],
       },
     });
 
     return NextResponse.json(offer, { status: 201 });
   } catch (error) {
     console.error('Error creating umrah offer:', error);
+    return NextResponse.json({ error: 'حدث خطأ في الخادم' }, { status: 500 });
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { 
+      id, title, description, duration, accommodation, features, image, images, pricing,
+      titleEn, descriptionEn, durationEn, accommodationEn, featuresEn 
+    } = body;
+
+    if (!id) {
+      return NextResponse.json({ error: 'معرف العرض مطلوب' }, { status: 400 });
+    }
+
+    if (!title || !description || !duration || !accommodation || !image || !pricing) {
+      return NextResponse.json({ error: 'جميع الحقول مطلوبة' }, { status: 400 });
+    }
+
+    const offer = await prisma.umrahOffer.update({
+      where: { id },
+      data: {
+        title,
+        description,
+        duration,
+        accommodation,
+        features: features || [],
+        image,
+        images: images || [],
+        pricing,
+        titleEn: titleEn || null,
+        descriptionEn: descriptionEn || null,
+        durationEn: durationEn || null,
+        accommodationEn: accommodationEn || null,
+        featuresEn: featuresEn || [],
+      },
+    });
+
+    return NextResponse.json(offer, { status: 200 });
+  } catch (error) {
+    console.error('Error updating umrah offer:', error);
     return NextResponse.json({ error: 'حدث خطأ في الخادم' }, { status: 500 });
   }
 }

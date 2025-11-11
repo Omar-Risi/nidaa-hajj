@@ -4,6 +4,7 @@ import { useState, useEffect, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { Newspaper, Plus, Trash2, Calendar, Loader2, LogOut, Image as ImageIcon, X } from 'lucide-react';
 import imageCompression from 'browser-image-compression';
+import { useTranslation } from 'react-i18next';
 
 interface NewsItem {
   id: string;
@@ -14,17 +15,21 @@ interface NewsItem {
 }
 
 export default function DashboardPage() {
+  const { t, i18n } = useTranslation();
   const router = useRouter();
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [title, setTitle] = useState('');
+  const [titleEn, setTitleEn] = useState('');
   const [date, setDate] = useState('');
   const [content, setContent] = useState('');
+  const [contentEn, setContentEn] = useState('');
   const [images, setImages] = useState<string[]>([]);
   const [uploadingImages, setUploadingImages] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [editingId, setEditingId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchNews();
@@ -79,7 +84,7 @@ export default function DashboardPage() {
 
       setImages([...images, ...compressedImages]);
     } catch (err) {
-      setError('فشل تحميل الصور');
+      setError(t('dashboard.uploadFailed'));
       console.error('Image upload error:', err);
     } finally {
       setUploadingImages(false);
@@ -90,6 +95,27 @@ export default function DashboardPage() {
     setImages(images.filter((_, i) => i !== index));
   };
 
+  const handleEdit = (item: NewsItem) => {
+    setEditingId(item.id);
+    setTitle(item.title);
+    setTitleEn((item as any).titleEn || '');
+    setDate(item.date.split('T')[0]);
+    setContent(item.content);
+    setContentEn((item as any).contentEn || '');
+    setImages(item.images || []);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCancelEdit = () => {
+    setEditingId(null);
+    setTitle('');
+    setTitleEn('');
+    setDate('');
+    setContent('');
+    setContentEn('');
+    setImages([]);
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
@@ -97,25 +123,33 @@ export default function DashboardPage() {
     setSubmitting(true);
 
     try {
+      const method = editingId ? 'PUT' : 'POST';
+      const body = editingId 
+        ? { id: editingId, title, titleEn, date, content, contentEn, images }
+        : { title, titleEn, date, content, contentEn, images };
+
       const response = await fetch('/api/news', {
-        method: 'POST',
+        method,
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ title, date, content, images }),
+        body: JSON.stringify(body),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'حدث خطأ أثناء إضافة الخبر');
+        throw new Error(data.error || t('common.error'));
       }
 
-      setSuccess('تم إضافة الخبر بنجاح');
+      setSuccess(editingId ? t('dashboard.newsUpdated') : t('dashboard.newsAdded'));
       setTitle('');
+      setTitleEn('');
       setDate('');
       setContent('');
+      setContentEn('');
       setImages([]);
+      setEditingId(null);
       fetchNews();
 
       setTimeout(() => setSuccess(''), 3000);
@@ -127,7 +161,7 @@ export default function DashboardPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm('هل أنت متأكد من حذف هذا الخبر؟')) return;
+    if (!confirm(t('dashboard.deleteConfirm'))) return;
 
     try {
       const response = await fetch(`/api/news?id=${id}`, {
@@ -135,14 +169,14 @@ export default function DashboardPage() {
       });
 
       if (response.ok) {
-        setSuccess('تم حذف الخبر بنجاح');
+        setSuccess(t('dashboard.newsDeleted'));
         fetchNews();
         setTimeout(() => setSuccess(''), 3000);
       } else {
-        throw new Error('فشل في حذف الخبر');
+        throw new Error(t('dashboard.deleteFailed'));
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'حدث خطأ أثناء الحذف');
+      setError(err instanceof Error ? err.message : t('common.error'));
     }
   };
 
@@ -165,14 +199,14 @@ export default function DashboardPage() {
               className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
             >
               <Plus className="w-5 h-5" />
-              <span>إدارة عروض العمرة</span>
+              <span>{t('dashboard.manageUmrah')}</span>
             </button>
             <button
               onClick={handleLogout}
               className="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
             >
               <LogOut className="w-5 h-5" />
-              <span>خروج</span>
+              <span>{t('dashboard.logout')}</span>
             </button>
           </div>
 
@@ -180,12 +214,12 @@ export default function DashboardPage() {
             <div></div>
             <div className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-gradient-to-r from-gold-start/10 via-gold-end/10 to-gold-start/10 border border-gold-start/30 rounded-full">
               <Newspaper className="w-5 h-5 text-gold-start" />
-              <span className="golden-text text-lg font-semibold">لوحة التحكم</span>
+              <span className="golden-text text-lg font-semibold">{t('dashboard.controlPanel')}</span>
             </div>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
-            إدارة الأخبار
-            <span className="block golden-text mt-2">والإعلانات</span>
+            {t('dashboard.newsManagement')}
+            <span className="block golden-text mt-2">{t('dashboard.announcements')}</span>
           </h1>
         </div>
 
@@ -195,7 +229,7 @@ export default function DashboardPage() {
               <div className="p-2 bg-gradient-to-r from-gold-start to-gold-end rounded-lg">
                 <Plus className="w-5 h-5 text-white" />
               </div>
-              <h2 className="text-2xl font-bold text-foreground">إضافة خبر جديد</h2>
+              <h2 className="text-2xl font-bold text-foreground">{t('dashboard.addNews')}</h2>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -210,24 +244,40 @@ export default function DashboardPage() {
                 </div>
               )}
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  عنوان الخبر
-                </label>
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold-start focus:border-transparent transition-all outline-none"
-                  placeholder="أدخل عنوان الخبر"
-                  disabled={submitting}
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    {t('dashboard.newsTitle')} (عربي)
+                  </label>
+                  <input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold-start focus:border-transparent transition-all outline-none"
+                    placeholder={t('dashboard.enterTitle')}
+                    disabled={submitting}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    {t('dashboard.newsTitle')} (English)
+                  </label>
+                  <input
+                    type="text"
+                    value={titleEn}
+                    onChange={(e) => setTitleEn(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold-start focus:border-transparent transition-all outline-none"
+                    placeholder="Enter English title (optional)"
+                    disabled={submitting}
+                  />
+                </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  التاريخ
+                  {t('dashboard.date')}
                 </label>
                 <input
                   type="date"
@@ -239,30 +289,46 @@ export default function DashboardPage() {
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  محتوى الخبر
-                </label>
-                <textarea
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold-start focus:border-transparent transition-all outline-none resize-none"
-                  placeholder="اكتب محتوى الخبر هنا..."
-                  disabled={submitting}
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    {t('dashboard.newsContent')} (عربي)
+                  </label>
+                  <textarea
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    required
+                    rows={5}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold-start focus:border-transparent transition-all outline-none resize-none"
+                    placeholder={t('dashboard.writeContent')}
+                    disabled={submitting}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    {t('dashboard.newsContent')} (English)
+                  </label>
+                  <textarea
+                    value={contentEn}
+                    onChange={(e) => setContentEn(e.target.value)}
+                    rows={5}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold-start focus:border-transparent transition-all outline-none resize-none"
+                    placeholder="Write English content here (optional)"
+                    disabled={submitting}
+                  />
+                </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  الصور (اختياري)
+                  {t('dashboard.images')}
                 </label>
                 <div className="flex items-center gap-2">
                   <label className="flex-1 cursor-pointer">
                     <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-gold-start transition-colors text-center">
                       <ImageIcon className="w-8 h-8 mx-auto mb-2 text-gray-400" />
-                      <span className="text-sm text-gray-600">اضغط لتحميل الصور</span>
+                      <span className="text-sm text-gray-600">{t('dashboard.clickToUpload')}</span>
                     </div>
                     <input
                       type="file"
@@ -275,7 +341,7 @@ export default function DashboardPage() {
                   </label>
                 </div>
                 {uploadingImages && (
-                  <p className="text-sm text-gold-start mt-2">جاري ضغط وتحميل الصور...</p>
+                  <p className="text-sm text-gold-start mt-2">{t('dashboard.compressing')}</p>
                 )}
                 {images.length > 0 && (
                   <div className="grid grid-cols-3 gap-2 mt-4">
@@ -299,23 +365,35 @@ export default function DashboardPage() {
                 )}
               </div>
 
-              <button
-                type="submit"
-                disabled={submitting || uploadingImages}
-                className="w-full bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground px-6 py-3 rounded-lg text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              >
-                {submitting ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    جاري الإضافة...
-                  </>
-                ) : (
-                  <>
-                    <Plus className="w-5 h-5" />
-                    إضافة الخبر
-                  </>
+              <div className="flex gap-3">
+                <button
+                  type="submit"
+                  disabled={submitting || uploadingImages}
+                  className="flex-1 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground px-6 py-3 rounded-lg text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {submitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      {t('dashboard.adding')}
+                    </>
+                  ) : (
+                    <>
+                      <Plus className="w-5 h-5" />
+                      {editingId ? t('dashboard.editNewsButton') : t('dashboard.addNewsButton')}
+                    </>
+                  )}
+                </button>
+                {editingId && (
+                  <button
+                    type="button"
+                    onClick={handleCancelEdit}
+                    disabled={submitting}
+                    className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition-colors disabled:opacity-50"
+                  >
+                    {t('dashboard.cancelEdit')}
+                  </button>
                 )}
-              </button>
+              </div>
             </form>
           </div>
 
@@ -324,7 +402,7 @@ export default function DashboardPage() {
               <div className="p-2 bg-gradient-to-r from-gold-start to-gold-end rounded-lg">
                 <Newspaper className="w-5 h-5 text-white" />
               </div>
-              <h2 className="text-2xl font-bold text-foreground">الأخبار الحالية</h2>
+              <h2 className="text-2xl font-bold text-foreground">{t('dashboard.currentNews')}</h2>
             </div>
 
             {loading ? (
@@ -333,7 +411,7 @@ export default function DashboardPage() {
               </div>
             ) : news.length === 0 ? (
               <div className="text-center py-12 text-gray-500">
-                لا توجد أخبار حالياً
+                {t('dashboard.noNews')}
               </div>
             ) : (
               <div className="space-y-4 max-h-[600px] overflow-y-auto">
@@ -350,7 +428,7 @@ export default function DashboardPage() {
                         <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
                           <Calendar className="w-4 h-4" />
                           <span>
-                            {new Date(item.date).toLocaleDateString('ar-SA', {
+                            {new Date(item.date).toLocaleDateString(i18n.language === 'ar' ? 'ar-SA' : 'en-US', {
                               year: 'numeric',
                               month: 'long',
                               day: 'numeric',
@@ -363,16 +441,27 @@ export default function DashboardPage() {
                         {item.images && item.images.length > 0 && (
                           <div className="flex items-center gap-1 mt-2 text-sm text-gold-start">
                             <ImageIcon className="w-4 h-4" />
-                            <span>{item.images.length} صورة</span>
+                            <span>{item.images.length} {t('dashboard.imageCount')}</span>
                           </div>
                         )}
                       </div>
-                      <button
-                        onClick={() => handleDelete(item.id)}
-                        className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors duration-200"
-                      >
-                        <Trash2 className="w-5 h-5" />
-                      </button>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleEdit(item)}
+                          className="p-2 text-blue-500 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                          title={t('dashboard.edit')}
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={() => handleDelete(item.id)}
+                          className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors duration-200"
+                        >
+                          <Trash2 className="w-5 h-5" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}

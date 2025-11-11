@@ -1,0 +1,451 @@
+{
+  "nav": {
+    "home": "Home",
+    "offers": "Offers",
+    "media": "Gallery",
+    "news": "News",
+    "testimonials": "Testimonials",
+    "contact": "Contact Us",
+    "menu": "Menu"
+  },
+  "hero": {
+    "title": "We Are Here",
+    "subtitle": "Where Nothing Compares",
+    "description": "Browse our Hajj and Umrah programs",
+    "cta": "Start Booking"
+  },
+  "offers": {
+    "title": "Our Available Programs",
+    "description": "Comprehensive programs combining luxury and spirituality, specially designed to meet your needs and provide the best possible experience",
+    "pricing": {
+      "single": "Single Room",
+      "double": "Double Room (per person)",
+      "triple": "Triple Room (per person)"
+    },
+    "umrah": "Umrah Programs",
+    "hajj": "Hajj Programs",
+    "details": "Details",
+    "bookNow": "Book Now",
+    "noOffers": "No offers available at the moment",
+    "loading": "Loading...",
+    "duration": "Duration",
+    "accommodation": "Accommodation",
+    "features": "What's Included",
+    "pricingLabel": "Pricing",
+    "currency": "OMR",
+    "programPrice": "Program Price"
+  },
+  "news": {
+    "title": "Latest News",
+    "subtitle": "Follow Our Updates",
+    "description": "And Stay Informed",
+    "readMore": "Read More",
+    "viewAll": "View All News",
+    "loading": "Loading news...",
+    "images": "image",
+    "newsDetail": {
+      "notFound": "News Not Found",
+      "notFoundDesc": "Sorry, we couldn't find the requested news",
+      "backToNews": "Back to All News",
+      "newsLabel": "News",
+      "published": "Published",
+      "lastUpdated": "Last Updated",
+      "allNews": "All News",
+      "homePage": "Home Page"
+    }
+  },
+  "about": {
+    "badge": "About Us",
+    "title": "Gather Your Heart's Longing to Embrace the Two Holy Mosques",
+    "subtitle": "And Come With Us",
+    "companyName": "Nidaa Hajj & Umrah Foundation",
+    "tagline": "Redefining Luxury and Creativity",
+    "description1": "Refined by experience, nurtured by expertise, and developed by persistent thinking. Nidaa Foundation was established in",
+    "year": "2003",
+    "description2": ", and set out to tell the story of beauty in the greatest spiritual journeys.",
+    "quote": "We are here because you deserve the best. We sail in the realm of beauty to reach you, to offer you our pioneering experience in Hajj and Umrah.",
+    "visionTitle": "Our Vision",
+    "vision1": "The journey of Hajj and Umrah is not just travel; it is an experience where hearts are charged, intentions are renewed, and souls are elevated.",
+    "vision2": "Through Nidaa Foundation, the hopes of pilgrims are embodied in distinguished service that expresses the depth of faith and narrates the joy of meeting with the House of Allah.",
+    "cta1": "Let us be your choice so we may have the honor of serving you",
+    "cta2": "And may you receive care befitting you and your choice",
+    "stats": {
+      "experience": "Years of Experience",
+      "pilgrims": "Happy Pilgrims",
+      "satisfaction": "Customer Satisfaction"
+    }
+  },
+  "benefits": {
+    "title": "Gifts and Equipment We Provide for Pilgrims",
+    "largeSuitcase": {
+      "title": "Large Travel Suitcase",
+      "description": "A strong and durable suitcase suitable for your Hajj journey."
+    },
+    "smallSuitcase": {
+      "title": "Small Travel Suitcase",
+      "description": "An additional suitcase to facilitate organizing belongings during travel."
+    },
+    "backpack": {
+      "title": "Rituals Backpack",
+      "description": "A lightweight and practical backpack for carrying items during rituals."
+    },
+    "smallBag": {
+      "title": "Small Bag",
+      "description": "A small bag for keeping valuable personal belongings."
+    },
+    "quran": {
+      "title": "Quran",
+      "description": "A dedicated Quran for pilgrims for reading and reflection."
+    },
+    "umbrella": {
+      "title": "Umbrella",
+      "description": "A high-quality umbrella to protect you from sun and rain."
+    },
+    "mattress": {
+      "title": "Muzdalifah Mattress",
+      "description": "A comfortable mattress for use in Muzdalifah during Hajj rituals."
+    },
+    "shoeBag": {
+      "title": "Shoe Bag",
+      "description": "A practical bag for storing shoes during rituals."
+    },
+    "pebblesPouch": {
+      "title": "Jamarat Pebbles Pouch",
+      "description": "A dedicated pouch for collecting and storing Jamarat pebbles in an organized manner."
+    }
+  },
+  "footer": {
+    "description": "A blessed spiritual journey to the House of Allah. We offer you the best Hajj and Umrah programs with distinguished service and comprehensive care.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact Us",
+    "callUs": "Call Us",
+    "whatsapp": "WhatsApp",
+    "talkToUs": "Talk to Us",
+    "rights": "All Rights Reserved © {{year}} Nidaa Hajj & Umrah Foundation",
+    "madeWith": "Made with",
+    "in": "in Sultanate of Oman"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're Here to Answer Your Questions",
+    "description": "Contact us via phone or WhatsApp",
+    "phone": "Phone",
+    "whatsapp": "WhatsApp",
+    "location": "Location",
+    "locationText": "Muscat, Sultanate of Oman"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Operation completed successfully",
+    "close": "Close",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "next": "Next",
+    "previous": "Previous",
+    "viewMore": "View More",
+    "backToHome": "Back to Home"
+  },
+  "contactPage": {
+    "badge": "Contact Us",
+    "title": "We Are Here to Serve You",
+    "subtitle": "Around the Clock",
+    "description": "Our specialized team is ready to answer your questions and help you choose the most suitable program",
+    "callNow": "Call Us Now",
+    "whyContact": "Why Contact Us?",
+    "reasons": {
+      "consultation": "Free consultation to choose the most suitable program",
+      "pricing": "Detailed information about prices and services",
+      "booking": "Assistance with booking and payment procedures",
+      "questions": "Answers to all your inquiries",
+      "offers": "Special offers tailored to your needs"
+    },
+    "needHelp": "Need Immediate Help?",
+    "contactNow": "Contact us now via phone or WhatsApp",
+    "callButton": "Call Now"
+  },
+  "offersPage": {
+    "badge": "Special Offers",
+    "title": "Distinguished Umrah Programs",
+    "subtitle": "For 2026 Season",
+    "description": "Choose the most suitable program for you and book your spiritual journey with Nidaa Campaign",
+    "experience": "Years of Experience",
+    "hotels": "5-Star Hotels",
+    "service": "Distinguished Service"
+  },
+  "mediaPage": {
+    "badge": "Media Gallery",
+    "title": "Our Blessed Journeys",
+    "subtitle": "In Photos and Videos",
+    "description": "Watch spiritual moments and eternal memories from Umrah and Hajj trips organized by Nidaa Foundation",
+    "videos": "Videos",
+    "memories": "Blessed Memories",
+    "video": "Video",
+    "bePartOfJourney": "Be Part of Our Next Journey",
+    "joinUs": "Join us on an unforgettable spiritual journey and book your place now",
+    "browsePrograms": "Browse Programs"
+  },
+  "dashboard": {
+    "controlPanel": "Control Panel",
+    "newsManagement": "News Management",
+    "announcements": "and Announcements",
+    "umrahManagement": "Umrah Offers Management",
+    "hajjManagement": "and Hajj",
+    "manageUmrah": "Manage Umrah Offers",
+    "newsBoard": "News Board",
+    "logout": "Logout",
+    "addNews": "Add New News",
+    "currentNews": "Current News",
+    "newsTitle": "News Title",
+    "date": "Date",
+    "newsContent": "News Content",
+    "images": "Images (Optional)",
+    "clickToUpload": "Click to Upload Images",
+    "compressing": "Compressing and uploading images...",
+    "adding": "Adding...",
+    "addNewsButton": "Add News",
+    "editNewsButton": "Update News",
+    "cancelEdit": "Cancel Edit",
+    "edit": "Edit",
+    "noNews": "No news available",
+    "deleteConfirm": "Are you sure you want to delete this news?",
+    "newsDeleted": "News deleted successfully",
+    "newsAdded": "News added successfully",
+    "newsUpdated": "News updated successfully",
+    "uploadFailed": "Failed to upload images",
+    "deleteFailed": "Failed to delete news",
+    "enterTitle": "Enter news title",
+    "writeContent": "Write news content here...",
+    "imageCount": "image",
+    "addUmrahOffer": "Add New Umrah Offer",
+    "currentOffers": "Current Offers",
+    "offerTitle": "Offer Title",
+    "description": "Description",
+    "duration": "Duration",
+    "accommodation": "Accommodation",
+    "features": "Features",
+    "pricing": "Pricing (OMR)",
+    "triple": "Triple:",
+    "double": "Double:",
+    "single": "Single:",
+    "mainImage": "Main Image",
+    "galleryImages": "Gallery Images (Optional)",
+    "addFeature": "Add Feature",
+    "addOffer": "Add Offer",
+    "noOffers": "No offers available",
+    "deleteOfferConfirm": "Are you sure you want to delete this offer?",
+    "offerDeleted": "Offer deleted successfully",
+    "offerAdded": "Offer added successfully",
+    "offerUpdated": "Offer updated successfully",
+    "editOfferButton": "Update Offer",
+    "featurePlaceholder": "Feature",
+    "durationPlaceholder": "Example: 10 days / 9 nights",
+    "accommodationPlaceholder": "Example: 5-star hotels"
+  },
+  "login": {
+    "badge": "Login",
+    "welcome": "Welcome",
+    "controlPanel": "to Control Panel",
+    "companyName": "Nidaa Hajj & Umrah",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Login",
+    "loggingIn": "Logging in...",
+    "footerNote": "Content and News Management Dashboard",
+    "emailPlaceholder": "example@email.com",
+    "passwordPlaceholder": "••••••••"
+  },
+  "hajjPage": {
+    "title": "Hajj 1447 AH with Nidaa Hajj & Umrah Campaign",
+    "subtitle1": "The campaign known for its desire for continuous development of its services, registers itself in this season 1447 AH as the first Omani campaign to make its accommodation in Mina in the new Mina hotel towers (Keddana).",
+    "subtitle2": "You are on a date with hotel accommodation in the holy sites!!",
+    "bookWhatsapp": "Book Now via WhatsApp",
+    "callUs": "Call Us",
+    "openingTitle": "We don't say come let us tell you.. but come with us, and be part of the experience",
+    "openingText": "Come let's write the story together, our story that begins with the spirituality of Medina and ends with the tranquility of the rituals.",
+    "duration": "Duration",
+    "durationValue": "11 days (May 21 - May 31, 2026)",
+    "accommodation": "Accommodation",
+    "accommodationValue": "5-star hotels + Keddana Hotel Towers in Mina",
+    "cost": "Cost",
+    "costValue": "4,300 OMR",
+    "programFeatures": "Program Features",
+    "storyTitle": "What's the Story?",
+    "ctaTitle": "Take your place in the scene of excellence, and make us your choice",
+    "ctaSubtitle": "Be part of the unique Hajj experience with Nidaa Campaign",
+    "bookNow": "Book Now",
+    "contactLabel": "Contact:",
+    "sections": {
+      "flight": {
+        "title": "Muscat - Medina"
+      },
+      "medina": {
+        "title": "Medina - Two Nights"
+      },
+      "makkah": {
+        "title": "Makkah (6 - 13 Dhul Hijjah)"
+      },
+      "mina": {
+        "title": "Mina (8 - 12 Dhul Hijjah)",
+        "subtitle": "Hotel comfort inside the holy sites"
+      },
+      "arafat": {
+        "title": "Arafat - Muzdalifah"
+      },
+      "tashreeq": {
+        "title": "Days of Tashreeq"
+      },
+      "jeddah": {
+        "title": "Jeddah"
+      },
+      "notes": {
+        "title": "Notes"
+      }
+    },
+    "hajjOfferTitle": "Hajj 1447 AH with Nidaa Hajj & Umrah Campaign",
+    "hajjOfferDescription": "The campaign known for continuous development of its services, registers itself in this season 1447 AH as the first Omani campaign to stay in Mina in the new Mina hotel towers (Keddana). You are on a date with hotel accommodation in the holy sites!",
+    "hajjOfferDuration": "10 days (May 21 - May 31, 2026)",
+    "hajjOfferAccommodation": "5-star hotels + Keddana Hotel Towers in Mina",
+    "features": [
+      "Over twenty years of experience.",
+      "Luxurious services befitting people of refined taste.",
+      "Flights on Oman Air.",
+      "Accommodation in five and four-star hotels in Makkah, Medina and Jeddah.",
+      "Reception and hospitality at Makkah Clock Royal Tower Fairmont Hotel (Clock Tower) 5 stars, overlooking the Holy Mosque.",
+      "Accommodation in Mina outside the Omani camp, in Mina hotel towers (Keddana Valley).",
+      "Accommodation in Arafat outside the Omani camp in a private royal camp with full services.",
+      "Buffet meals for three meals throughout the trip.",
+      "Contract with a shipping company for luggage shipping and transportation.",
+      "Modern model buses.",
+      "Use of Haramain High Speed Railway from Medina to Makkah.",
+      "First Omani campaign to use the Mashaaer train to transport pilgrims during Tashreeq days.",
+      "Comprehensive program for preaching, religious guidance, and ritual study.",
+      "Medical service and comprehensive administrative follow-up."
+    ],
+    "sectionsContent": {
+      "flight": {
+        "content": "Flight on Oman Air: Muscat - Medina on 2026/5/21 | Jeddah - Muscat on 2026/5/31"
+      },
+      "medina": {
+        "items": [
+          "Reception of pilgrims at Medina airport and transfer to accommodation by modern buses",
+          "Accommodation in a five-star hotel near the Prophet's Mosque",
+          "Luxurious buffets for three meals throughout the stay",
+          "Visit to Quba Mosque and prayer there, visit to Mount Uhud, and passing by historical places in Medina",
+          "Shipping pilgrims' luggage to Makkah in the evening before departure day, so it arrives before them at their accommodation in Makkah",
+          "Departure from Medina to Makkah via Haramain High Speed Railway",
+          "Our Hajj program allows you to choose the type of ritual you want, so you can be Mutamatti, Qarin, or Mufrid"
+        ]
+      },
+      "makkah": {
+        "items": [
+          "Reception and hospitality at Makkah Clock Royal Tower Fairmont Hotel (Clock Tower) 5 stars, overlooking the Holy Mosque, and dinner with a luxurious buffet at the hotel restaurant",
+          "Fairmont Makkah Clock Tower lounge is the gathering point after performing Umrah",
+          "Accommodation in Makkah at Ruba Time Makkah Hotel"
+        ]
+      },
+      "mina": {
+        "items": [
+          "Accommodation in Mina at Keddana Hotel Towers",
+          "Large Mina-style rooms air-conditioned with the highest level of comfort and cleanliness",
+          "Elegant private bathrooms for Keddana Towers, each floor has its own bathrooms",
+          "Prayer room on each floor and private rest areas",
+          "Three meals with international luxury buffet, drinks and snacks throughout the day",
+          "Continuous religious supervision and daily guidance for Hajj rituals",
+          "Medical service and comprehensive administrative follow-up"
+        ]
+      },
+      "arafat": {
+        "items": [
+          "Private Arafat camp to feel the spirituality of Arafat day with distinguished organization and preparation",
+          "The camp is equipped with a dining area, prayer area, and elegant clean bathrooms",
+          "Providing meals for main meals, cold and hot drinks and snacks",
+          "Muzdalifah rest stop",
+          "Transportation between holy sites by modern air-conditioned buses"
+        ]
+      },
+      "tashreeq": {
+        "items": [
+          "Overnight stay in Mina at Mina towers at night, and pilgrims can stay at the hotel in Makkah during the day for more comfort",
+          "Use of Mashaaer train on Eid day and Tashreeq days to enter Mina and stone the Jamarat, if regulations permit"
+        ]
+      },
+      "jeddah": {
+        "content": "One night in Jeddah before returning home according to flight booking circumstances"
+      },
+      "notes": {
+        "items": [
+          "The price includes:",
+          "International travel ticket in economy class, and for upgrade to business class add 250 OMR",
+          "Accommodation in Medina and Jeddah in double rooms",
+          "Accommodation in Makkah in triple rooms, and to upgrade the room in Makkah to double pay an additional 450 OMR per person",
+          "Accommodation in Mina in shared rooms",
+          "Train ticket economy class, and for upgrade to business class (increase not specified)"
+        ]
+      }
+    },
+    "imageTitles": [
+      "Hosting pilgrims at Fairmont Makkah Clock Royal Tower, with dinner buffet overlooking the Holy Mosque",
+      "Maden Medina Hotel",
+      "Maden Medina Hotel",
+      "Maden Medina Hotel",
+      "Maden Medina Hotel",
+      "Maden Medina Hotel",
+      "Maden Medina Hotel",
+      "Ruba Makkah Time Hotel",
+      "Ruba Makkah Time Hotel",
+      "Ruba Makkah Time Hotel",
+      "Ruba Makkah Time Hotel",
+      "Mina Hotel Towers (Keddana Valley) Photos",
+      "Mina Hotel Towers (Keddana Valley) Photos",
+      "Mina Hotel Towers (Keddana Valley) Photos",
+      "Mina Hotel Towers (Keddana Valley) Photos",
+      "Mina Hotel Towers (Keddana Valley) Photos",
+      "Mina Hotel Towers (Keddana Valley) Photos",
+      "Accommodation in Arafat",
+      "Accommodation in Arafat",
+      "Accommodation in Arafat",
+      "Accommodation in Arafat",
+      "Accommodation in Arafat"
+    ]
+  },
+  "testimonialsPage": {
+    "badge": "Testimonials",
+    "title": "Testimonials",
+    "subtitle": "We Are Proud Of",
+    "achievements": "Our Achievements in Numbers",
+    "yearsExcellence": "Years of Excellence",
+    "fiveStars": "Five Star Rating",
+    "satisfaction": "Customer Satisfaction",
+    "certificates": {
+      "mmtaz": {
+        "title": "Excellent Rating from Hajj Affairs Department",
+        "subtitle": "Official Excellence Certificate",
+        "description": "Official recognition with an excellent rating from the Hajj Affairs Department, confirming the campaign's commitment to the highest standards of service and quality"
+      },
+      "fiveStar": {
+        "title": "Five Stars and Excellent Rating from Pilgrims for Nidaa Hajj Campaign",
+        "subtitle": "Hajj Season 1446 AH",
+        "description": "Nidaa Campaign received a five-star rating and excellent appreciation from pilgrims, reflecting their complete satisfaction with the services provided"
+      },
+      "evaluation": {
+        "title": "Evaluation of Nidaa Hajj Campaign by the Omani Hajj Mission",
+        "subtitle": "Hajj Season 1447 AH",
+        "description": "Distinguished official evaluation from the Omani Hajj Mission reflecting the level of services provided and commitment to the highest quality standards"
+      },
+      "opinions": {
+        "title": "Some Pilgrims' Opinions About the Campaign",
+        "subtitle": "From the Official Website of the Ministry of Awqaf",
+        "description": "Real testimonials and opinions from pilgrims to the House of Allah about their experience with Nidaa Campaign, taken from the official website of the Ministry of Awqaf"
+      }
+    },
+    "imageCounter": "of"
+  }
+}

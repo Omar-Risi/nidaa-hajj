@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Newspaper, Calendar, Loader2, ArrowLeft, Image as ImageIcon } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 interface NewsItem {
   id: string;
@@ -11,9 +12,12 @@ interface NewsItem {
   date: string;
   content: string;
   images?: string[];
+  titleEn?: string;
+  contentEn?: string;
 }
 
 export default function NewsPage() {
+  const { t, i18n } = useTranslation();
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,14 +25,20 @@ export default function NewsPage() {
     fetch('/api/news')
       .then((res) => res.json())
       .then((data) => {
-        setNews(data);
+        // Map data to use English fields when language is English
+        const mappedData = data.map((item: NewsItem) => ({
+          ...item,
+          title: i18n.language === 'en' && item.titleEn ? item.titleEn : item.title,
+          content: i18n.language === 'en' && item.contentEn ? item.contentEn : item.content,
+        }));
+        setNews(mappedData);
         setLoading(false);
       })
       .catch((err) => {
         console.error('Error fetching news:', err);
         setLoading(false);
       });
-  }, []);
+  }, [i18n.language]);
 
   if (loading) {
     return (
@@ -41,7 +51,7 @@ export default function NewsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-20 px-4 sm:px-6 lg:px-8" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 lg:mb-16">
@@ -52,7 +62,7 @@ export default function NewsPage() {
             className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-gradient-to-r from-gold-start/10 via-gold-end/10 to-gold-start/10 border border-gold-start/30 rounded-full mb-6"
           >
             <Newspaper className="w-5 h-5 text-gold-start" />
-            <span className="golden-text text-lg font-semibold">جميع الأخبار</span>
+            <span className="golden-text text-lg font-semibold">{t('news.viewAll')}</span>
           </motion.div>
 
           <motion.h1
@@ -61,8 +71,8 @@ export default function NewsPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight"
           >
-            آخر أخبارنا
-            <span className="block golden-text mt-2 py-2">وتحديثاتنا</span>
+            {t('news.title')}
+            <span className="block golden-text mt-2 py-2">{t('news.description')}</span>
           </motion.h1>
         </div>
 
@@ -70,7 +80,7 @@ export default function NewsPage() {
         {news.length === 0 ? (
           <div className="text-center py-20">
             <Newspaper className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-500 text-lg">لا توجد أخبار متاحة حالياً</p>
+            <p className="text-gray-500 text-lg">{t('news.noNews')}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">

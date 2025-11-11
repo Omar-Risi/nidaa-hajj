@@ -3,15 +3,17 @@
 import Link from "next/link"
 import Image from 'next/image';
 import { MessageCircle, Phone, Home, Package, Mail, Film } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 export function Footer() {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { href: '/', label: 'الرئيسية', icon: Home },
-    { href: '/offers', label: 'العروض', icon: Package },
-    { href: '/media', label: 'المعرض', icon: Film },
-    { href: '/contact', label: 'اتصل بنا', icon: Mail },
+    { href: '/', label: t('nav.home'), icon: Home },
+    { href: '/offers', label: t('nav.offers'), icon: Package },
+    { href: '/media', label: t('nav.media'), icon: Film },
+    { href: '/contact', label: t('nav.contact'), icon: Mail },
   ];
 
   return (
@@ -38,7 +40,7 @@ export function Footer() {
             </Link>
             
             <p className="text-white/70 text-base leading-relaxed max-w-sm">
-              رحلة روحانية مباركة نحو بيت الله الحرام، نقدم لكم أفضل برامج الحج والعمرة بخدمة متميزة ورعاية شاملة.
+              {t('footer.description')}
             </p>
             {/*
 
@@ -54,7 +56,7 @@ export function Footer() {
 
           {/* Quick Links Section */}
           <div className="space-y-6">
-            <h3 className="golden-text text-xl font-bold mb-4">الروابط السريعة</h3>
+            <h3 className="golden-text text-xl font-bold mb-4">{t('footer.quickLinks')}</h3>
             <div className="grid grid-cols-2 gap-3">
               {quickLinks.map((link) => (
                 <Link
@@ -73,7 +75,7 @@ export function Footer() {
 
           {/* Contact Section */}
           <div className="space-y-6">
-            <h3 className="golden-text text-xl font-bold mb-4">تواصل معنا</h3>
+            <h3 className="golden-text text-xl font-bold mb-4">{t('footer.contact')}</h3>
             
             <div className="space-y-4">
               {/* Phone */}
@@ -85,7 +87,7 @@ export function Footer() {
                   <Phone className="w-6 h-6 text-gold-start" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-white/60 text-xs mb-1">اتصل بنا</p>
+                  <p className="text-white/60 text-xs mb-1">{t('footer.callUs')}</p>
                   <p className="golden-text text-lg font-semibold">97477488</p>
                 </div>
               </a>
@@ -101,8 +103,8 @@ export function Footer() {
                   <MessageCircle className="w-6 h-6 text-gold-start" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-white/60 text-xs mb-1">واتساب</p>
-                  <p className="golden-text text-lg font-semibold">تحدث معنا</p>
+                  <p className="text-white/60 text-xs mb-1">{t('footer.whatsapp')}</p>
+                  <p className="golden-text text-lg font-semibold">{t('footer.talkToUs')}</p>
                 </div>
               </a>
             </div>
@@ -115,12 +117,12 @@ export function Footer() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-white/60 text-sm text-center sm:text-right">
-              جميع الحقوق محفوظة © {currentYear} مؤسسة النداء للحج والعمرة
+              {t('footer.rights', { year: currentYear })}
             </p>
             <div className="flex items-center gap-2">
-              <span className="text-white/40 text-xs">صُنع بـ</span>
+              <span className="text-white/40 text-xs">{t('footer.madeWith')}</span>
               <span className="text-gold-start text-sm">♥</span>
-              <span className="text-white/40 text-xs">في سلطنة عُمان</span>
+              <span className="text-white/40 text-xs">{t('footer.in')}</span>
             </div>
           </div>
         </div>

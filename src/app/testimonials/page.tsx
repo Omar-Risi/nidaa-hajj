@@ -4,56 +4,58 @@ import { motion } from 'framer-motion';
 import { Award, ArrowLeft, Star, Medal, Users, MessageSquareText } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-
-// Certificate sections data
-const certificateSections = [
-  {
-    id: 'mmtaz',
-    title: 'تقييم ممتاز من دائرة شؤون الحج',
-    subtitle: 'شهادة امتياز رسمية',
-    description: 'تقدير رسمي بتقييم ممتاز من دائرة شؤون الحج، تأكيداً على التزام الحملة بأعلى معايير الخدمة والجودة',
-    icon: Award,
-    images: ['/mmtaz/Untitled.jpg'],
-    gradient: 'from-green-500/10 to-green-600/10',
-    borderColor: 'border-green-500/30',
-    iconColor: 'text-green-500',
-  },
-  {
-    id: '5star',
-    title: 'تقييم خمس نجوم وممتاز من الحجاج لحملة النداء للحج',
-    subtitle: 'موسم الحج 1446 هـ',
-    description: 'حصول حملة النداء على تقييم خمس نجوم وتقدير ممتاز من الحجاج، مما يعكس رضاهم التام عن الخدمات المقدمة',
-    icon: Star,
-    images: ['/5star/Untitled.jpg'],
-    gradient: 'from-gold-start/10 to-gold-end/10',
-    borderColor: 'border-gold-start/30',
-    iconColor: 'text-gold-start',
-  },
-  {
-    id: 'taqieem',
-    title: 'تقييم حملة النداء للحج من قبل البعثة العمانية للحج',
-    subtitle: 'موسم الحج 1447 هـ',
-    description: 'تقييم رسمي متميز من البعثة العمانية للحج يعكس مستوى الخدمات المقدمة والالتزام بأعلى معايير الجودة',
-    icon: Medal,
-    images: ['/taqieem/Untitled.jpg'],
-    gradient: 'from-purple-500/10 to-purple-600/10',
-    borderColor: 'border-purple-500/30',
-    iconColor: 'text-purple-500',
-  },
-  {
-    id: 'araa',
-    title: 'آراء بعض الحجاج في الحملة',
-    subtitle: 'من الموقع الرسمي لوزارة الأوقاف',
-    description: 'شهادات وآراء حقيقية من حجاج بيت الله الحرام عن تجربتهم مع حملة النداء، مأخوذة من الموقع الرسمي لوزارة الأوقاف',
-    icon: MessageSquareText,
-    images: Array.from({ length: 19 }, (_, i) => `/araa/Untitled${i === 0 ? '' : i + 1}.jpg`),
-    gradient: 'from-blue-500/10 to-blue-600/10',
-    borderColor: 'border-blue-500/30',
-    iconColor: 'text-blue-500',
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 export default function TestimonialsPage() {
+  const { t } = useTranslation();
+
+  // Certificate sections data
+  const certificateSections = [
+    {
+      id: 'mmtaz',
+      title: t('testimonialsPage.certificates.mmtaz.title'),
+      subtitle: t('testimonialsPage.certificates.mmtaz.subtitle'),
+      description: t('testimonialsPage.certificates.mmtaz.description'),
+      icon: Award,
+      images: ['/mmtaz/Untitled.jpg'],
+      gradient: 'from-green-500/10 to-green-600/10',
+      borderColor: 'border-green-500/30',
+      iconColor: 'text-green-500',
+    },
+    {
+      id: '5star',
+      title: t('testimonialsPage.certificates.fiveStar.title'),
+      subtitle: t('testimonialsPage.certificates.fiveStar.subtitle'),
+      description: t('testimonialsPage.certificates.fiveStar.description'),
+      icon: Star,
+      images: ['/5star/Untitled.jpg'],
+      gradient: 'from-gold-start/10 to-gold-end/10',
+      borderColor: 'border-gold-start/30',
+      iconColor: 'text-gold-start',
+    },
+    {
+      id: 'taqieem',
+      title: t('testimonialsPage.certificates.evaluation.title'),
+      subtitle: t('testimonialsPage.certificates.evaluation.subtitle'),
+      description: t('testimonialsPage.certificates.evaluation.description'),
+      icon: Medal,
+      images: ['/taqieem/Untitled.jpg'],
+      gradient: 'from-purple-500/10 to-purple-600/10',
+      borderColor: 'border-purple-500/30',
+      iconColor: 'text-purple-500',
+    },
+    {
+      id: 'araa',
+      title: t('testimonialsPage.certificates.opinions.title'),
+      subtitle: t('testimonialsPage.certificates.opinions.subtitle'),
+      description: t('testimonialsPage.certificates.opinions.description'),
+      icon: MessageSquareText,
+      images: Array.from({ length: 19 }, (_, i) => `/araa/Untitled${i === 0 ? '' : i + 1}.jpg`),
+      gradient: 'from-blue-500/10 to-blue-600/10',
+      borderColor: 'border-blue-500/30',
+      iconColor: 'text-blue-500',
+    },
+  ];
   return (
     <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -66,7 +68,7 @@ export default function TestimonialsPage() {
             className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-gradient-to-r from-gold-start/10 via-gold-end/10 to-gold-start/10 border border-gold-start/30 rounded-full mb-6"
           >
             <Award className="w-5 h-5 text-gold-start" />
-            <span className="golden-text text-lg font-semibold">الشهادات</span>
+            <span className="golden-text text-lg font-semibold">{t('testimonialsPage.badge')}</span>
           </motion.div>
 
           <motion.h1
@@ -75,8 +77,8 @@ export default function TestimonialsPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight"
           >
-            شهادات
-            <span className="block golden-text mt-2 py-2">نعتز بها</span>
+            {t('testimonialsPage.title')}
+            <span className="block golden-text mt-2 py-2">{t('testimonialsPage.subtitle')}</span>
           </motion.h1>
 
          
@@ -168,7 +170,7 @@ export default function TestimonialsPage() {
                       {section.images.length > 1 && (
                         <div className="p-3 text-center bg-gray-50">
                           <span className="text-sm text-gray-500 font-medium">
-                            {imageIndex + 1} من {section.images.length}
+                            {imageIndex + 1} {t('testimonialsPage.imageCounter')} {section.images.length}
                           </span>
                         </div>
                       )}
@@ -202,20 +204,20 @@ export default function TestimonialsPage() {
           className="mt-20 lg:mt-32 bg-gradient-to-br from-foreground to-foreground/95 rounded-2xl p-8 lg:p-12"
         >
           <h3 className="text-2xl lg:text-3xl font-bold text-center golden-text mb-8">
-            إنجازاتنا بالأرقام
+            {t('testimonialsPage.achievements')}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="text-4xl lg:text-5xl font-bold golden-text mb-2">20+</div>
-              <p className="text-white/80 text-lg">عامًا من التميز</p>
+              <p className="text-white/80 text-lg">{t('testimonialsPage.yearsExcellence')}</p>
             </div>
             <div className="text-center">
               <div className="text-4xl lg:text-5xl font-bold golden-text mb-2">⭐⭐⭐⭐⭐</div>
-              <p className="text-white/80 text-lg">تقييم خمس نجوم</p>
+              <p className="text-white/80 text-lg">{t('testimonialsPage.fiveStars')}</p>
             </div>
             <div className="text-center">
               <div className="text-4xl lg:text-5xl font-bold golden-text mb-2">100%</div>
-              <p className="text-white/80 text-lg">رضا العملاء</p>
+              <p className="text-white/80 text-lg">{t('testimonialsPage.satisfaction')}</p>
             </div>
           </div>
         </motion.div>
@@ -232,7 +234,7 @@ export default function TestimonialsPage() {
             className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl"
           >
             <ArrowLeft className="w-5 h-5" />
-            العودة للرئيسية
+            {t('common.backToHome')}
           </Link>
         </motion.div>
       </div>

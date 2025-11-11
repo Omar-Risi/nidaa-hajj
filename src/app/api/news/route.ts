@@ -24,9 +24,9 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { title, date, content, images } = body;
+    const { title, date, content, images, titleEn, contentEn } = body;
 
-    console.log('Received data:', { title, date, content, images });
+    console.log('Received data:', { title, date, content, images, titleEn, contentEn });
 
     // Validate input
     if (!title || !date || !content) {
@@ -43,6 +43,8 @@ export async function POST(request: NextRequest) {
         date: new Date(date),
         content,
         images: images || [],
+        titleEn: titleEn || null,
+        contentEn: contentEn || null,
       },
     });
 
@@ -54,6 +56,53 @@ export async function POST(request: NextRequest) {
     console.error('Error details:', error instanceof Error ? error.message : error);
     return NextResponse.json(
       { error: 'حدث خطأ في الخادم' },
+      { status: 500 }
+    );
+  }
+}
+
+// PUT - Update existing news
+export async function PUT(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { id, title, date, content, images, titleEn, contentEn } = body;
+
+    console.log('Update request received:', { id, title, date, content, titleEn, contentEn });
+
+    if (!id) {
+      return NextResponse.json(
+        { error: 'معرف الخبر مطلوب' },
+        { status: 400 }
+      );
+    }
+
+    if (!title || !date || !content) {
+      return NextResponse.json(
+        { error: 'جميع الحقول مطلوبة' },
+        { status: 400 }
+      );
+    }
+
+    const news = await prisma.news.update({
+      where: { id },
+      data: {
+        title,
+        date: new Date(date),
+        content,
+        images: images || [],
+        titleEn: titleEn || null,
+        contentEn: contentEn || null,
+      },
+    });
+
+    console.log('News updated successfully:', news);
+
+    return NextResponse.json(news, { status: 200 });
+  } catch (error) {
+    console.error('Error updating news:', error);
+    console.error('Error details:', error instanceof Error ? error.message : error);
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : 'حدث خطأ في الخادم' },
       { status: 500 }
     );
   }

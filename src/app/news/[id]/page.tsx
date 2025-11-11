@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Calendar, ArrowLeft, Loader2, Newspaper } from 'lucide-react';
 import Link from 'next/link';
 import ImageCarousel from '@/components/image-carousel';
+import { useTranslation } from 'react-i18next';
 
 interface NewsItem {
   id: string;
@@ -15,9 +16,12 @@ interface NewsItem {
   images?: string[];
   createdAt: string;
   updatedAt: string;
+  titleEn?: string;
+  contentEn?: string;
 }
 
 export default function NewsDetailPage() {
+  const { t, i18n } = useTranslation();
   const params = useParams();
   const [news, setNews] = useState<NewsItem | null>(null);
   const [loading, setLoading] = useState(true);
@@ -31,7 +35,13 @@ export default function NewsDetailPage() {
       .then((data: NewsItem[]) => {
         const newsItem = data.find((item) => item.id === params.id);
         if (newsItem) {
-          setNews(newsItem);
+          // Use English fields if language is English
+          const mappedItem = {
+            ...newsItem,
+            title: i18n.language === 'en' && newsItem.titleEn ? newsItem.titleEn : newsItem.title,
+            content: i18n.language === 'en' && newsItem.contentEn ? newsItem.contentEn : newsItem.content,
+          };
+          setNews(mappedItem);
         } else {
           setError(true);
         }
@@ -42,7 +52,7 @@ export default function NewsDetailPage() {
         setError(true);
         setLoading(false);
       });
-  }, [params.id]);
+  }, [params.id, i18n.language]);
 
   if (loading) {
     return (
@@ -56,21 +66,21 @@ export default function NewsDetailPage() {
 
   if (error || !news) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-20 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-20 px-4 sm:px-6 lg:px-8 flex justify-center items-center" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
         <div className="max-w-4xl mx-auto text-center">
           <Newspaper className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-700 mb-4">
-            الخبر غير موجود
+            {t('news.newsDetail.notFound')}
           </h1>
           <p className="text-gray-500 mb-8">
-            عذراً، لم نتمكن من العثور على الخبر المطلوب
+            {t('news.newsDetail.notFoundDesc')}
           </p>
           <Link
             href="/news"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground px-8 py-4 rounded-lg text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl"
           >
             <ArrowLeft className="w-5 h-5" />
-            العودة لجميع الأخبار
+            {t('news.newsDetail.backToNews')}
           </Link>
         </div>
       </div>
@@ -80,7 +90,7 @@ export default function NewsDetailPage() {
   const hasImages = news.images && Array.isArray(news.images) && news.images.length > 0;
 
   return (
-    <div className="min-h-screen py-12 sm:py-20 px-4 sm:px-6 lg:px-8 mt-36">
+    <div className="min-h-screen py-12 sm:py-20 px-4 sm:px-6 lg:px-8 mt-36" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <motion.div
@@ -94,7 +104,7 @@ export default function NewsDetailPage() {
             className="inline-flex items-center gap-2 text-gold-start hover:text-gold-end transition-colors duration-300 font-semibold"
           >
             <ArrowLeft className="w-5 h-5" />
-            العودة لجميع الأخبار
+            {t('news.newsDetail.backToNews')}
           </Link>
         </motion.div>
 
@@ -119,7 +129,7 @@ export default function NewsDetailPage() {
             {/* Header Badge */}
             <div className="inline-flex items-center justify-center gap-3 px-6 py-2.5 bg-gradient-to-r from-gold-start/10 via-gold-end/10 to-gold-start/10 border border-gold-start/30 rounded-full mb-6">
               <Newspaper className="w-5 h-5 text-gold-start" />
-              <span className="golden-text text-sm font-semibold">خبر</span>
+              <span className="golden-text text-sm font-semibold">{t('news.newsDetail.newsLabel')}</span>
             </div>
 
             {/* Date */}
@@ -151,11 +161,11 @@ export default function NewsDetailPage() {
             <div className="mt-12 pt-6 border-t border-gray-200">
               <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-gray-500">
                 <div>
-                  تم النشر: {new Date(news.createdAt).toLocaleDateString('ar-SA')}
+                  {t('news.newsDetail.published')}: {new Date(news.createdAt).toLocaleDateString(i18n.language === 'ar' ? 'ar-SA' : 'en-US')}
                 </div>
                 {news.updatedAt !== news.createdAt && (
                   <div>
-                    آخر تحديث: {new Date(news.updatedAt).toLocaleDateString('ar-SA')}
+                    {t('news.newsDetail.lastUpdated')}: {new Date(news.updatedAt).toLocaleDateString(i18n.language === 'ar' ? 'ar-SA' : 'en-US')}
                   </div>
                 )}
               </div>
@@ -175,14 +185,14 @@ export default function NewsDetailPage() {
             className="inline-flex items-center gap-2 bg-white border-2 border-gold-start text-gold-start px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gold-start hover:text-white transition-all duration-300 shadow-md hover:shadow-lg"
           >
             <ArrowLeft className="w-5 h-5" />
-            جميع الأخبار
+            {t('news.newsDetail.allNews')}
           </Link>
           <Link
             href="/"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-start via-gold-end to-gold-start text-foreground px-6 py-3 rounded-lg text-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl"
           >
             <ArrowLeft className="w-5 h-5" />
-            الصفحة الرئيسية
+            {t('news.newsDetail.homePage')}
           </Link>
         </motion.div>
       </div>
