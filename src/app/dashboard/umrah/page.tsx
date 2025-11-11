@@ -23,6 +23,11 @@ interface UmrahOffer {
   images: string[];
   pricing: PricingTier[];
   createdAt: string;
+  titleEn?: string;
+  descriptionEn?: string;
+  durationEn?: string;
+  accommodationEn?: string;
+  featuresEn?: string[];
 }
 
 export default function DashboardUmrahPage() {
@@ -119,15 +124,15 @@ export default function DashboardUmrahPage() {
   const handleEdit = (offer: UmrahOffer) => {
     setEditingId(offer.id);
     setTitle(offer.title);
-    setTitleEn((offer as any).titleEn || '');
+    setTitleEn(offer.titleEn || '');
     setDescription(offer.description);
-    setDescriptionEn((offer as any).descriptionEn || '');
+    setDescriptionEn(offer.descriptionEn || '');
     setDuration(offer.duration);
-    setDurationEn((offer as any).durationEn || '');
+    setDurationEn(offer.durationEn || '');
     setAccommodation(offer.accommodation);
-    setAccommodationEn((offer as any).accommodationEn || '');
+    setAccommodationEn(offer.accommodationEn || '');
     setFeatures(offer.features.length > 0 ? offer.features : ['']);
-    setFeaturesEn((offer as any).featuresEn?.length > 0 ? (offer as any).featuresEn : ['']);
+    setFeaturesEn(offer.featuresEn && offer.featuresEn.length > 0 ? offer.featuresEn : ['']);
     setMainImage(offer.image);
     setMainImagePreview(offer.image);
     setGalleryImages(offer.images || []);

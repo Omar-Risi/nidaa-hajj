@@ -116,7 +116,22 @@ export default function OffersSection() {
         if (response.ok) {
           const data = await response.json();
           // Map data to use English fields when language is English
-          const mappedData = data.map((offer: any) => ({
+          const mappedData = data.map((offer: {
+            id: number;
+            title: string;
+            description: string;
+            duration: string;
+            accommodation: string;
+            features: string[];
+            image: string;
+            images?: string[];
+            pricing: PricingTier[];
+            titleEn?: string;
+            descriptionEn?: string;
+            durationEn?: string;
+            accommodationEn?: string;
+            featuresEn?: string[];
+          }) => ({
             ...offer,
             title: i18n.language === 'en' && offer.titleEn ? offer.titleEn : offer.title,
             description: i18n.language === 'en' && offer.descriptionEn ? offer.descriptionEn : offer.description,

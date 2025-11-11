@@ -12,6 +12,8 @@ interface NewsItem {
   date: string;
   content: string;
   images?: string[];
+  titleEn?: string;
+  contentEn?: string;
 }
 
 export default function DashboardPage() {
@@ -95,13 +97,13 @@ export default function DashboardPage() {
     setImages(images.filter((_, i) => i !== index));
   };
 
-  const handleEdit = (item: NewsItem) => {
+  const handleEdit = (item: NewsItem & { titleEn?: string; contentEn?: string }) => {
     setEditingId(item.id);
     setTitle(item.title);
-    setTitleEn((item as any).titleEn || '');
+    setTitleEn(item.titleEn || '');
     setDate(item.date.split('T')[0]);
     setContent(item.content);
-    setContentEn((item as any).contentEn || '');
+    setContentEn(item.contentEn || '');
     setImages(item.images || []);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

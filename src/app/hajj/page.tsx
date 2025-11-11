@@ -53,7 +53,7 @@ export default function HajjOfferPage() {
   const features = t('hajjPage.features', { returnObjects: true }) as string[];
 
   // Get translated sections
-  const sectionsContent = t('hajjPage.sectionsContent', { returnObjects: true }) as any;
+  const sectionsContent = t('hajjPage.sectionsContent', { returnObjects: true }) as Record<string, { content?: string; items?: string[]; subtitle?: string }>;
 
   const sections = [
     {
