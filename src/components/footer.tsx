@@ -35,7 +35,7 @@ export function Footer() {
                 />
               </div>
               <div className="golden-text text-2xl font-bold">
-                النداء للحج والعمرة
+                {t('nav.siteName')}
               </div>
             </Link>
             

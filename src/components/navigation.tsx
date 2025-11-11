@@ -62,7 +62,7 @@ export function Navigation() {
                 className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
               />
               <div className="golden-text text-base sm:text-lg md:text-xl lg:text-2xl font-bold whitespace-nowrap">
-                النداء للحج والعمرة
+                {t('nav.siteName')}
               </div>
             </Link>
           </div>
@@ -81,7 +81,8 @@ export function Navigation() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex">
+
             <button
               onClick={toggleMobileMenu}
               className="text-white hover:text-gold transition-colors duration-200 relative z-50 p-2 -mr-2"
@@ -110,6 +111,8 @@ export function Navigation() {
                 )}
               </svg>
             </button>
+
+            <LanguageSwitcher />
           </div>
         </div>
       </div>
@@ -178,7 +181,7 @@ export function Navigation() {
                   <LanguageSwitcher />
                 </div>
                 <p className="text-white/60 text-sm text-center">
-                  النداء للحج والعمرة
+                  {t('nav.siteName')}
                 </p>
               </div>
             </div>

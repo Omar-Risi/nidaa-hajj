@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function Home() {
   const { t } = useTranslation();
-  
+
   // Smooth scroll handler
   const handleScrollToOffers = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -44,7 +44,7 @@ export default function Home() {
               <div className="absolute inset-0 blur-3xl bg-gold-start opacity-60 scale-110"></div>
 
               {/* Main heading */}
-              <h1 className="relative golden-text text-4xl md:text-6xl lg:text-7xl font-bold text-center leading-tight py-6">
+              <h1 className="relative golden-text text-2xl md:text-6xl lg:text-7xl font-bold text-center leading-tight py-6">
                 {t('hero.title')} <br /> {t('hero.subtitle')}
               </h1>
               <p className="mt-8 text-white text-center font-bold">
