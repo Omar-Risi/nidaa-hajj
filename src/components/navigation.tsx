@@ -82,6 +82,7 @@ export function Navigation() {
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex">
+            <LanguageSwitcher />
 
             <button
               onClick={toggleMobileMenu}
@@ -112,7 +113,6 @@ export function Navigation() {
               </svg>
             </button>
 
-            <LanguageSwitcher />
           </div>
         </div>
       </div>
