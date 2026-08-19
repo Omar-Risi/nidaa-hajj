@@ -1,16 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getSupabaseAdmin, newRowDefaults, touchedAt } from '@/lib/supabase';
 
 // GET - Fetch all news
 export async function GET() {
   try {
-    const news = await prisma.news.findMany({
-      orderBy: {
-        date: 'desc',
-      },
-    });
+    const { data, error } = await getSupabaseAdmin()
+      .from('news')
+      .select('*')
+      .order('date', { ascending: false });
 
-    return NextResponse.json(news, { status: 200 });
+    if (error) throw error;
+
+    return NextResponse.json(data, { status: 200 });
   } catch (error) {
     console.error('Error fetching news:', error);
     return NextResponse.json(
@@ -26,8 +27,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { title, date, content, images, titleEn, contentEn } = body;
 
-    console.log('Received data:', { title, date, content, images, titleEn, contentEn });
-
     // Validate input
     if (!title || !date || !content) {
       return NextResponse.json(
@@ -36,24 +35,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create news
-    const news = await prisma.news.create({
-      data: {
+    const { data, error } = await getSupabaseAdmin()
+      .from('news')
+      .insert({
+        ...newRowDefaults(),
         title,
-        date: new Date(date),
+        date: new Date(date).toISOString(),
         content,
         images: images || [],
         titleEn: titleEn || null,
         contentEn: contentEn || null,
-      },
-    });
+      })
+      .select()
+      .single();
 
-    console.log('News created successfully:', news);
+    if (error) throw error;
 
-    return NextResponse.json(news, { status: 201 });
+    return NextResponse.json(data, { status: 201 });
   } catch (error) {
     console.error('Error creating news:', error);
-    console.error('Error details:', error instanceof Error ? error.message : error);
     return NextResponse.json(
       { error: 'حدث خطأ في الخادم' },
       { status: 500 }
@@ -66,8 +66,6 @@ export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
     const { id, title, date, content, images, titleEn, contentEn } = body;
-
-    console.log('Update request received:', { id, title, date, content, titleEn, contentEn });
 
     if (!id) {
       return NextResponse.json(
@@ -83,24 +81,33 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const news = await prisma.news.update({
-      where: { id },
-      data: {
+    const { data, error } = await getSupabaseAdmin()
+      .from('news')
+      .update({
+        ...touchedAt(),
         title,
-        date: new Date(date),
+        date: new Date(date).toISOString(),
         content,
         images: images || [],
         titleEn: titleEn || null,
         contentEn: contentEn || null,
-      },
-    });
+      })
+      .eq('id', id)
+      .select()
+      .single();
 
-    console.log('News updated successfully:', news);
+    if (error) throw error;
 
-    return NextResponse.json(news, { status: 200 });
+    if (!data) {
+      return NextResponse.json(
+        { error: 'الخبر غير موجود' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(data, { status: 200 });
   } catch (error) {
     console.error('Error updating news:', error);
-    console.error('Error details:', error instanceof Error ? error.message : error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : 'حدث خطأ في الخادم' },
       { status: 500 }
@@ -121,9 +128,9 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    await prisma.news.delete({
-      where: { id },
-    });
+    const { error } = await getSupabaseAdmin().from('news').delete().eq('id', id);
+
+    if (error) throw error;
 
     return NextResponse.json(
       { message: 'تم حذف الخبر بنجاح' },

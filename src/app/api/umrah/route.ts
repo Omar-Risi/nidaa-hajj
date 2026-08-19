@@ -1,12 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getSupabaseAdmin, newRowDefaults, touchedAt } from '@/lib/supabase';
+
+const TABLE = 'umrah_offers';
 
 export async function GET() {
   try {
-    const offers = await prisma.umrahOffer.findMany({
-      orderBy: { createdAt: 'desc' },
-    });
-    return NextResponse.json(offers, { status: 200 });
+    const { data, error } = await getSupabaseAdmin()
+      .from(TABLE)
+      .select('*')
+      .order('createdAt', { ascending: false });
+
+    if (error) throw error;
+
+    return NextResponse.json(data, { status: 200 });
   } catch (error) {
     console.error('Error fetching umrah offers:', error);
     return NextResponse.json({ error: 'حدث خطأ في الخادم' }, { status: 500 });
@@ -25,8 +31,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'جميع الحقول مطلوبة' }, { status: 400 });
     }
 
-    const offer = await prisma.umrahOffer.create({
-      data: {
+    const { data, error } = await getSupabaseAdmin()
+      .from(TABLE)
+      .insert({
+        ...newRowDefaults(),
         title,
         description,
         duration,
@@ -40,10 +48,13 @@ export async function POST(request: NextRequest) {
         durationEn: durationEn || null,
         accommodationEn: accommodationEn || null,
         featuresEn: featuresEn || [],
-      },
-    });
+      })
+      .select()
+      .single();
 
-    return NextResponse.json(offer, { status: 201 });
+    if (error) throw error;
+
+    return NextResponse.json(data, { status: 201 });
   } catch (error) {
     console.error('Error creating umrah offer:', error);
     return NextResponse.json({ error: 'حدث خطأ في الخادم' }, { status: 500 });
@@ -66,9 +77,10 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: 'جميع الحقول مطلوبة' }, { status: 400 });
     }
 
-    const offer = await prisma.umrahOffer.update({
-      where: { id },
-      data: {
+    const { data, error } = await getSupabaseAdmin()
+      .from(TABLE)
+      .update({
+        ...touchedAt(),
         title,
         description,
         duration,
@@ -82,10 +94,18 @@ export async function PUT(request: NextRequest) {
         durationEn: durationEn || null,
         accommodationEn: accommodationEn || null,
         featuresEn: featuresEn || [],
-      },
-    });
+      })
+      .eq('id', id)
+      .select()
+      .single();
 
-    return NextResponse.json(offer, { status: 200 });
+    if (error) throw error;
+
+    if (!data) {
+      return NextResponse.json({ error: 'العرض غير موجود' }, { status: 404 });
+    }
+
+    return NextResponse.json(data, { status: 200 });
   } catch (error) {
     console.error('Error updating umrah offer:', error);
     return NextResponse.json({ error: 'حدث خطأ في الخادم' }, { status: 500 });
@@ -101,7 +121,10 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'معرف العرض مطلوب' }, { status: 400 });
     }
 
-    await prisma.umrahOffer.delete({ where: { id } });
+    const { error } = await getSupabaseAdmin().from(TABLE).delete().eq('id', id);
+
+    if (error) throw error;
+
     return NextResponse.json({ message: 'تم حذف العرض بنجاح' }, { status: 200 });
   } catch (error) {
     console.error('Error deleting umrah offer:', error);

@@ -1,0 +1,5 @@
+# Local Worker runtime vars, read by `wrangler dev` / `opennextjs-cloudflare preview`.
+# Copy to .dev.vars (gitignored) and fill in. Mirrors the runtime half of .env.example.
+JWT_SECRET=
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=

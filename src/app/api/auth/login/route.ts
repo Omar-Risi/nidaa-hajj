@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { createSession, setSessionCookie } from '@/lib/auth';
 import bcrypt from 'bcryptjs';
 
@@ -17,9 +17,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Find user by email
-    const user = await prisma.user.findUnique({
-      where: { email },
-    });
+    const { data: user, error } = await getSupabaseAdmin()
+      .from('users')
+      .select('id, email, password')
+      .eq('email', email)
+      .maybeSingle();
+
+    if (error) throw error;
 
     if (!user) {
       return NextResponse.json(

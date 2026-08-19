@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nidaa-hajj",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-03-25",
+  // nodejs_compat is required by OpenNext and by bcryptjs in the login route.
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  }
+  // Secrets are NOT set here. Use `wrangler secret put <NAME>` or the
+  // dashboard for: JWT_SECRET, SUPABASE_SERVICE_ROLE_KEY.
+  // See .env.example for the full list.
+}
