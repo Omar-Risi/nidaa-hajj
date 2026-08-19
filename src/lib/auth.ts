@@ -1,8 +1,14 @@
 import { SignJWT, jwtVerify, JWTPayload } from 'jose';
 import { cookies } from 'next/headers';
+import { requireEnv } from '@/lib/env';
 
-const secret = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret');
 const SESSION_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+
+// Resolved per call rather than at module scope: on Cloudflare Workers the
+// environment is only populated once a request is in flight.
+function getSecret() {
+  return new TextEncoder().encode(requireEnv('JWT_SECRET'));
+}
 
 export interface SessionPayload extends JWTPayload {
   userId: string;
@@ -15,14 +21,14 @@ export async function createSession(userId: string, email: string) {
   const token = await new SignJWT({ userId, email })
     .setProtectedHeader({ alg: 'HS256' })
     .setExpirationTime(expiresAt)
-    .sign(secret);
+    .sign(getSecret());
 
   return { token, expiresAt };
 }
 
 export async function verifySession(token: string): Promise<SessionPayload | null> {
   try {
-    const { payload } = await jwtVerify(token, secret);
+    const { payload } = await jwtVerify(token, getSecret());
     
     // Validate that required fields exist
     if (
